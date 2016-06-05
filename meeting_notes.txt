@@ -1,0 +1,35 @@
+Ryan comments
+May 27
+
+A --> B / C _ D
+
+
+CAD --> CBD
+
+A =/= B
+A and B cannot be null at the same time.
+C and D can be null
+
+A, B, C, D
+can be
+- segments ("letters"): a, b, k ... x ... all are here: http://www.ipachart.com
+- boundaries (#)
+- "features" [+feature] or [-feature] or no feature
+e.g. [+round] --> [+high] / _ #
+- C, V
+
+Add folder 
+/newderive/ at phonology.us
+access data in Dropbox
+
+June 3
+
+Next steps:
+- The user should be able to enter any segment (symbol from the consonant and vowel table) in the rule, and the program should know what to do.
+- Make the program understand what C and V are.
+- Make “Remove rule” work
+- Empty should be nothing.
+- A, B, C, D should be lighter font, to distinguish C from C = consonant.
+- Ability to enter UR (Underlying Representation) from tables. 
+- A, B, C, D and URs can also be typed (in addition to clicking).
+

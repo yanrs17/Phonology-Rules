@@ -1,5 +1,0 @@
-FTP Login (FileZilla):
-
-Host name: phonology.us
-Username: derive
-Password: o!u0OotRp0sr

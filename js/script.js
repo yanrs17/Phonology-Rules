@@ -38,6 +38,10 @@ function createUniqueTag(elmt) {
     // Search for the old tag
     // http://stackoverflow.com/questions/4256339/javascript-how-to-loop-through-all-dom-elements-on-a-page
     var taggables = document.querySelectorAll(".taggable");
+    
+    //alert("1");
+    //alert(taggables);
+
     for (var i = 0, max = taggables.length; i < max; i++) {
         if (taggables[i].hasAttribute("id")) {
             // Remove the old tag
@@ -276,28 +280,28 @@ function isConsonant(symbol) {
 
 function convertABCDintoRule(A, B, C, D) {
 
-    if (A === "_" && B === "_") {
+    if (A === " " && B === " ") {
         alert("A and B cannot be null at the same time.");
         return null;
     }
 
-    if (isVowel(A) && B === "∅" && isVowel(C) && D === "_") {
+    if (isVowel(A) && B === "∅" && isVowel(C) && D === " ") {
         // Hiatus Resolution
         // V → ∅ / V —
         return "Hiatus Resolution";
     }
 
-    else if (isVowel(A) && B === "∅" && C === "_" && D === "#") {
+    else if (isVowel(A) && B === "∅" && C === " " && D === "#") {
         // Final Vowel Deletion
         //  V → ∅ / — #
         return "Final Vowel Deletion";
     }
 
-    else if (isConsonant(A) && voiced(B) && isNasal(C) && D === "_") {
+    else if (isConsonant(A) && voiced(B) && isNasal(C) && D === " ") {
         return "Postnasal Voicing";
     } 
 
-    else if (isCoronal(A) && B === "∅" && C === "_" && D === "#") {
+    else if (isCoronal(A) && B === "∅" && C === " " && D === "#") {
         return "Final Coronal Deletion";
     }
 

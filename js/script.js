@@ -278,14 +278,40 @@ function isConsonant(symbol) {
     return arrayConsonants.indexOf(symbol) > -1;
 }
 
+function isAnterior(symbol) {
+    var arrayAnterior = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "n", "l", "r", "ɹ"];
+
+    return arrayAnterior.indexOf(symbol) > -1;
+}
+
+function isDorsal(symbol) {
+    var arrayDorsal = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɳ", "ɲ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ",
+    "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ", 
+    "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", 
+    "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", 
+    "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
+
+    return arrayDorsal.indexOf(symbol) > -1;
+}
+
+function isBack(symbol) {
+    var arrayBack = 
+    ["k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɴ", "ʀ", 
+    "w", "ɰ", "ɯ", 
+    "u", "ʊ", "ɤ", "o", "ə", "ʌ", "ɔ", "ɑ", "ɒ"];
+
+    return arrayBack.indexOf(symbol) > -1;
+}
+
 function convertABCDintoRule(A, B, C, D) {
 
     if (A === " " && B === " ") {
-        alert("A and B cannot be null at the same time.");
+        // If A and B are empty at the same time.
+        alert("A and B cannot be empty at the same time.");
         return null;
     }
 
-    if (isVowel(A) && B === "∅" && isVowel(C) && D === " ") {
+    else if (isVowel(A) && B === "∅" && isVowel(C) && D === " ") {
         // Hiatus Resolution
         // V → ∅ / V —
         return "Hiatus Resolution";
@@ -293,31 +319,144 @@ function convertABCDintoRule(A, B, C, D) {
 
     else if (isVowel(A) && B === "∅" && C === " " && D === "#") {
         // Final Vowel Deletion
-        //  V → ∅ / — #
+        // V → ∅ / — #
         return "Final Vowel Deletion";
     }
 
     else if (isConsonant(A) && voiced(B) && isNasal(C) && D === " ") {
+        // Postnasal Voicing
+        // C → [+voice] / [+nasal] —
         return "Postnasal Voicing";
-    } 
+    }
+
+    else if (0) {
+        // Nasal Place Assimilation
+        // [+nasal] → [αcoronal βlabial ɣdorsal] / - [−syllabic αcoronal βlabial ɣdorsal]
+    }
+
+    else if (0) {
+        // Voicing Assimilation
+        // [-sonorant] → [αvoice] / — [αvoice -sonorant]
+    }
 
     else if (isCoronal(A) && B === "∅" && C === " " && D === "#") {
+        // Final Coronal Deletion
+        // [+coronal] → ∅ / — #
         return "Final Coronal Deletion";
     }
 
+    else if (0) {
+        // Height Harmony
+        // V → [-high] / — (C)[-high -low]
+    }
+
+    else if (0) {
+        // Rounding Harmony
+        // V → [αround] / — (C₀VC₀)[αround]
+    }
+
+    else if (A === "l" && B === "o" && C === " " && (isConsonant(D) || D === "#")) {
+        // L-Vocalization
+        // l → o / — {C, #}
+
+        // not tested yet
+        return "L-Vocalization";
+    }
+
+    else if (0) {
+        // Dissimilation
+        // V → [−low] / — C₀ [+low]
+    }
+
+    else if (0) {
+        // Initial Stress Assignment
+        // V → [+stress] / # C₀ —
+    }
+
+    else if (!isSonorant(A) && !voiced(B) && C === " " && D === "#") {
+        // Final Devoicing
+        // [-sonorant] → [-voice] / — #
+
+        // Not tested yet
+        return "Final Devoicing";
+    }
+
     else if (!isSonorant(A) && voiced(A) && isContinuant(B) && isVowel(C) && isVowel(D)) { 
+        // Lenition
         //[-sonorant +voice] → [+continuant] / V — V
         return "Lenition";
     }
 
     else if (!isSonorant(A) && voiced(B) && isVowel(C) && isVowel(D)) {
+        // Intervocalic Voicing
         // [-sonorant] → [+voice] / V — V"
         return "Intervocalic Voicing";
     }
 
     else if (A === "∅" && B === "ə" && isConsonant(C) && isConsonant(D)) {
+        // Schwa Epenthesis
         // ∅ → ə / C — C
         return "Schwa Epenthesis";
+    }
+
+    else if (A === "∅" && B === "i" && isConsonant(C) && isConsonant(D)) {
+        // High Vowel Epenthesis
+        // ∅ → i / C — C
+
+        // not tested yet
+        return "High Vowel Epenthesis";
+    }
+
+
+    else if (0) {
+        // Metathesis
+        // iC → Ci / - #
+    }
+
+    else if (!isContinuant(A) && isNasal(B) && C === " " && isNasal(D)) {
+        // Nasal Assimilation
+        // [-continuant] → [+nasal] / — [+nasal]
+
+        // not tested yet
+        return "Nasal Assimilation";
+    }
+
+    else if (isDorsal(A) && !isDorsal(B) && isCoronal(B) && !isAnterior(B) && C === " " && isNotLow(D) && !isBack(D)) {
+        // Velar Palatalization
+        // [+dorsal] → [−dorsal +coronal −anterior] / — [−low −back]
+
+        // not tested yet
+        return "Velar Palatalization";
+    }
+
+    else if (0) {
+        // Aspiration
+        // [-continuant -sonorant] → [+spread glottis] / {#, C} — V
+    }
+
+    else if (0) {
+        // Sibilant Harmony
+        // [+coronal +continuant -sonorant] → [αanterior] / — (C₀VC₀)[αanterior +coronal +continuant -sonorant]
+    }
+
+    else if (0) {
+        // Vowel Reduction
+        // [-stress +syllabic] → [-low]
+    }
+
+    else if (0) {
+        // Strengthening
+        // [−sonorant] → [−continuant] / {#, C} — V
+    }
+
+    else if (0) {
+        // Word-Final Consonant Neutralization
+        // C → ʔ / — #
+    }
+
+    else if (0) {
+        // Manner Assimilation
+        // [−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]
     }
 
     else {

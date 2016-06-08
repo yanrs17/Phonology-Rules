@@ -53,6 +53,7 @@ function createUniqueTag(elmt) {
 
     // Add tag for the current element
     elmt.setAttribute("id", "id_tag");
+    elmt.innerHTML = "";
 }
 
 function addRow(tableID) {
@@ -303,6 +304,11 @@ function isBack(symbol) {
     return arrayBack.indexOf(symbol) > -1;
 }
 
+function isSpreadGlottis(symbol) {
+    var arraySG = ["ɬ", "h", "ɦ"];
+    return arraySG.indexOf(symbol) > -1;
+}
+
 function convertABCDintoRule(A, B, C, D) {
 
     if (A === " " && B === " ") {
@@ -332,11 +338,15 @@ function convertABCDintoRule(A, B, C, D) {
     else if (0) {
         // Nasal Place Assimilation
         // [+nasal] → [αcoronal βlabial ɣdorsal] / - [−syllabic αcoronal βlabial ɣdorsal]
+    
+        return;
     }
 
     else if (0) {
         // Voicing Assimilation
         // [-sonorant] → [αvoice] / — [αvoice -sonorant]
+    
+        return;
     }
 
     else if (isCoronal(A) && B === "∅" && C === " " && D === "#") {
@@ -348,11 +358,15 @@ function convertABCDintoRule(A, B, C, D) {
     else if (0) {
         // Height Harmony
         // V → [-high] / — (C)[-high -low]
+    
+        return;
     }
 
     else if (0) {
         // Rounding Harmony
         // V → [αround] / — (C₀VC₀)[αround]
+    
+        return;
     }
 
     else if (A === "l" && B === "o" && C === " " && (isConsonant(D) || D === "#")) {
@@ -366,11 +380,15 @@ function convertABCDintoRule(A, B, C, D) {
     else if (0) {
         // Dissimilation
         // V → [−low] / — C₀ [+low]
+    
+        return;
     }
 
     else if (0) {
         // Initial Stress Assignment
         // V → [+stress] / # C₀ —
+    
+        return;
     }
 
     else if (!isSonorant(A) && !voiced(B) && C === " " && D === "#") {
@@ -411,6 +429,8 @@ function convertABCDintoRule(A, B, C, D) {
     else if (0) {
         // Metathesis
         // iC → Ci / - #
+    
+        return;
     }
 
     else if (!isContinuant(A) && isNasal(B) && C === " " && isNasal(D)) {
@@ -429,39 +449,55 @@ function convertABCDintoRule(A, B, C, D) {
         return "Velar Palatalization";
     }
 
-    else if (0) {
+    else if (!isContinuant(A) && !isSonorant(A) && isSpreadGlottis(B) && (C === "#" || isConsonant(C)) && isVowel(D) ) {
         // Aspiration
         // [-continuant -sonorant] → [+spread glottis] / {#, C} — V
+
+        // not tested yet
+        return "Aspiration";
     }
 
     else if (0) {
         // Sibilant Harmony
         // [+coronal +continuant -sonorant] → [αanterior] / — (C₀VC₀)[αanterior +coronal +continuant -sonorant]
+    
+        return;
     }
 
     else if (0) {
         // Vowel Reduction
         // [-stress +syllabic] → [-low]
+    
+        return;
     }
 
-    else if (0) {
+    else if (!isSonorant(A) && !isContinuant(B) && (C === "#" || isConsonant(C)) && isVowel(D)) {
         // Strengthening
         // [−sonorant] → [−continuant] / {#, C} — V
+
+        // Untested
+        return "Strengthening";
     }
 
-    else if (0) {
+    else if (isConsonant(A) && B === "ʔ" && C === " " && D === "#") {
         // Word-Final Consonant Neutralization
         // C → ʔ / — #
+
+        // Untested
+        return "Word-Final Consonant Neutralization";
     }
 
     else if (0) {
         // Manner Assimilation
         // [−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]
+    
+        return;
     }
 
     else {
-        // If not found
-        return null;
+        // If rule not found
+        return null; // or need to change to "rule not found"?
+
     }
 
 }

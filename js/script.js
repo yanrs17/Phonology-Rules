@@ -53,6 +53,7 @@ function createUniqueTag(elmt) {
 
     // Add tag for the current element
     elmt.setAttribute("id", "id_tag");
+    elmt.innerHTML = "";
 }
 
 function addRow(tableID) {

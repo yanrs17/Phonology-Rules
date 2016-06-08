@@ -634,7 +634,7 @@ jQuery("#btnNumberSign").on('click', function() {
 });
 
 jQuery("#btnEmpty").on('click', function() {
-    var txtToAdd = " ";
+    var txtToAdd = "&nbsp;";
     var original_value = $("#id_tag").attr("value");
 	$("#id_tag").attr("value", original_value + txtToAdd);
 	$("#id_tag").html(txtToAdd);

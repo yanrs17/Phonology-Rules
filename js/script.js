@@ -33,35 +33,12 @@ var rules = [["Hiatus Resolution", "V → ∅ / V —"],
 ["Word-Final Consonant Neutralization", "C → ʔ / — #"],
 ["Manner Assimilation", "[−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]"]];
 
-function createUniqueTag(elmt) {
-
-    // Search for the old tag
-    // http://stackoverflow.com/questions/4256339/javascript-how-to-loop-through-all-dom-elements-on-a-page
-    var taggables = document.querySelectorAll(".taggable");
-    
-
-    for (var i = 0, max = taggables.length; i < max; i++) {
-        if (taggables[i].hasAttribute("id")) {
-            // Remove the old tag
-            taggables[i].removeAttribute("id");
-
-            // break;
-        }
-    }
-
-    // Add tag for the current element
-    elmt.setAttribute("id", "id_tag");
-    elmt.innerHTML = "&nbsp;";
-}
-
 function addRow(tableID) {
-    // Create a new row
     var table = document.getElementById(tableID);
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount - 1);
     row.className = "tablerow";
 
-    // Add a new cell with checkbox
     var cellchk = row.insertCell(0);
     var chkbox = document.createElement("input");
     cellchk.className = "cell";
@@ -69,106 +46,42 @@ function addRow(tableID) {
     chkbox.name="chkbox[]";
     cellchk.appendChild(chkbox);
 
-    // Add a new cell with rules
     var lstRules = row.insertCell(1);
     lstRules.className = "cell";
+    var select = document.createElement("select");
+    select.className = "rule";
+    lstRules.appendChild(select);
 
-    // Add button with textnode "A"
-    var select1 = document.createElement("button"); // Create a <button> element
-    select1.setAttribute("type", "button");
-    select1.setAttribute("onclick", "createUniqueTag(this);");
-    select1.setAttribute("class", "taggable");
-    select1.setAttribute("contenteditable", "true");
+    //creating + appending options
+    for (var i = 0; i < rules.length; i++) {
+        var option = document.createElement("option");
+        option.value = rules[i][0];
+        option.text = rules[i][0];
+        option.title = rules[i][1];
+        select.appendChild(option);
+    }
 
-    var select1lighter = document.createElement("div");
-    select1lighter.setAttribute('class', 'lighter');
-    select1lighter.appendChild(document.createTextNode("A"));   // Append the text to <button>
-    select1.appendChild(select1lighter);
-    //select1.className = "rule"; //?
-    lstRules.appendChild(select1);
-    // Add textnode " -> "
-    var select2 = document.createTextNode(" -> ");
-    lstRules.appendChild(select2);
-    // Add button with textnode "A"
-    var select3 = document.createElement("button"); // Create a <button> element
-    select3.setAttribute("type", "button");
-    select3.setAttribute("onclick", "createUniqueTag(this);");
-    select3.setAttribute("class", "taggable");
-    select3.setAttribute("contenteditable", "true");
-
-    var select3lighter = document.createElement("div");
-    select3lighter.setAttribute('class', 'lighter');
-    select3lighter.appendChild(document.createTextNode("B"));   // Append the text to <button>
-    select3.appendChild(select3lighter);
-    //select3.className = "rule"; //?
-    lstRules.appendChild(select3);
-    // Add textnode " / "
-    var select4 = document.createTextNode(" / ");
-    lstRules.appendChild(select4);
-    // Add button with textnode "C"
-    var select5 = document.createElement("button"); // Create a <button> element
-    select5.setAttribute("type", "button");
-    select5.setAttribute("onclick", "createUniqueTag(this);");
-    select5.setAttribute("class", "taggable");
-    select5.setAttribute("contenteditable", "true");
-
-    var select5lighter = document.createElement("div");
-    select5lighter.setAttribute('class', 'lighter');
-    select5lighter.appendChild(document.createTextNode("C"));   // Append the text to <button>
-    select5.appendChild(select5lighter);
-    //select5.className = "rule"; //?
-    lstRules.appendChild(select5);
-    // Add textnode " _ "
-    var select6 = document.createTextNode(" _ ");
-    lstRules.appendChild(select6);
-    // Add button with textnode "D"
-    var select7 = document.createElement("button"); // Create a <button> element
-    select7.setAttribute("type", "button");
-    select7.setAttribute("onclick", "createUniqueTag(this);");
-    select7.setAttribute("class", "taggable");
-    select7.setAttribute("contenteditable", "true");
-
-    var select7lighter = document.createElement("div");
-    select7lighter.setAttribute('class', 'lighter');
-    select7lighter.appendChild(document.createTextNode("D"));   // Append the text to <button>
-    select7.appendChild(select7lighter);
-    //select7.className = "rule"; //?
-    lstRules.appendChild(select7);
-
-
-    // //creating + appending options
-    // for (var i = 0; i < rules.length; i++) {
-    //     var option = document.createElement("option");
-    //     option.value = rules[i][0];
-    //     option.text = rules[i][0];
-    //     option.title = rules[i][1];
-    //     select.appendChild(option);
-    // }
-
-    // Add cell for the first UR in each rule
     var cellChange = row.insertCell(2);
     cellChange.className = "cell";
     cellChange.innerHTML = "";
 
-    // Add cell for the remaining UR in each rule
     for (var k=3; k < table.rows[0].cells.length; k++) {
         var newCell = row.insertCell(k);
         newCell.className = "cell";
         newCell.innerHTML = "";
     }
 
-    // ?? What does it do
-    // if (table.rows.length === 3 || table.rows.length > 3) {
-    //     var rows = table.rows;
-    //     if (rows[1].cells[0].innerHTML === "") {
-    //         var cellchk = rows[1].cells[0];
-    //         var chkbox = document.createElement("input");
-    //         cellchk.className = "cell";
-    //         chkbox.type = "checkbox";
-    //         chkbox.name="chkbox[]";
-    //         cellchk.appendChild(chkbox);
-    //     }
-    // }
+    if (table.rows.length === 3 || table.rows.length > 3) {
+        var rows = table.rows;
+        if (rows[1].cells[0].innerHTML === "") {
+            var cellchk = rows[1].cells[0];
+            var chkbox = document.createElement("input");
+            cellchk.className = "cell";
+            chkbox.type = "checkbox";
+            chkbox.name="chkbox[]";
+            cellchk.appendChild(chkbox);
+        }
+    }
 }
 
 function deleteRow(tableID) {
@@ -212,12 +125,10 @@ function addUR(tableID) {
     celltxtinput.className = "cell";
     txtinput.type = "text";
     txtinput.name ="txtinput";
-    txtinput.setAttribute('onclick', "createUniqueTag(this);")
-    txtinput.setAttribute('value', "")
-    inputnum = countCols(tableID) - 2;
-    txtinput.className = "userInput taggable input" + inputnum;
+    txtinput.className = "userInput";
     txtinput.placeholder = "Enter a word";
-    //txtinput.id = "input" + inputnum;
+    inputnum = countCols(tableID) - 2;
+    txtinput.id = "input" + inputnum;
     celltxtinput.innerHTML = "UR: ";
     celltxtinput.appendChild(txtinput);
 
@@ -251,305 +162,12 @@ function countCols(tableID) {
 function derive(tableID) {
     var table = document.getElementById(tableID);
     //var input = document.getElementById("input" + (table.rows[0].cells.length - 2)).value;
-    var ruleOrder = document.getElementsByClassName("taggable");
-
+    var ruleOrder = document.getElementsByClassName("rule");
     var numCols = table.rows[0].cells.length - 2;
     var wordList = [];
 
-    //clearCells(tableID);
+    clearCells(tableID);
     wordList = applyRule(ruleOrder);
-}
-
-function isContinuant(symbol) {
-    var arrayContinuant = ["[+continuant]", 
-    "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", 
-    "ç", "ʝ", "f", "v", "ɸ", "β", "x", "ɣ", 
-    "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "l", "ʎ", 
-    "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", 
-    "y", "ɨ", "ʉ", "ɯ", "u", "ɪ", "ʏ", "ʊ", 
-    "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", 
-    "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", 
-    "ɶ", "ɑ", "ɒ"];
-    return arrayContinuant.indexOf(symbol) > -1;
-}
-
-function isVowel(symbol) {
-    var arrayVowels = ["V", 
-        "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ", 
-        "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", 
-        "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", 
-        "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-
-    // > -1 means "symbol" is in "arrayVowel"
-    return arrayVowels.indexOf(symbol) > -1;
-}
-
-function isConsonant(symbol) {
-    var arrayConsonants = ["C",
-    "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ", 
-    "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ", 
-    "ʙ", "r", "ʀ", 
-    "ⱱ", "ɾ", "ɽ", 
-    "ɸ", "β", "f", "v", "θ", "ð", "s", "z", "ʃ", "ʒ", "ʂ", "ʐ", "ç", "ʝ", "x", "ɣ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", 
-    "ɬ", "ɮ", 
-    "ʋ", "ɹ", "ɻ", "j", "ɰ", 
-    "l", "ɭ", "ʎ", "ʟ"];
-
-    // > -1 means "symbol" is in "arrayConsonants"
-    return arrayConsonants.indexOf(symbol) > -1;
-}
-
-function isAnterior(symbol) {
-    var arrayAnterior = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "n", "l", "r", "ɹ"];
-
-    return arrayAnterior.indexOf(symbol) > -1;
-}
-
-function isDorsal(symbol) {
-    var arrayDorsal = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɳ", "ɲ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ",
-    "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ", 
-    "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", 
-    "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", 
-    "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-
-    return arrayDorsal.indexOf(symbol) > -1;
-}
-
-function isBack(symbol) {
-    var arrayBack = 
-    ["k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɴ", "ʀ", 
-    "w", "ɰ", "ɯ", 
-    "u", "ʊ", "ɤ", "o", "ə", "ʌ", "ɔ", "ɑ", "ɒ"];
-
-    return arrayBack.indexOf(symbol) > -1;
-}
-
-function isSpreadGlottis(symbol) {
-    var arraySG = ["ɬ", "h", "ɦ"];
-    return arraySG.indexOf(symbol) > -1;
-}
-
-function convertABCDintoRule(A, B, C, D) {
-
-
-    if (A === "&nbsp;" && B === "&nbsp;") {
-        // If A and B are empty at the same time.
-        alert("A and B cannot be empty at the same time.");
-        return null;
-    }
-
-    else if (isVowel(A) && B === "∅" && isVowel(C) && D === "&nbsp;") {
-        // Hiatus Resolution
-        // V → ∅ / V —
-        return "Hiatus Resolution";
-    }
-
-    else if (isVowel(A) && B === "∅" && C === "&nbsp;" && D === "#") {
-        // Final Vowel Deletion
-        // V → ∅ / — #
-
-        return "Final Vowel Deletion";
-    }
-
-    else if (isConsonant(A) && voiced(B) && isNasal(C) && D === " ") {
-        // Postnasal Voicing
-        // C → [+voice] / [+nasal] —
-        return "Postnasal Voicing";
-    }
-
-    else if (0) {
-        // Nasal Place Assimilation
-        // [+nasal] → [αcoronal βlabial ɣdorsal] / - [−syllabic αcoronal βlabial ɣdorsal]
-    
-        return;
-    }
-
-    else if (0) {
-        // Voicing Assimilation
-        // [-sonorant] → [αvoice] / — [αvoice -sonorant]
-    
-        return;
-    }
-
-    else if (isCoronal(A) && B === "∅" && C === " " && D === "#") {
-        // Final Coronal Deletion
-        // [+coronal] → ∅ / — #
-        return "Final Coronal Deletion";
-    }
-
-    else if (0) {
-        // Height Harmony
-        // V → [-high] / — (C)[-high -low]
-    
-        return;
-    }
-
-    else if (0) {
-        // Rounding Harmony
-        // V → [αround] / — (C₀VC₀)[αround]
-    
-        return;
-    }
-
-    else if (A === "l" && B === "o" && C === " " && (isConsonant(D) || D === "#")) {
-        // L-Vocalization
-        // l → o / — {C, #}
-
-        // not tested yet
-        return "L-Vocalization";
-    }
-
-    else if (0) {
-        // Dissimilation
-        // V → [−low] / — C₀ [+low]
-    
-        return;
-    }
-
-    else if (0) {
-        // Initial Stress Assignment
-        // V → [+stress] / # C₀ —
-    
-        return;
-    }
-
-    else if (!isSonorant(A) && !voiced(B) && C === " " && D === "#") {
-        // Final Devoicing
-        // [-sonorant] → [-voice] / — #
-
-        // Not tested yet
-        return "Final Devoicing";
-    }
-
-    else if (!isSonorant(A) && voiced(A) && isContinuant(B) && isVowel(C) && isVowel(D)) { 
-        // Lenition
-        //[-sonorant +voice] → [+continuant] / V — V
-        return "Lenition";
-    }
-
-    else if (!isSonorant(A) && voiced(B) && isVowel(C) && isVowel(D)) {
-        // Intervocalic Voicing
-        // [-sonorant] → [+voice] / V — V"
-        return "Intervocalic Voicing";
-    }
-
-    else if (A === "∅" && B === "ə" && isConsonant(C) && isConsonant(D)) {
-        // Schwa Epenthesis
-        // ∅ → ə / C — C
-        return "Schwa Epenthesis";
-    }
-
-    else if (A === "∅" && B === "i" && isConsonant(C) && isConsonant(D)) {
-        // High Vowel Epenthesis
-        // ∅ → i / C — C
-
-        // not tested yet
-        return "High Vowel Epenthesis";
-    }
-
-
-    else if (0) {
-        // Metathesis
-        // iC → Ci / - #
-    
-        return;
-    }
-
-    else if (!isContinuant(A) && isNasal(B) && C === " " && isNasal(D)) {
-        // Nasal Assimilation
-        // [-continuant] → [+nasal] / — [+nasal]
-
-        // not tested yet
-        return "Nasal Assimilation";
-    }
-
-    else if (isDorsal(A) && !isDorsal(B) && isCoronal(B) && !isAnterior(B) && C === " " && isNotLow(D) && !isBack(D)) {
-        // Velar Palatalization
-        // [+dorsal] → [−dorsal +coronal −anterior] / — [−low −back]
-
-        // not tested yet
-        return "Velar Palatalization";
-    }
-
-    else if (!isContinuant(A) && !isSonorant(A) && isSpreadGlottis(B) && (C === "#" || isConsonant(C)) && isVowel(D) ) {
-        // Aspiration
-        // [-continuant -sonorant] → [+spread glottis] / {#, C} — V
-
-        // not tested yet
-        return "Aspiration";
-    }
-
-    else if (0) {
-        // Sibilant Harmony
-        // [+coronal +continuant -sonorant] → [αanterior] / — (C₀VC₀)[αanterior +coronal +continuant -sonorant]
-    
-        return;
-    }
-
-    else if (0) {
-        // Vowel Reduction
-        // [-stress +syllabic] → [-low]
-    
-        return;
-    }
-
-    else if (!isSonorant(A) && !isContinuant(B) && (C === "#" || isConsonant(C)) && isVowel(D)) {
-        // Strengthening
-        // [−sonorant] → [−continuant] / {#, C} — V
-
-        // Untested
-        return "Strengthening";
-    }
-
-    else if (isConsonant(A) && B === "ʔ" && C === " " && D === "#") {
-        // Word-Final Consonant Neutralization
-        // C → ʔ / — #
-
-        // Untested
-        return "Word-Final Consonant Neutralization";
-    }
-
-    else if (0) {
-        // Manner Assimilation
-        // [−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]
-    
-        return;
-    }
-
-    else {
-        // If rule not found
-        return null; // or need to change to "rule not found"?
-
-    }
-
-}
-
-function getFirstNonEmpty(input) {
-
-    // Need to change!
-
-    if (input.length == 0) {
-        return "&nbsp;";
-    }
-
-    else if (input.length == 1) {
-        return input;
-    }
-
-    else {
-        if (input.charAt(0) === "&"){ // & for &nbsp;
-            // What if the first two are both " "?
-
-            if (input.length > 6) {
-                return input[6];
-            }
-
-            else {
-                return "&nbsp;";
-            }
-        }
-        return input[0];
-    }
 }
 
 function applyRule(ruleOrder) {
@@ -559,103 +177,90 @@ function applyRule(ruleOrder) {
     var rows = table.rows;
     var numCols = table.rows[0].cells.length - 2;
 
-    // UR
     for (var x=1; x < numCols + 1; x++) {
-        wordList.push((document.getElementsByClassName("input" + x))[0].value);
+        wordList.push((document.getElementById("input" + x)).value);
     }
 
     for (var w=0; w < wordList.length; w++) {
-        for (var i = 0; i < (ruleOrder.length - numCols) / 4; i++) {
+        for (var i = 0; i < ruleOrder.length; i++) {
             change = [];
-            var A = ruleOrder[numCols + i * 4 + 0].innerHTML;
-            var B = ruleOrder[numCols + i * 4 + 1].innerHTML;
-            var C = ruleOrder[numCols + i * 4 + 2].innerHTML;
-            var D = ruleOrder[numCols + i * 4 + 3].innerHTML;
-            A = getFirstNonEmpty(A);
-            B = getFirstNonEmpty(B);
-            C = getFirstNonEmpty(C);
-            D = getFirstNonEmpty(D);
-
-            var ruleName = convertABCDintoRule(A, B, C, D);
-
-            // var rule = ruleOrder[i];
-            if (ruleName === "Hiatus Resolution") {
+            var rule = ruleOrder[i];
+            if (rule[rule.selectedIndex].value === "Hiatus Resolution") {
                 change = hiatusResolution(wordList[w]);
             }
-            else if (ruleName === "Final Vowel Deletion") {
+            else if (rule[rule.selectedIndex].value === "Final Vowel Deletion") {
                 change = finalVowelDeletion(wordList[w]);
             }
-            else if (ruleName === "Voicing Assimilation") {
+            else if (rule[rule.selectedIndex].value === "Voicing Assimilation") {
                 change = voicingAssimilation(wordList[w]);
             }
-            else if (ruleName === "Postnasal Voicing") {
+            else if (rule[rule.selectedIndex].value === "Postnasal Voicing") {
                 change = postnasalVoicing(wordList[w]);
             }
-            else if (ruleName === "Nasal Place Assimilation") {
+            else if (rule[rule.selectedIndex].value === "Nasal Place Assimilation") {
                 change = nasalPlaceAssimilation(wordList[w]);
             }
-            else if (ruleName === "Final Coronal Deletion") {
+            else if (rule[rule.selectedIndex].value === "Final Coronal Deletion") {
                 change = finalCoronalDeletion(wordList[w]);
             }
-            else if (ruleName === "Height Harmony") {
+            else if (rule[rule.selectedIndex].value === "Height Harmony") {
                 change = heightHarmony(wordList[w]);
             }
-            else if (ruleName === "Rounding Harmony") {
+            else if (rule[rule.selectedIndex].value === "Rounding Harmony") {
                 change = roundingHarmony(wordList[w]);
             }
-            else if (ruleName === "L-Vocalization") {
+            else if (rule[rule.selectedIndex].value === "L-Vocalization") {
                 change = lVocalization(wordList[w]);
             }
-            else if (ruleName === "Dissimilation") {
+            else if (rule[rule.selectedIndex].value === "Dissimilation") {
                 change = dissimilation(wordList[w]);
             }
-            else if (ruleName === "Initial Stress Assignment") {
+            else if (rule[rule.selectedIndex].value === "Initial Stress Assignment") {
                 change = initialStressAssignment(wordList[w]);
             }
-            else if (ruleName === "Schwa Epenthesis") {
+            else if (rule[rule.selectedIndex].value === "Schwa Epenthesis") {
                 change = schwaEpenthesis(wordList[w]);
             }
-            else if (ruleName === "High Vowel Epenthesis") {
+            else if (rule[rule.selectedIndex].value === "High Vowel Epenthesis") {
                 change = highVowelEpenthesis(wordList[w]);
             }
-            else if (ruleName === "Metathesis") {
+            else if (rule[rule.selectedIndex].value === "Metathesis") {
                 change = metathesis(wordList[w]);
             }
-            else if (ruleName === "Final Devoicing") {
+            else if (rule[rule.selectedIndex].value === "Final Devoicing") {
                 change = finalDevoicing(wordList[w]);
             }
-            else if (ruleName === "Lenition") {
+            else if (rule[rule.selectedIndex].value === "Lenition") {
                 change = lenition(wordList[w]);
             }
-            else if (ruleName === "Intervocalic Voicing") {
+            else if (rule[rule.selectedIndex].value === "Intervocalic Voicing") {
                 change = intervocalicVoicing(wordList[w]);
             }
-            else if (ruleName === "Nasal Assimilation") {
+            else if (rule[rule.selectedIndex].value === "Nasal Assimilation") {
                 change = nasalAssimilation(wordList[w]);
             }
-            else if (ruleName === "Velar Palatalization") {
+            else if (rule[rule.selectedIndex].value === "Velar Palatalization") {
                 change = velarPalatalization(wordList[w]);
             }
-            else if (ruleName === "Aspiration") {
+            else if (rule[rule.selectedIndex].value === "Aspiration") {
                 change = aspiration(wordList[w]);
             }
-            else if (ruleName === "Sibilant Harmony") {
+            else if (rule[rule.selectedIndex].value === "Sibilant Harmony") {
                 change = sibilantHarmony(wordList[w]);
             }
-            else if (ruleName === "Vowel Reduction") {
+            else if (rule[rule.selectedIndex].value === "Vowel Reduction") {
                 change = vowelReduction(wordList[w]);
             }
-            else if (ruleName === "Strengthening") {
+            else if (rule[rule.selectedIndex].value === "Strengthening") {
                 change = strengthening(wordList[w]);
             }
-            else if (ruleName === "Word-Final Consonant Neutralization") {
+            else if (rule[rule.selectedIndex].value === "Word-Final Consonant Neutralization") {
                 change = wordfinalConsonantNeutralization(wordList[w]);
             }
-            else if (ruleName === "Manner Assimilation") {
+            else if (rule[rule.selectedIndex].value === "Manner Assimilation") {
                 change = mannerAssimilation(wordList[w]);
             }
             else {
-                alert("Rule not found");
                 change = "";
             }
             //change[1] implies vacuous application of rule
@@ -664,13 +269,13 @@ function applyRule(ruleOrder) {
                 wordList[w] = change[0];
             }
         }
-        rows[rows.length - 1].cells[2 + w].innerHTML = "SF: " + wordList[w];
+        rows[ruleOrder.length + 1].cells[2 + w].innerHTML = "SF: " + wordList[w];
     }
     return wordList;
 }
 
 function hiatusResolution(input) {
-    // V → ∅ / V —
+    //V → ∅ / V —
 
     if (input !== null) {
 
@@ -691,7 +296,7 @@ function hiatusResolution(input) {
 }
 
 function finalVowelDeletion(input) {
-    // V → ∅ / — #
+    //V → ∅ / — #
 
     if (isConsonant(input.slice(-1)) === false) {
         return [input.slice(0, -1), false];
@@ -1980,6 +1585,19 @@ function mannerAssimilation(input) {
     return [newWord, false];
 }
 
+function isConsonant(symbol) {
+    var vowels = ["i", "ɪ", "u", "ʊ", "e", "ɛ", "o", "ɔ", "a", "æ", "y", "ʏ", "ə", "ø", "œ", "ɯ",
+    "ɶ", "ɑ", "ʌ", "ɒ", "æ", "ɐ", "ɘ", "ɨ", "ʉ", "ɐ", "ɞ", "ɜ", "ɶ", "ɵ", "ɤ"]; 
+
+    for (var i = 0; i < vowels.length; i++) {
+        if (vowels[i] === symbol) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function isNasal(symbol) {
     var nasals = ["m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ"];
 
@@ -2500,51 +2118,12 @@ function unroundVowel(char) {
 function clearCells(tableID) {
     var table = document.getElementById(tableID);
     var rows = table.rows;
-    var numCols = table.rows[0].cells.length - 2;
 
-/*
     for (var col=2; col < table.rows[0].cells.length; col++)
         for (var i = 1; i < rows.length; i++) {
             rows[i].cells[col].innerHTML = '';
             rows[rows.length - 1].cells[col].innerHTML = "SF: ";
         }
-*/
-   
-    var taggables = document.querySelectorAll(".taggable");
-    for (var i = 0, max = taggables.length-numCols; i < max; i++) {
-        if (i % 4 === 0) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "A";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 1) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "B";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 2) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "C";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 3) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "D";
-            select1.appendChild(select1lighter);
-        }
-    }       
 }
 
 function clearUR() {

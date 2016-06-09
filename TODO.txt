@@ -1,7 +1,0 @@
-- Make “Remove rule” work
-- UR can be both typed and clicked
-- A can be [-sonorant] (Not only choose the first one)
-
-!! Timeslot
-!! Final check
-!! Comment all alerts

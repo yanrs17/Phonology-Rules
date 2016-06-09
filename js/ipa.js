@@ -1,662 +1,627 @@
 jQuery("#i").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "i";
-    var original_value = $("#id_tag").attr("value");
-    $("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#y").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "y";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɨ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɨ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʉ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʉ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɯ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɯ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#u").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "u";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 
 jQuery("#ɪ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɪ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʏ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʏ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʊ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʊ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#e").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "e";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ø").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ø";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɘ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɘ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɵ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɵ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɤ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɤ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#o").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "o";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ə").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ə";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɛ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɛ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#œ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "œ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɜ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɜ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɞ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɞ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 
 jQuery("#ʌ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʌ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɔ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɔ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#æ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "æ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɐ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɐ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#a").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "a";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɶ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɶ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɑ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɑ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɒ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɒ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#p").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "p";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#b").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "b";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#t").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "t";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#d").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "d";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#c").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "c";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#k").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "k";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 
 jQuery("#g").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "g";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#q").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "q";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#m").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "m";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#n").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "n";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#r").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "r";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#f").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "f";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#v").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "v";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#s").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "s";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#z").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "z";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#x").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "x";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#h").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "h";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#l").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "l";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʈ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʈ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɖ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɖ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 
 jQuery("#ɟ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɟ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɢ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɢ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʔ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʔ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɱ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɱ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɳ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɳ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɲ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɲ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ŋ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ŋ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɴ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɴ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʙ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʙ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#β").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "β";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 
 jQuery("#ʀ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʀ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ⱱ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ⱱ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɾ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɾ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɽ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɽ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɸ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɸ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#θ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "θ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ð").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ð";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʃ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʃ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʒ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʒ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʂ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʂ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʐ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʐ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#θ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "θ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ç").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ç";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʝ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʝ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɣ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɣ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#χ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "χ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʁ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʁ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ħ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ħ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʕ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʕ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɦ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɦ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɬ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɬ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɮ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɮ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʋ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʋ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɹ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɹ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɻ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɻ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#j").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "j";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɰ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɰ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ɭ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ɭ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#ʟ").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʟ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#btnStress").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = '"';
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });
 
 jQuery("#btnAspiration").on('click', function() {
+    var caretPos = document.getElementById("txtbox").selectionStart;
+    var textAreaTxt = jQuery("#txtbox").val();
     var txtToAdd = "ʰ";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
-});
-
-jQuery("#btnNumberSign").on('click', function() {
-    var txtToAdd = "#";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
-});
-
-jQuery("#btnEmpty").on('click', function() {
-    var txtToAdd = "&nbsp;";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
-});
-
-jQuery("#btnNone").on('click', function() {
-    var txtToAdd = "∅";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
-});
-
-jQuery("#btnConsonant").on('click', function() {
-    var txtToAdd = "C"; // Might get confused with same C?
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
-});
-
-jQuery("#btnVowel").on('click', function() {
-    var txtToAdd = "V";
-    var original_value = $("#id_tag").attr("value");
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(txtToAdd);
+    jQuery("#txtbox").val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos) );
 });

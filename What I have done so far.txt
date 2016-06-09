@@ -1,0 +1,9 @@
+What I have done so far:
+Week1:
+1. Change the dropdown button into "A -> B / C _ D"
+2. After clicking "Add Rule", "A -> B / C _ D" will appear instead of the dropdown button
+3. After clicking A, B, C or D, and then click on an y IPA, A, B, C or D will change into that IPA (The most difficult work done so far)
+
+Week2:
+1. Buttons can be used to type 
+(But only one can be typed, only one UR, and original tag will be removed after switching.)

@@ -39,8 +39,6 @@ function createUniqueTag(elmt) {
     // http://stackoverflow.com/questions/4256339/javascript-how-to-loop-through-all-dom-elements-on-a-page
     var taggables = document.querySelectorAll(".taggable");
     
-    //alert("1");
-    //alert(taggables);
 
     for (var i = 0, max = taggables.length; i < max; i++) {
         if (taggables[i].hasAttribute("id")) {
@@ -53,7 +51,7 @@ function createUniqueTag(elmt) {
 
     // Add tag for the current element
     elmt.setAttribute("id", "id_tag");
-    elmt.innerHTML = "";
+    elmt.innerHTML = "&nbsp;";
 }
 
 function addRow(tableID) {
@@ -80,7 +78,12 @@ function addRow(tableID) {
     select1.setAttribute("type", "button");
     select1.setAttribute("onclick", "createUniqueTag(this);");
     select1.setAttribute("class", "taggable");
-    select1.appendChild(document.createTextNode("A"));   // Append the text to <button>
+    select1.setAttribute("contenteditable", "true");
+
+    var select1lighter = document.createElement("div");
+    select1lighter.setAttribute('class', 'lighter');
+    select1lighter.appendChild(document.createTextNode("A"));   // Append the text to <button>
+    select1.appendChild(select1lighter);
     //select1.className = "rule"; //?
     lstRules.appendChild(select1);
     // Add textnode " -> "
@@ -91,7 +94,12 @@ function addRow(tableID) {
     select3.setAttribute("type", "button");
     select3.setAttribute("onclick", "createUniqueTag(this);");
     select3.setAttribute("class", "taggable");
-    select3.appendChild(document.createTextNode("B"));   // Append the text to <button>
+    select3.setAttribute("contenteditable", "true");
+
+    var select3lighter = document.createElement("div");
+    select3lighter.setAttribute('class', 'lighter');
+    select3lighter.appendChild(document.createTextNode("B"));   // Append the text to <button>
+    select3.appendChild(select3lighter);
     //select3.className = "rule"; //?
     lstRules.appendChild(select3);
     // Add textnode " / "
@@ -102,7 +110,12 @@ function addRow(tableID) {
     select5.setAttribute("type", "button");
     select5.setAttribute("onclick", "createUniqueTag(this);");
     select5.setAttribute("class", "taggable");
-    select5.appendChild(document.createTextNode("C"));   // Append the text to <button>
+    select5.setAttribute("contenteditable", "true");
+
+    var select5lighter = document.createElement("div");
+    select5lighter.setAttribute('class', 'lighter');
+    select5lighter.appendChild(document.createTextNode("C"));   // Append the text to <button>
+    select5.appendChild(select5lighter);
     //select5.className = "rule"; //?
     lstRules.appendChild(select5);
     // Add textnode " _ "
@@ -113,7 +126,12 @@ function addRow(tableID) {
     select7.setAttribute("type", "button");
     select7.setAttribute("onclick", "createUniqueTag(this);");
     select7.setAttribute("class", "taggable");
-    select7.appendChild(document.createTextNode("D"));   // Append the text to <button>
+    select7.setAttribute("contenteditable", "true");
+
+    var select7lighter = document.createElement("div");
+    select7lighter.setAttribute('class', 'lighter');
+    select7lighter.appendChild(document.createTextNode("D"));   // Append the text to <button>
+    select7.appendChild(select7lighter);
     //select7.className = "rule"; //?
     lstRules.appendChild(select7);
 
@@ -194,10 +212,12 @@ function addUR(tableID) {
     celltxtinput.className = "cell";
     txtinput.type = "text";
     txtinput.name ="txtinput";
-    txtinput.className = "userInput";
-    txtinput.placeholder = "Enter a word";
+    txtinput.setAttribute('onclick', "createUniqueTag(this);")
+    txtinput.setAttribute('value', "")
     inputnum = countCols(tableID) - 2;
-    txtinput.id = "input" + inputnum;
+    txtinput.className = "userInput taggable input" + inputnum;
+    txtinput.placeholder = "Enter a word";
+    //txtinput.id = "input" + inputnum;
     celltxtinput.innerHTML = "UR: ";
     celltxtinput.appendChild(txtinput);
 
@@ -232,7 +252,7 @@ function derive(tableID) {
     var table = document.getElementById(tableID);
     //var input = document.getElementById("input" + (table.rows[0].cells.length - 2)).value;
     var ruleOrder = document.getElementsByClassName("taggable");
-    //console.log(ruleOrder);
+
     var numCols = table.rows[0].cells.length - 2;
     var wordList = [];
 
@@ -241,7 +261,7 @@ function derive(tableID) {
 }
 
 function isContinuant(symbol) {
-    var arrayContinuant = [
+    var arrayContinuant = ["[+continuant]", 
     "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", 
     "ç", "ʝ", "f", "v", "ɸ", "β", "x", "ɣ", 
     "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "l", "ʎ", 
@@ -311,21 +331,23 @@ function isSpreadGlottis(symbol) {
 
 function convertABCDintoRule(A, B, C, D) {
 
-    if (A === " " && B === " ") {
+
+    if (A === "&nbsp;" && B === "&nbsp;") {
         // If A and B are empty at the same time.
         alert("A and B cannot be empty at the same time.");
         return null;
     }
 
-    else if (isVowel(A) && B === "∅" && isVowel(C) && D === " ") {
+    else if (isVowel(A) && B === "∅" && isVowel(C) && D === "&nbsp;") {
         // Hiatus Resolution
         // V → ∅ / V —
         return "Hiatus Resolution";
     }
 
-    else if (isVowel(A) && B === "∅" && C === " " && D === "#") {
+    else if (isVowel(A) && B === "∅" && C === "&nbsp;" && D === "#") {
         // Final Vowel Deletion
         // V → ∅ / — #
+
         return "Final Vowel Deletion";
     }
 
@@ -502,6 +524,34 @@ function convertABCDintoRule(A, B, C, D) {
 
 }
 
+function getFirstNonEmpty(input) {
+
+    // Need to change!
+
+    if (input.length == 0) {
+        return "&nbsp;";
+    }
+
+    else if (input.length == 1) {
+        return input;
+    }
+
+    else {
+        if (input.charAt(0) === "&"){ // & for &nbsp;
+            // What if the first two are both " "?
+
+            if (input.length > 6) {
+                return input[6];
+            }
+
+            else {
+                return "&nbsp;";
+            }
+        }
+        return input[0];
+    }
+}
+
 function applyRule(ruleOrder) {
     var change = [];
     var wordList = [];
@@ -511,16 +561,21 @@ function applyRule(ruleOrder) {
 
     // UR
     for (var x=1; x < numCols + 1; x++) {
-        wordList.push((document.getElementById("input" + x)).value);
+        wordList.push((document.getElementsByClassName("input" + x))[0].value);
     }
 
     for (var w=0; w < wordList.length; w++) {
-        for (var i = 0; i < ruleOrder.length / 4; i++) {
+        for (var i = 0; i < (ruleOrder.length - numCols) / 4; i++) {
             change = [];
-            var A = ruleOrder[i * 4 + 0].innerHTML;
-            var B = ruleOrder[i * 4 + 1].innerHTML;
-            var C = ruleOrder[i * 4 + 2].innerHTML;
-            var D = ruleOrder[i * 4 + 3].innerHTML;
+            var A = ruleOrder[numCols + i * 4 + 0].innerHTML;
+            var B = ruleOrder[numCols + i * 4 + 1].innerHTML;
+            var C = ruleOrder[numCols + i * 4 + 2].innerHTML;
+            var D = ruleOrder[numCols + i * 4 + 3].innerHTML;
+            A = getFirstNonEmpty(A);
+            B = getFirstNonEmpty(B);
+            C = getFirstNonEmpty(C);
+            D = getFirstNonEmpty(D);
+
             var ruleName = convertABCDintoRule(A, B, C, D);
 
             // var rule = ruleOrder[i];
@@ -2445,6 +2500,7 @@ function unroundVowel(char) {
 function clearCells(tableID) {
     var table = document.getElementById(tableID);
     var rows = table.rows;
+    var numCols = table.rows[0].cells.length - 2;
 
 /*
     for (var col=2; col < table.rows[0].cells.length; col++)
@@ -2455,18 +2511,38 @@ function clearCells(tableID) {
 */
    
     var taggables = document.querySelectorAll(".taggable");
-    for (var i = 0, max = taggables.length; i < max; i++) {
+    for (var i = 0, max = taggables.length-numCols; i < max; i++) {
         if (i % 4 === 0) {
-            taggables[i].innerHTML = "A";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "A";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 1) {
-            taggables[i].innerHTML = "B";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "B";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 2) {
-            taggables[i].innerHTML = "C";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "C";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 3) {
-            taggables[i].innerHTML = "D";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "D";
+            select1.appendChild(select1lighter);
         }
     }       
 }

@@ -79,7 +79,11 @@ function addRow(tableID) {
     select1.setAttribute("onclick", "createUniqueTag(this);");
     select1.setAttribute("class", "taggable");
     select1.setAttribute("contenteditable", "true");
-    select1.appendChild(document.createTextNode("A"));   // Append the text to <button>
+
+    var select1lighter = document.createElement("div");
+    select1lighter.setAttribute('class', 'lighter');
+    select1lighter.appendChild(document.createTextNode("A"));   // Append the text to <button>
+    select1.appendChild(select1lighter);
     //select1.className = "rule"; //?
     lstRules.appendChild(select1);
     // Add textnode " -> "
@@ -91,7 +95,11 @@ function addRow(tableID) {
     select3.setAttribute("onclick", "createUniqueTag(this);");
     select3.setAttribute("class", "taggable");
     select3.setAttribute("contenteditable", "true");
-    select3.appendChild(document.createTextNode("B"));   // Append the text to <button>
+
+    var select3lighter = document.createElement("div");
+    select3lighter.setAttribute('class', 'lighter');
+    select3lighter.appendChild(document.createTextNode("B"));   // Append the text to <button>
+    select3.appendChild(select3lighter);
     //select3.className = "rule"; //?
     lstRules.appendChild(select3);
     // Add textnode " / "
@@ -103,7 +111,11 @@ function addRow(tableID) {
     select5.setAttribute("onclick", "createUniqueTag(this);");
     select5.setAttribute("class", "taggable");
     select5.setAttribute("contenteditable", "true");
-    select5.appendChild(document.createTextNode("C"));   // Append the text to <button>
+
+    var select5lighter = document.createElement("div");
+    select5lighter.setAttribute('class', 'lighter');
+    select5lighter.appendChild(document.createTextNode("C"));   // Append the text to <button>
+    select5.appendChild(select5lighter);
     //select5.className = "rule"; //?
     lstRules.appendChild(select5);
     // Add textnode " _ "
@@ -115,7 +127,11 @@ function addRow(tableID) {
     select7.setAttribute("onclick", "createUniqueTag(this);");
     select7.setAttribute("class", "taggable");
     select7.setAttribute("contenteditable", "true");
-    select7.appendChild(document.createTextNode("D"));   // Append the text to <button>
+
+    var select7lighter = document.createElement("div");
+    select7lighter.setAttribute('class', 'lighter');
+    select7lighter.appendChild(document.createTextNode("D"));   // Append the text to <button>
+    select7.appendChild(select7lighter);
     //select7.className = "rule"; //?
     lstRules.appendChild(select7);
 
@@ -196,9 +212,10 @@ function addUR(tableID) {
     celltxtinput.className = "cell";
     txtinput.type = "text";
     txtinput.name ="txtinput";
+    txtinput.setAttribute('onclick', "createUniqueTag(this);")
+    txtinput.setAttribute('value', "")
     inputnum = countCols(tableID) - 2;
     txtinput.className = "userInput taggable input" + inputnum;
-    // alert(txtinput.className);
     txtinput.placeholder = "Enter a word";
     //txtinput.id = "input" + inputnum;
     celltxtinput.innerHTML = "UR: ";
@@ -236,9 +253,6 @@ function derive(tableID) {
     //var input = document.getElementById("input" + (table.rows[0].cells.length - 2)).value;
     var ruleOrder = document.getElementsByClassName("taggable");
 
-    //alert(ruleOrder[1].innerHTML);
-
-    //console.log(ruleOrder);
     var numCols = table.rows[0].cells.length - 2;
     var wordList = [];
 
@@ -247,7 +261,7 @@ function derive(tableID) {
 }
 
 function isContinuant(symbol) {
-    var arrayContinuant = [
+    var arrayContinuant = ["[+continuant]", 
     "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", 
     "ç", "ʝ", "f", "v", "ɸ", "β", "x", "ɣ", 
     "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "l", "ʎ", 
@@ -316,6 +330,7 @@ function isSpreadGlottis(symbol) {
 }
 
 function convertABCDintoRule(A, B, C, D) {
+
 
     if (A === "&nbsp;" && B === "&nbsp;") {
         // If A and B are empty at the same time.
@@ -510,7 +525,9 @@ function convertABCDintoRule(A, B, C, D) {
 }
 
 function getFirstNonEmpty(input) {
-    //alert(input);
+
+    // Need to change!
+
     if (input.length == 0) {
         return "&nbsp;";
     }
@@ -531,7 +548,6 @@ function getFirstNonEmpty(input) {
                 return "&nbsp;";
             }
         }
-        //alert("haha");
         return input[0];
     }
 }
@@ -560,7 +576,6 @@ function applyRule(ruleOrder) {
             C = getFirstNonEmpty(C);
             D = getFirstNonEmpty(D);
 
-            // alert("A: " + A); alert("B: " + B); alert("C: " + C); alert("D: " + D);
             var ruleName = convertABCDintoRule(A, B, C, D);
 
             // var rule = ruleOrder[i];
@@ -2485,6 +2500,7 @@ function unroundVowel(char) {
 function clearCells(tableID) {
     var table = document.getElementById(tableID);
     var rows = table.rows;
+    var numCols = table.rows[0].cells.length - 2;
 
 /*
     for (var col=2; col < table.rows[0].cells.length; col++)
@@ -2495,18 +2511,38 @@ function clearCells(tableID) {
 */
    
     var taggables = document.querySelectorAll(".taggable");
-    for (var i = 0, max = taggables.length; i < max; i++) {
+    for (var i = 0, max = taggables.length-numCols; i < max; i++) {
         if (i % 4 === 0) {
-            taggables[i].innerHTML = "A";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "A";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 1) {
-            taggables[i].innerHTML = "B";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "B";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 2) {
-            taggables[i].innerHTML = "C";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "C";
+            select1.appendChild(select1lighter);
         }
         else if (i % 4 === 3) {
-            taggables[i].innerHTML = "D";
+            taggables[i+numCols].innerHTML = "";
+            var select1 = taggables[i+numCols];
+            var select1lighter = document.createElement("div");
+            select1lighter.setAttribute('class', 'lighter');
+            select1lighter.innerHTML = "D";
+            select1.appendChild(select1lighter);
         }
     }       
 }

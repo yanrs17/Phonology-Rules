@@ -1,0 +1,7 @@
+.taggable {
+	font-weight: bold;
+}
+
+.taggable .lighter {
+	font-weight: normal;
+}

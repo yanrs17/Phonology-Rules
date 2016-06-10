@@ -33,3 +33,32 @@ Next steps:
 - Ability to enter UR (Underlying Representation) from tables. 
 - A, B, C, D and URs can also be typed (in addition to clicking).
 
+June 10
+
+Next steps:
+[most imporant] - The user should be able to enter any segment (symbol from the consonant and vowel table) in the rule [done], and the program should know what to do. [to do]
+
+- Make “Remove rule” work [after you have changed a rule or derived something]
+- Ability to enter UR (Underlying Representation) from tables. [works only until you type in the box, to be fixed later]
+
+The way rules work
+A —> B / C _ D
+search for sequences CAD
+then map A —> B
+Problem:
+A —> B / A _ 
+search for sequences AA
+then map second A —> B
+so, for AAAAA, it should be mapped to ABBBB, not ABABA
+This is because all A’s are first selected, and then changed at the same time. The rules are not iterative, or cyclical. 
+For the sequence A1A2A3A4A5, first mark all sequences of A’s: A1A2, A2A3, A3A4, A4A5
+Then map the second A in a squence to B, so: A1B, A2B, A3B, A4B, or combined ABBBB
+
+p —> k / t _ s
+
+tpsa —> tksa
+tppsa —> tppsa
+
+
+
+

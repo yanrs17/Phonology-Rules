@@ -1,12 +1,54 @@
-﻿<?php include('header.php'); ?>	
-<div id="navbar" class="navbar-collapse collapse">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Derive! An online rule-derivation tool</title>
+	<link rel="shortcut icon" href="http://phonology.us/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://phonology.us/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="css/buttons.css">
+	<link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body role="document">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+      <!--ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+	        <li class="active"><a href="#vowels" data-toggle="tab">Vowels</a></li>
+	        <li><a href="#consonants" data-toggle="tab">Consonants</a></li>
+	        <li><a href="#other" data-toggle="tab">Other</a></li>
+	    </ul-->
+
+	    
+        <!--div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Derive! An online rule-derivation tool</a>
+        </div-->
+
+<!-- Headers are above -->
+
+<!--div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="faq.php">FAQ</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div--><!--/.nav-collapse -->
       </div>
     </nav>
 
@@ -26,7 +68,8 @@
 		        Rules
 		      </td>
 		      <td class="cell">
-		        UR: <input type="text" class="userInput" id="input1" name="input1" placeholder="Enter a word">
+		        UR: <input type="text" placeholder="Enter a word" 
+		        onclick="createUniqueTag(this);" class="userInput taggable input1" name="input1" value="">
 		      </td>
 		    </tr>
 		    
@@ -35,7 +78,23 @@
 				
 		      </td>
 		      <td class="cell">
-		        <select class="rule">
+		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
+		      		<div class="lighter">A</div>
+		      	</button>
+		      	->
+		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
+		      		<div class="lighter">B</div>
+		      	</button>
+		      	/
+		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
+		      		<div class="lighter">C</div>
+		      	</button>
+		      	_
+		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
+		      		<div class="lighter">D</div>
+		      	</button>
+
+		        <!--select class="rule">
 		        	<option value="Hiatus Resolution" title="V → ∅ / V —">Hiatus Resolution</option>
 		        	<option value="Final Vowel Deletion" title="V → ∅ / — #">Final Vowel Deletion</option>
 		        	<option value="Postnasal Voicing" title="C → [+voice] / [+nasal] —">Postnasal Voicing</option>
@@ -61,7 +120,7 @@
 		        	<option value="Strengthening" title="[−sonorant] → [−continuant] / {#, C} — V">Strengthening</option>
 		        	<option value="Word-Final Consonant Neutralization" title="C → ʔ / — #">Word-Final Consonant Neutralization</option>
 		        	<option value="Manner Assimilation" title="[−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]">Manner Assimilation</option>
-		        </select>
+		        </select-->
 		      </td>
 		      <td class="cell">
 				
@@ -87,14 +146,12 @@
 
 	<div class="container">
 	    <div id="content">
-<br><br>
-	    	<textarea id="txtbox" placeholder="Type in IPA here and click to copy!"></textarea>
-<br><br>
-	    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+<br/>
+	    <!--ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 	        <li class="active"><a href="#vowels" data-toggle="tab">Vowels</a></li>
 	        <li><a href="#consonants" data-toggle="tab">Consonants</a></li>
 	        <li><a href="#other" data-toggle="tab">Other</a></li>
-	    </ul>
+	    </ul-->
 	    <div id="my-tab-content" class="tab-content">
 	        <div class="tab-pane" id="consonants">
 	        	<h1></h1>
@@ -165,9 +222,12 @@
 	        </div>
 	        <div class="tab-pane active" id="vowels">
 	        	<h1></h1>
+	        	<!-- Vowel Chart -->
 	            <img id="Image-Maps-Com-image-maps-2015-07-29-101631" src="img/vowels.png" border="0" width="264" height="187" orgWidth="264" orgHeight="187" usemap="#image-maps-2015-07-29-101631" alt="" />
 <map name="image-maps-2015-07-29-101631" id="ImageMapsCom-image-maps-2015-07-29-101631">
-<area id="i" alt="i" title="i" href="#" shape="rect" coords="0,0,16,21" style="outline:none;" target="_self" onclick="doThis()"    />
+
+<!-- To active click on the chart -->
+<area id="i" alt="i" title="i" href="#" shape="rect" coords="0,0,16,21" style="outline:none;" target="_self"/>
 <area id="y" alt="y" title="y" href="#" shape="rect" coords="22,0,45,25" style="outline:none;" target="_self"     />
 <area id="u" alt="u" title="u" href="#" shape="rect" coords="246,0,264,22" style="outline:none;" target="_self"     />
 <area id="o" alt="o" title="o" href="#" shape="rect" coords="245,57,264,78" style="outline:none;" target="_self"     />
@@ -195,17 +255,44 @@
 <area id="ɑ" alt="ɑ" title="ɑ" href="#" shape="rect" coords="215,169,242,187" style="outline:none;" target="_self"     />
 <area id="ɒ" alt="ɒ" title="ɒ" href="#" shape="rect" coords="244,170,264,187" style="outline:none;" target="_self"     />
 <area id="ə" alt="ə" title="ə" href="#" shape="rect" coords="146,84,171,108" style="outline:none;" target="_self"     />
+
+<!-- ?? -->
 <area shape="rect" coords="262,185,264,187" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_56754" />
 </map>
 
-	        </div>
+</div>
+
+			<!-- Other Chart -->
 	        <div class="tab-pane" id="other">
 	        	<h1></h1>
 	  			<input class="pure-button" type="button" value="stress" id="btnStress" />
 	  			<input class="pure-button" type="button" value="aspiration" id="btnAspiration" />
+	  			<input class="pure-button" type="button" value="number sign (#)" id="btnNumberSign" /><br/>
+	  			<input class="pure-button" type="button" value="empty ( )" id="btnEmpty" />
+	  			<input class="pure-button" type="button" value="none (∅)" id="btnNone" />
+	  			<input class="pure-button" type="button" value="consonant (C)" id="btnConsonant" /> 
+	  			<input class="pure-button" type="button" value="vowel (V)" id="btnVowel" />
 	        </div>
 	    </div>
 		</div>
     </div>
 
-<?php include('footer.php'); ?>	
+<!-- Footers are below -->
+<!--footer class="footer">
+      <div class="container">
+        <p class="text-muted">© <a href="http://www.jurgec.net/">Peter Jurgec</a> and Racheal Soosaipillai, 2015. <a href="http://linguistics.utoronto.ca/">University of Toronto</a>.</p>
+      </div>
+    </footer-->
+    <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/ipa.js"></script>
+    <script type="text/javascript" src="js/contact-form.js"></script>
+  </body>
+</html>

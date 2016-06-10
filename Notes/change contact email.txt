@@ -1,4 +1,0 @@
-Changing the Email in the Contact Form
-
-To change the email that contact forms are sent to, change the email in this line in 'contact.php':
-$emailTo = 'peter.jurgec@gmail.com';

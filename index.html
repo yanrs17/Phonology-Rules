@@ -7,15 +7,15 @@
 	<title>Derive! An online rule-derivation tool</title>
 	<link rel="shortcut icon" href="http://phonology.us/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://phonology.us/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/buttons.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/buttons.css"> -->
 	<link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
     <!-- Bootstrap theme -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
-    <link href="css/theme.css" rel="stylesheet">
+    <!-- <link href="css/theme.css" rel="stylesheet"> -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body role="document">
@@ -28,7 +28,7 @@
 	        <li><a href="#other" data-toggle="tab">Other</a></li>
 	    </ul-->
 
-	    
+
         <!--div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -62,20 +62,20 @@
 		  <table id="dataTable">
 		    <tr class="tablerow ur">
 		      <td class="cell">
-		        
+
 		      </td>
 		      <td class="cell">
 		        Rules
 		      </td>
 		      <td class="cell">
-		        UR: <input type="text" placeholder="Enter a word" 
+		        UR: <input type="text" placeholder="Enter a word"
 		        onclick="createUniqueTag(this);" class="userInput taggable input1" name="input1" value="">
 		      </td>
 		    </tr>
-		    
+
 		    <tr class="tablerow">
 		      <td class="cell">
-				
+
 		      </td>
 		      <td class="cell">
 		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
@@ -123,22 +123,22 @@
 		        </select-->
 		      </td>
 		      <td class="cell">
-				
+
 		      </td>
 		    </tr>
 		    <tr class="tablerow pr">
 		      <td class="cell">
-		        
+
 		      </td>
 		      <td class="cell">
-		        
+
 		      </td>
 		      <td class="cell" id="sf1">
-		         SF: 
+		         SF:
 		      </td>
 		    </tr>
 			</table>
-			<input class="pure-button pure-button-primary" type="button" value="Derive!" id="btnDerive" onClick="derive('dataTable')" />
+			<input class="pure-button pure-button-primary" type="button" value="Derive!" id="btnDerive" onClick="derive()" />
 		    <input class="pure-button" type="button" value="Reset" id="btnReset" onClick="clearCells('dataTable'), clearUR()" />
 		    <input class="pure-button pure-button-secondary" type="button" value="Start from scratch!" id="btnRefresh" onClick="window.location.reload()" />
 	</form>
@@ -270,7 +270,7 @@
 	  			<input class="pure-button" type="button" value="number sign (#)" id="btnNumberSign" /><br/>
 	  			<input class="pure-button" type="button" value="empty ( )" id="btnEmpty" />
 	  			<input class="pure-button" type="button" value="none (∅)" id="btnNone" />
-	  			<input class="pure-button" type="button" value="consonant (C)" id="btnConsonant" /> 
+	  			<input class="pure-button" type="button" value="consonant (C)" id="btnConsonant" />
 	  			<input class="pure-button" type="button" value="vowel (V)" id="btnVowel" />
 	        </div>
 	    </div>

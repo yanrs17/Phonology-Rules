@@ -283,34 +283,35 @@ function parseABCD(ABCD, i) {
     return parsed;
 }
 
-function testCorrect(A, B, C, D, before, after) {
-    if (applyRule(A, B, C, D, before) != after) console.log("Something is wrong!");
-}
-
-function testIllFormed(A, B, C, D, TF) {
-    if (isIllFormed(A, B, C, D) != TF) console.log("Something is wrong!");
-}
-
 function testCases() {
+
+    function testCorrect(A, B, C, D, before, after) {
+        if (applyRule(A, B, C, D, before) != after) console.log("Something is wrong!");
+    }
+
+    function testIllFormed(A, B, C, D, TF) {
+        if (isIllFormed(A, B, C, D) != TF) console.log("Something is wrong!");
+    }
 
     console.log("Test cases start:");
     // Check ill-formed
-    testIllFormed('&nbsp;', 'a', 'd', 'f', true);
-    testIllFormed('a', '&nbsp;', 'd', 'f', false);
-    testIllFormed('&nbsp;', '&nbsp;', 'd', 'f', true);
-    testIllFormed('∅', 'w', 'd', 'f', true);
-    testIllFormed('q', '∅', 'd', 'f', false);
-    testIllFormed('d', 'w', '∅', 'f', true);
-    testIllFormed('d', 'w', 'v', '∅', true);
-    testIllFormed('#', 'w', 'v', 'b', true);
-    testIllFormed('g', '#', 'v', 'b', true);
-    testIllFormed('g', 'w', '#', 'b', false);
-    testIllFormed('g', 'w', 'v', '#', false);
-    testIllFormed('#', '#', 'v', 'f', true);
-    testIllFormed('g', '#', 'v', '#', true);
-    testIllFormed('#', 'w', '#', 'd', true);
-    testIllFormed('d', 'w', '#', '#', true);
+    // testIllFormed('&nbsp;', 'a', 'd', 'f', true);
+    // testIllFormed('a', '&nbsp;', 'd', 'f', false);
+    // testIllFormed('&nbsp;', '&nbsp;', 'd', 'f', true);
+    // testIllFormed('∅', 'w', 'd', 'f', true);
+    // testIllFormed('q', '∅', 'd', 'f', false);
+    // testIllFormed('d', 'w', '∅', 'f', true);
+    // testIllFormed('d', 'w', 'v', '∅', true);
+    // testIllFormed('#', 'w', 'v', 'b', true);
+    // testIllFormed('g', '#', 'v', 'b', true);
+    // testIllFormed('g', 'w', '#', 'b', false);
+    // testIllFormed('g', 'w', 'v', '#', false);
+    // testIllFormed('#', '#', 'v', 'f', true);
+    // testIllFormed('g', '#', 'v', '#', true);
+    // testIllFormed('#', 'w', '#', 'd', true);
+    // testIllFormed('d', 'w', '#', '#', true);
 
+    // No special characters
     // Without empty added in C or D:
     // Random test cases
     testCorrect('A', 'B', 'A', 'A' ,'AAAAA', 'ABBBA');
@@ -391,6 +392,29 @@ function testCases() {
     testCorrect('a', ' ', ' ', '#', 'ad', 'ad');
     testCorrect('a', ' ', ' ', '#', 'ada', 'ad');
 
+    // With special characters
+    // Special char in A
+    testCorrect('V', 'a', ' ', ' ' ,'taiueot', 'taaaaat'); //
+    testCorrect('C', 'g', ' ', ' ' ,'attqifoepq', 'agggigoegg'); //
+    // Special char in C
+    testCorrect('t', 'd', 'V', ' ' ,'ftatjtaot', 'ftadjtaod');
+    testCorrect('t', 'd', 'C', ' ' ,'ftatjta', 'fdatjda');
+    // Special char in D
+    testCorrect('t', 'd', ' ', 'V' ,'ftatjtaot', 'fdatjdaot');
+    testCorrect('t', 'd', ' ', 'C' ,'ftatjta', 'ftadjta');
+    // Special char in multiple places
+    testCorrect('V', 'a', 'C', ' ' ,'tiueot', 'taueot'); //
+    testCorrect('k', 'g', 'V', 'C' ,'akttktaka', 'agttktaka');
+    // Special char with #
+    testCorrect('V', 'a', ' ', '#' ,'taiueo', 'taiuea');
+    testCorrect('V', 'a', ' ', '#' ,'taiueot', 'taiueot');
+    testCorrect('C', 'g', '#', ' ' ,'qa', 'ga');
+    testCorrect('C', 'g', '#', ' ' ,'aq', 'aq');
+    testCorrect('i', 'a', 'C', '#' ,'ti', 'ta');
+    testCorrect('i', 'a', 'C', '#' ,'ai', 'ai');
+    testCorrect('k', 'g', '#', 'V' ,'ka', 'ga');
+    testCorrect('k', 'g', '#', 'V' ,'kk', 'kk');
+
     console.log("Test cases end.")
 
 }
@@ -403,18 +427,24 @@ String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
-function isSpecialChar(ABCD) {
-
-}
 
 function applyRule(A, B, C, D, word) {
 
-    // Also need to consider when A/B is general
-    // e.g. C, V, etc.
+    function isSpecialChar(ABCD, letter) {
+        if (ABCD == "V") return isVowel(letter);
+        if (ABCD == "C") return isConsonant(letter);
+        return false;
+    }
+    function isMatched(ABCD, i, isNotA) {
 
-    var pattern;
+        result = word.charAt(i) == ABCD || isSpecialChar(ABCD, word.charAt(i));
+        if (!isNotA) return result;
+        return result || ABCD == " ";
+    }
+
     var i, j;
     var indice = [];
+    var len = word.length;
 
     if (B == "&nbsp;") B = " ";
     if (C == "&nbsp;") C = " ";
@@ -423,26 +453,22 @@ function applyRule(A, B, C, D, word) {
 
     // If at word init
     if (C == "#") {
-        if ((D == " " || word.charAt(1) == D || isSpecialChar(D)) &&
-            (word.charAt(0) == A || isSpecialChar(A))) {
+        if (isMatched(D, 1, true) && isMatched(A, 0, false)) {
             word = word.replaceAt(0, B);
         }
     }
     // If at word final
     else if (D == "#") {
-        if ((C == " " || word.charAt(word.length - 2) == C || isSpecialChar(C)) &&
-            (word.charAt(word.length - 1) == A || isSpecialChar(A))) {
-            word = word.replaceAt(word.length - 1, B);
+        // if (isMatched(C, len - 2, true)) {
+        if (isMatched(C, len - 2, true) && isMatched(A, len - 1, false)) {
+            word = word.replaceAt(len - 1, B);
         }
     }
     // If neither at word init nor word end
     // Push indices that match into a list
     else {
-        for (i = 0; i < word.length; i ++) {
-            pattern = C + word.charAt(i) + D;
-            if ((C == " " || word.charAt(i-1) == C) &&
-                word.charAt(i) == A &&
-                (D == " " || word.charAt(i+1) == D)) {
+        for (i = 0; i < len; i ++) {
+            if (isMatched(C, i - 1, true) && isMatched(A, i, false) && isMatched(D, i + 1, true)) {
                 indice.push(i);
             }
         }
@@ -551,7 +577,7 @@ function clearUR() {
 }
 
 function isVowel(symbol) {
-    var arrayVowels = ["V",
+    var arrayVowels = [
         "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
         "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
         "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
@@ -562,7 +588,7 @@ function isVowel(symbol) {
 }
 
 function isConsonant(symbol) {
-    var arrayConsonants = ["C",
+    var arrayConsonants = [
     "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ",
     "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ",
     "ʙ", "r", "ʀ",

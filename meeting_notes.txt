@@ -59,6 +59,19 @@ p —> k / t _ s
 tpsa —> tksa
 tppsa —> tppsa
 
+June 17
+- Add “remove” box to all rules, including the first one, once you “add rule”
+- Ability to enter UR (Underlying Representation) from tables. [works only until you type in the box, to be fixed later]]
+- If the rule does not apply, make the row with the form empty. 
+- Make the clicking on boxes easier.
+- Add buttons with features, for instance
+Button:
++ consonantal -
++ sonorant -
+and so on (see table Feature chart)
+then, the features appear as A B C D in the following format
+[+consonantal +sonorant] is one segment
+[+consonantal] [+sonorant] are two segments and you can have many segments
 
 
 

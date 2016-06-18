@@ -88,7 +88,13 @@ String.prototype.replaceAt = function(index, character) {
 }
 
 window.onload = function () {
+
+    window.table = document.getElementById('dataTable');
+    window.ruleOrder = document.getElementsByClassName("taggable");
+
     testCases();
+
+    addRow();
 }
 
 function testCases() {
@@ -421,10 +427,10 @@ function createUniqueTag(elmt) {
     elmt.innerHTML = "&nbsp;";
 }
 
-function addRow(tableID) {
+function addRow() {
 
     // Create a new row
-    var table = document.getElementById(tableID);
+    // var table = document.getElementById(tableID);
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount - 1);
     row.className = "tablerow";
@@ -507,7 +513,7 @@ function addRow(tableID) {
     cellChange.innerHTML = "";
 
     // Add cell for the remaining UR in each rule
-    for (var k=3; k < table.rows[0].cells.length; k++) {
+    for (var k = 3; k < table.rows[0].cells.length; k++) {
         var newCell = row.insertCell(k);
         newCell.className = "cell";
         newCell.innerHTML = "";
@@ -517,7 +523,7 @@ function addRow(tableID) {
 function deleteRow(tableID) {
     var table = document.getElementById(tableID);
     var rowCount = table.rows.length;
-    for(var i = 0; i < rowCount; i++) {
+    for (var i = 0; i < rowCount; i++) {
         var row = table.rows[i];
         var chkbox = row.cells[0].childNodes[0];
         if (chkbox != null && chkbox.checked) {
@@ -737,11 +743,10 @@ function derive() {
     /* Initialize */
     // var change = [];
     var wordList = [];
-    window.ruleOrder = document.getElementsByClassName("taggable");
-    window.table = document.getElementById('dataTable');
     window.numCols = table.rows[0].cells.length - 2;
     var rows = table.rows;
-    var A, B, C, D, ruleName, x, w, i;
+    var A, B, C, D, ruleName, x, w, i, j, currentCell;
+    var indexOfDuplicates = [];
 
     /* Push each UR to the wordList */
     for (x = 1; x < numCols + 1; x++) {
@@ -768,11 +773,27 @@ function derive() {
         else {
             for (w = 0; w < wordList.length; w++) {
                 wordList[w] = applyRule(A, B, C, D, wordList[w]);
-                rows[i + 1].cells[w + 2].innerHTML = wordList[w];
+                currentCell = rows[i + 2].cells[w + 2];
+                currentCell.innerHTML = wordList[w];
 
-                rows[rows.length - 1].cells[2 + w].innerHTML = "SF: " + wordList[w];
+                rows[rows.length - 1].cells[w + 2].innerHTML = "SF: " + wordList[w];
             }
         }
+    }
+
+    // need to be able to deal w/ multiple URs
+    if (document.getElementsByClassName("input1")[0].value == rows[2].cells[2].innerHTML) {
+        rows[2].cells[2].innerHTML = "";
+    };
+    var currentContext, nextContext;
+    for (j = 0; j < (ruleOrder.length - numCols) / 4; j ++) {
+        prevContext = rows[j+2].cells[2].innerHTML;
+        currentContext = rows[j+3].cells[2].innerHTML;
+        console.log(prevContext);
+        console.log(currentContext);
+        console.log(prevContext == currentContext);
+        if (prevContext == currentContext) rows[j+3].cells[2].innerHTML = "";
+        if (currentContext == null) break;
     }
 }
 

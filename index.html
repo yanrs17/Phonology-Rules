@@ -55,7 +55,7 @@
     <div class="container theme-showcase" role="main">
       <br><h1></h1>
 	<form class="" method="post" action="">
-		<input class="pure-button" type="button" value="Add Rule" onClick="addRow('dataTable')" />
+		<input class="pure-button" type="button" value="Add Rule" onClick="addRow()" />
 	    <input class="pure-button" type="button" value="Remove Rule" onClick="deleteRow('dataTable')" />
 	    <input class="pure-button" type="button" value="Add UR" onClick="addUR('dataTable')" />
 	    <br>
@@ -74,11 +74,11 @@
 		    </tr>
 
 		    <tr class="tablerow">
-		      <td class="cell">
-
+		      <!-- <td class="cell">
+				  <input type="checkbox" name="chkbox[]">
 		      </td>
-		      <td class="cell">
-		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
+		      <td class="cell"> -->
+		      	<!-- <button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
 		      		<div class="lighter">A</div>
 		      	</button>
 		      	->
@@ -92,36 +92,9 @@
 		      	_
 		      	<button type="button" onclick="createUniqueTag(this);" class="taggable" contenteditable="true">
 		      		<div class="lighter">D</div>
-		      	</button>
+		      	</button> -->
 
-		        <!--select class="rule">
-		        	<option value="Hiatus Resolution" title="V → ∅ / V —">Hiatus Resolution</option>
-		        	<option value="Final Vowel Deletion" title="V → ∅ / — #">Final Vowel Deletion</option>
-		        	<option value="Postnasal Voicing" title="C → [+voice] / [+nasal] —">Postnasal Voicing</option>
-		        	<option value="Nasal Place Assimilation" title="[+nasal] → [αcoronal βlabial ɣdorsal] / - [−syllabic αcoronal βlabial ɣdorsal]">Nasal Place Assimilation</option>
-		        	<option value="Voicing Assimilation" title="[-sonorant] → [αvoice] / — [αvoice -sonorant]">Voicing Assimilation</option>
-		        	<option value="Final Coronal Deletion" title="[+coronal] → ∅ / — #">Final Coronal Deletion</option>
-		        	<option value="Height Harmony" title="V → [-high] / — (C)[-high -low]">Height Harmony</option>
-		        	<option value="Rounding Harmony" title="V → [αround] / — (C₀VC₀)[αround]">Rounding Harmony</option>
-		        	<option value="L-Vocalization" title="l → o / — {C, #}">L-Vocalization</option>
-		        	<option value="Dissimilation" title="V → [−low] / — C₀ [+low]">Dissimilation</option>
-		        	<option value="Initial Stress Assignment" title="V → [+stress] / # C₀ —">Initial Stress Assignment</option>
-		        	<option value="Final Devoicing" title="[-sonorant] → [-voice] / — #">Final Devoicing</option>
-		        	<option value="Lenition" title="[−sonorant +voice] → [+continuant] / V — V">Lenition</option>
-		        	<option value="Intervocalic Voicing" title="[-sonorant] → [+voice] / V — V">Intervocalic Voicing</option>
-		        	<option value="Schwa Epenthesis" title="∅ → ə / C — C">Schwa Epenthesis</option>
-		        	<option value="High Vowel Epenthesis" title="∅ → i / C — C">High Vowel Epenthesis</option>
-		        	<option value="Metathesis" title="iC → Ci / — #">Metathesis</option>
-		        	<option value="Nasal Assimilation" title="[-continuant] → [+nasal] / — [+nasal]">Nasal Assimilation</option>
-		        	<option value="Velar Palatalization" title="[+dorsal] → [−dorsal +coronal −anterior] / — [−low −back]">Velar Palatalization</option>
-		        	<option value="Aspiration" title="[-continuant -sonorant] → [+spread glottis] / {#, C} — V">Aspiration</option>
-		        	<option value="Sibilant Harmony" title="[+coronal +continuant -sonorant] → [αanterior] / — (C₀VC₀)[αanterior +coronal +continuant -sonorant]">Sibilant Harmony</option>
-		        	<option value="Vowel Reduction" title="[-stress +syllabic] → [-low]">Vowel Reduction</option>
-		        	<option value="Strengthening" title="[−sonorant] → [−continuant] / {#, C} — V">Strengthening</option>
-		        	<option value="Word-Final Consonant Neutralization" title="C → ʔ / — #">Word-Final Consonant Neutralization</option>
-		        	<option value="Manner Assimilation" title="[−sonorant] → [αcontinuant] / — C₀[αcontinuant −syllabic]">Manner Assimilation</option>
-		        </select-->
-		      </td>
+		      	</td>
 		      <td class="cell">
 
 		      </td>

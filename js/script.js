@@ -745,11 +745,12 @@ function derive() {
     var wordList = [];
     window.numCols = table.rows[0].cells.length - 2;
     var rows = table.rows;
-    var A, B, C, D, ruleName, x, w, i, j, currentCell;
-    var indexOfDuplicates = [];
+    var A, B, C, D, ruleName, x, w, i, j, k, l, currentCell;
+    var indexOfDuplicates;
+    var currentContent, prevContent;
 
     /* Push each UR to the wordList */
-    for (x = 1; x < numCols + 1; x++) {
+    for (x = 1; x < numCols + 1; x ++) {
         wordList.push((document.getElementsByClassName("input" + x))[0].value);
     }
     // console.log(wordList);
@@ -773,7 +774,7 @@ function derive() {
         else {
             for (w = 0; w < wordList.length; w++) {
                 wordList[w] = applyRule(A, B, C, D, wordList[w]);
-                currentCell = rows[i + 2].cells[w + 2];
+                currentCell = rows[i + 1].cells[w + 2];
                 currentCell.innerHTML = wordList[w];
 
                 rows[rows.length - 1].cells[w + 2].innerHTML = "SF: " + wordList[w];
@@ -781,19 +782,22 @@ function derive() {
         }
     }
 
-    // need to be able to deal w/ multiple URs
-    if (document.getElementsByClassName("input1")[0].value == rows[2].cells[2].innerHTML) {
-        rows[2].cells[2].innerHTML = "";
-    };
-    var currentContext, nextContext;
-    for (j = 0; j < (ruleOrder.length - numCols) / 4; j ++) {
-        prevContext = rows[j+2].cells[2].innerHTML;
-        currentContext = rows[j+3].cells[2].innerHTML;
-        console.log(prevContext);
-        console.log(currentContext);
-        console.log(prevContext == currentContext);
-        if (prevContext == currentContext) rows[j+3].cells[2].innerHTML = "";
-        if (currentContext == null) break;
+    // Remove intermediate step if there is no change
+    for (l = 1; l < numCols + 1; l ++) {
+        indexOfDuplicates = [];
+        if (document.getElementsByClassName("input" + l)[0].value == rows[1].cells[l + 1].innerHTML) {
+            indexOfDuplicates.push(1);
+        }
+        for (j = 0; j < (ruleOrder.length - numCols) / 4; j ++) {
+            prevContent = rows[j+1].cells[l + 1].innerHTML;
+            currentContent = rows[j+2].cells[l + 1].innerHTML;
+            if (prevContent == currentContent) {
+                indexOfDuplicates.push(j+2);
+            }
+        }
+        for (k = 0; k < indexOfDuplicates.length; k ++) {
+            rows[indexOfDuplicates[k]].cells[l + 1].innerHTML = "";
+        }
     }
 }
 

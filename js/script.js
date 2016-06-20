@@ -91,10 +91,14 @@ window.onload = function () {
 
     window.table = document.getElementById('dataTable');
     window.ruleOrder = document.getElementsByClassName("taggable");
+    window.separated = false;
+    window.original_value;
+    // addClicking();
 
-    testCases();
+    //testCases();
 
     addRow();
+
 }
 
 function testCases() {
@@ -388,18 +392,6 @@ function has(letter, feature) {
     return array.indexOf(letter) > -1;
 }
 
-// function notHighOrLow(char) {
-//     var symb = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "p", "b", "f", "v",
-//     "ɸ", "β", "k", "ħ", "ʕ", "h", "ɦ", "ʔ", "m", "n", "l", "r", "ɹ"];
-//
-//     for (var i=0; i < symb.length; i++) {
-//         if (symb[i] === char) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
-
 // function isSubscript(char){
 //     var subscript = ["ʰ","ʲ", "ⁿ", "ˠ", "ˢ", "ˣ", "ʷ", "ʱ", "ᵑ", "ᵐ"];
 //
@@ -413,6 +405,7 @@ function has(letter, feature) {
 
 function createUniqueTag(elmt) {
 
+    separated = false;
     // Search for the old tag
     var taggables = document.querySelectorAll(".taggable");
     for (var i = 0, max = taggables.length; i < max; i++) {
@@ -424,7 +417,9 @@ function createUniqueTag(elmt) {
 
     // Add tag for the current element
     elmt.setAttribute("id", "id_tag");
-    elmt.innerHTML = "&nbsp;";
+    original_value = "";
+    $("#id_tag").attr("value", "");
+    elmt.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 }
 
 function addRow() {
@@ -518,6 +513,14 @@ function addRow() {
         newCell.className = "cell";
         newCell.innerHTML = "";
     }
+
+    // Able to remove the first rule if there is more than 1 rule
+    if (table.rows.length == 3) {
+        table.rows[1].cells[0].style.visibility = 'hidden';
+    }
+    else {
+        table.rows[1].cells[0].style.visibility = 'visible';
+    }
 }
 
 function deleteRow(tableID) {
@@ -532,10 +535,22 @@ function deleteRow(tableID) {
             i--;
         }
     }
-    if (table.rows.length === 3) {
-        var row = table.rows[1];
-        row.cells[0].innerHTML = "";
+
+    // Able to remove the first rule if there is more than 1 rule
+    if (table.rows.length == 3) {
+        table.rows[1].cells[0].style.visibility = 'hidden';
     }
+    else {
+        table.rows[1].cells[0].style.visibility = 'visible';
+    }
+}
+
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function()
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
 }
 
 function createCell(cell, text, style) {

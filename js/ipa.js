@@ -8,62 +8,80 @@ function appendIPA(IPA) {
 
 function appendFeature(feature) {
 
-    var txtToAdd = $('#btn' + feature).attr('value');
-    var original_value = $("#id_tag").attr("value");
-	if (original_value == null) {
-        original_value = "";
+    /* Remove space from feature */
+    feature = feature.replace(/\s/g, '');
+    feature = feature.toLowerCase();
+    /* The result */
+    var result;
+    /* Values that already on button, e.g. [+ ATR - low] */
+    var original_value;
+    original_value = $("#id_tag").attr("value");
+    original_value = original_value.replace(/\s/g, '');
+    /* Segments that are parsed from original_value */
+    var listSegment = parseSegment(original_value);
+
+    /* If there is nothing on button yet or separated*/
+    if (listSegment.length == 0 || separated) {
+        result = original_value + "[+" + feature + "]";
+        separated = false;
     } else {
-        for (var i = original_value.length - 1; i >= 0; i --) {
-            if (original_value[i] == "[") {
+        /* Last segment of listSegment e.g. [+low-nasal]*/
+        var lastSegment = listSegment[listSegment.length - 1];
+        /* Name of feature, e.g "low" in [+low] */
+        /* Position of feature in lastSegment */
+        var pos = lastSegment.search(feature);
+        if (pos == -1) {
+            /* If not found: New segment */
+            result = original_value.substring(0, original_value.length - 1) + "+" + feature + "]";
+        } else {
+            /* If found */
+            /* Get value of sign before name, + or - */
+            var valueOfSign = lastSegment[pos - 1];
+            /* Toggle sign */
+            if (valueOfSign == "+") lastSegment = lastSegment.replaceAt(pos - 1, "-");
+            else if (valueOfSign == "-") lastSegment = lastSegment.replaceAt(pos - 1, "+");
+            else console.log("Should not get here.");
+
+            listSegment.pop();
+            result = listSegment.join("") + lastSegment;
+        }
+    }
+
+    // result = beautify(result);
+    $("#id_tag").attr("value", result);
+	$("#id_tag").html(result);
+}
+
+function parseSegment(segments) {
+
+    var results = [];
+    do {
+        // Find index of [
+        for (var i = 0; i < segments.length; i ++) {
+            if (segments[i] == "[") {
                 break;
             }
         }
-        if (original_value[original_value.length - 1] == ']' && !separated) {
-            if (i != -1) {
-                var segment = original_value.substring(i, original_value.length);
-                var name = txtToAdd.substring(3, txtToAdd.length - 1);
-                var n = segment.search(name);
-                if (n != -1) { // Already in the segment
-                    // console.log("haha");
-                    txtToAdd = "";
-                    if (segment.charAt(n-2) == "+")
-                        segment = segment.replaceAt(n-2, "-")
-                    else if (segment.charAt(n-2) == "-")
-                        segment = segment.replaceAt(n-2, "+")
-                } else {
-                    // console.log("haha");
-                    txtToAdd = txtToAdd.replaceAt(0, " ");
-                    segment = original_value.substring(0, original_value.length - 1);
-                    // console.log(original_value);
-                }
-
-                for (var j = original_value.length-2; j >= 0; j --) {
-                    if (original_value[j] == "]") {
-                        break;
-                    }
-                }
-                // console.log(original_value);
-                // console.log(segment);
-                if (j == -1){
-                    original_value = segment;
-                    // console.log("haha");
-                } else {
-                    var name = original_value.substring(j + 5, original_value.length - 1);
-                    original_value = original_value.substring(0, j);
-                    console.log(name);
-                }
-
-            } else {
-                txtToAdd = txtToAdd.replaceAt(0, " ");
-                original_value = original_value.substring(0, original_value.length - 1);
+        // Find index of ]
+        for (var j = i; j < segments.length; j ++) {
+            if (segments[j] == "]") {
+                break;
             }
-        } else {
-            separated = false;
-            txtToAdd = " " + txtToAdd;
         }
-    }
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(original_value + txtToAdd);
+
+        // push "[...]" into results
+        results.push(segments.substring(i, j + 1));
+        segments = segments.substring(j + 1, segments.length);
+
+    } while (i != 0 || j != 0);
+
+    // The do-while loop above will produce an extra empty item at the end, so remove it by pop()
+    results.pop();
+    return results;
+}
+
+function beautify() {
+
 }
 
 jQuery("#btnSeparate").on('click', function() {

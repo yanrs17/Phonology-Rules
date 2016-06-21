@@ -87,16 +87,25 @@ String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
+if (typeof(String.prototype.trim) === "undefined"){
+    String.prototype.trim = function() {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
+
 window.onload = function () {
 
     window.table = document.getElementById('dataTable');
     window.ruleOrder = document.getElementsByClassName("taggable");
     window.separated = false;
     window.original_value;
-    // addClicking();
+
+    // console.log(parseSegment("[+ ATR - anterior] [+ back] [- low]"));
+    var test = "[+add]"
+    var test2 = test.substring(2, test.length-1);
+    console.log("[add]".search(test2));
 
     //testCases();
-
     addRow();
 
 }
@@ -543,14 +552,6 @@ function deleteRow(tableID) {
     else {
         table.rows[1].cells[0].style.visibility = 'visible';
     }
-}
-
-if(typeof(String.prototype.trim) === "undefined")
-{
-    String.prototype.trim = function()
-    {
-        return String(this).replace(/^\s+|\s+$/g, '');
-    };
 }
 
 function createCell(cell, text, style) {

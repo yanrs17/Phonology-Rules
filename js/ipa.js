@@ -54,6 +54,8 @@ function appendFeature(feature) {
 
 function parseSegment(segments) {
 
+    /* Parse segments */
+    /* e.g. [+atr+anterior][+back+consonantal] -> ["[+atr+anterior]", "[+back+consonantal]"] */
     var results = [];
     do {
         // Find index of [

@@ -629,14 +629,6 @@ jQuery("#ʐ").on('click', function() {
 	$("#id_tag").html(original_value + txtToAdd);
 });
 
-jQuery("#θ").on('click', function() {
-    var txtToAdd = "θ";
-    var original_value = $("#id_tag").attr("value");
-	if (original_value == null) original_value = "";
-	$("#id_tag").attr("value", original_value + txtToAdd);
-	$("#id_tag").html(original_value + txtToAdd);
-});
-
 jQuery("#ç").on('click', function() {
     var txtToAdd = "ç";
     var original_value = $("#id_tag").attr("value");
@@ -1732,6 +1724,7 @@ function appendIPA(IPA) {
 
 function appendFeature(feature) {
 
+    var flag;
     /* Remove space from feature */
     feature = feature.replace(/\s/g, '');
     feature = feature.toLowerCase();
@@ -1743,6 +1736,8 @@ function appendFeature(feature) {
     original_value = original_value.replace(/\s/g, '');
     /* Segments that are parsed from original_value */
     var listSegment = parseSegment(original_value);
+    console.log(original_value);
+    console.log(listSegment);
 
     /* If there is nothing on button yet or separated */
     if (listSegment.length == 0 || separated) {
@@ -1756,15 +1751,26 @@ function appendFeature(feature) {
         var pos = lastSegment.search(feature);
         if (pos == -1) {
             /* If not found: New segment */
-            result = original_value.substring(0, original_value.length - 1) + "+" + feature + "]";
+            if (result == null) result = "";
+            // if (result == "") flag = true;
+            // else flag = false;
+            result += original_value;
+            // if (flag) result += "[";
+            result += "+" + feature + "]";
         } else {
+            console.log("else");
             /* If found */
             /* Get value of sign before name, + or - */
             var valueOfSign = lastSegment[pos - 1];
             /* Toggle sign */
+
+            // console.log(listSegment);
+
             if (valueOfSign == "+") lastSegment = lastSegment.replaceAt(pos - 1, "-");
             else if (valueOfSign == "-") lastSegment = lastSegment.replaceAt(pos - 1, "+");
             else console.log("Should not get here.");
+
+            console.log(lastSegment);
 
             listSegment.pop();
             result = listSegment.join("") + lastSegment;
@@ -1784,22 +1790,28 @@ function parseSegment(segments) {
     // TODO: NEED TO ADD [C] AND [V]
 
     var results = [];
+    var i = 0, j = 0;
+    var original;
     do {
+        // if (i == j) console.log("haha");
+
         // Find index of [
-        for (var i = 0; i < segments.length; i ++) {
+        for (i = 0; i < segments.length; i ++) {
             if (segments[i] == "[") {
                 break;
             }
         }
         // Find index of ]
-        for (var j = i; j < segments.length; j ++) {
+        for (j = i; j < segments.length; j ++) {
             if (segments[j] == "]") {
                 break;
             }
         }
 
         // push "[...]" into results
-        results.push(segments.substring(i, j + 1));
+        original = segments.substring(i, j + 1)
+        if (original.length == 1) results.push("[" + original + "]");
+        else results.push(original);
         segments = segments.substring(j + 1, segments.length);
 
     } while (i != 0 || j != 0);

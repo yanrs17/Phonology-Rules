@@ -83,6 +83,844 @@ var arrayTenseMinus = [];
 var arrayVoicePlus = ["t", "s", "ɬ", "θ", "ʃ", "c", "ç", "p", "f", "ɸ", "k", "x", "q", "χ", "ħ"];
 var arrayVoiceMinus = [];
 
+jQuery("#btnSeparate").on('click', function() {
+    if (!separated) separated = true;
+    else separated = false;
+});
+
+jQuery("#i").on('click', function() {
+    appendIPA("i");
+});
+
+jQuery("#y").on('click', function() {
+    appendIPA("y");
+});
+
+jQuery("#ɨ").on('click', function() {
+    appendIPA("ɨ");
+});
+
+jQuery("#ʉ").on('click', function() {
+    appendIPA("ʉ");
+});
+
+jQuery("#ɯ").on('click', function() {
+    var txtToAdd = "ɯ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#u").on('click', function() {
+    var txtToAdd = "u";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+
+jQuery("#ɪ").on('click', function() {
+    var txtToAdd = "ɪ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʏ").on('click', function() {
+    var txtToAdd = "ʏ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʊ").on('click', function() {
+    var txtToAdd = "ʊ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#e").on('click', function() {
+    var txtToAdd = "e";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ø").on('click', function() {
+    var txtToAdd = "ø";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɘ").on('click', function() {
+    var txtToAdd = "ɘ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɵ").on('click', function() {
+    var txtToAdd = "ɵ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɤ").on('click', function() {
+    var txtToAdd = "ɤ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#o").on('click', function() {
+    var txtToAdd = "o";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ə").on('click', function() {
+    var txtToAdd = "ə";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɛ").on('click', function() {
+    var txtToAdd = "ɛ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#œ").on('click', function() {
+    var txtToAdd = "œ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɜ").on('click', function() {
+    var txtToAdd = "ɜ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɞ").on('click', function() {
+    var txtToAdd = "ɞ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+
+jQuery("#ʌ").on('click', function() {
+    var txtToAdd = "ʌ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɔ").on('click', function() {
+    var txtToAdd = "ɔ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#æ").on('click', function() {
+    var txtToAdd = "æ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɐ").on('click', function() {
+    var txtToAdd = "ɐ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#a").on('click', function() {
+    var txtToAdd = "a";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɶ").on('click', function() {
+    var txtToAdd = "ɶ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɑ").on('click', function() {
+    var txtToAdd = "ɑ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɒ").on('click', function() {
+    var txtToAdd = "ɒ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#p").on('click', function() {
+    var txtToAdd = "p";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#b").on('click', function() {
+    var txtToAdd = "b";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#t").on('click', function() {
+    var txtToAdd = "t";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#d").on('click', function() {
+    var txtToAdd = "d";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#c").on('click', function() {
+    var txtToAdd = "c";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#k").on('click', function() {
+    var txtToAdd = "k";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+
+jQuery("#g").on('click', function() {
+    var txtToAdd = "g";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#q").on('click', function() {
+    var txtToAdd = "q";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#m").on('click', function() {
+    var txtToAdd = "m";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#n").on('click', function() {
+    var txtToAdd = "n";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#r").on('click', function() {
+    var txtToAdd = "r";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#f").on('click', function() {
+    var txtToAdd = "f";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#v").on('click', function() {
+    var txtToAdd = "v";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#s").on('click', function() {
+    var txtToAdd = "s";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#z").on('click', function() {
+    var txtToAdd = "z";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#x").on('click', function() {
+    var txtToAdd = "x";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#h").on('click', function() {
+    var txtToAdd = "h";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#l").on('click', function() {
+    var txtToAdd = "l";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʈ").on('click', function() {
+    var txtToAdd = "ʈ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɖ").on('click', function() {
+    var txtToAdd = "ɖ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+
+jQuery("#ɟ").on('click', function() {
+    var txtToAdd = "ɟ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɢ").on('click', function() {
+    var txtToAdd = "ɢ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʔ").on('click', function() {
+    var txtToAdd = "ʔ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɱ").on('click', function() {
+    var txtToAdd = "ɱ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɳ").on('click', function() {
+    var txtToAdd = "ɳ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɲ").on('click', function() {
+    var txtToAdd = "ɲ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ŋ").on('click', function() {
+    var txtToAdd = "ŋ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɴ").on('click', function() {
+    var txtToAdd = "ɴ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʙ").on('click', function() {
+    var txtToAdd = "ʙ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#β").on('click', function() {
+    var txtToAdd = "β";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+
+jQuery("#ʀ").on('click', function() {
+    var txtToAdd = "ʀ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ⱱ").on('click', function() {
+    var txtToAdd = "ⱱ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɾ").on('click', function() {
+    var txtToAdd = "ɾ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɽ").on('click', function() {
+    var txtToAdd = "ɽ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɸ").on('click', function() {
+    var txtToAdd = "ɸ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#θ").on('click', function() {
+    var txtToAdd = "θ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ð").on('click', function() {
+    var txtToAdd = "ð";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʃ").on('click', function() {
+    var txtToAdd = "ʃ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʒ").on('click', function() {
+    var txtToAdd = "ʒ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʂ").on('click', function() {
+    var txtToAdd = "ʂ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʐ").on('click', function() {
+    var txtToAdd = "ʐ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#θ").on('click', function() {
+    var txtToAdd = "θ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ç").on('click', function() {
+    var txtToAdd = "ç";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʝ").on('click', function() {
+    var txtToAdd = "ʝ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɣ").on('click', function() {
+    var txtToAdd = "ɣ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#χ").on('click', function() {
+    var txtToAdd = "χ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʁ").on('click', function() {
+    var txtToAdd = "ʁ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ħ").on('click', function() {
+    var txtToAdd = "ħ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʕ").on('click', function() {
+    var txtToAdd = "ʕ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɦ").on('click', function() {
+    var txtToAdd = "ɦ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɬ").on('click', function() {
+    var txtToAdd = "ɬ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɮ").on('click', function() {
+    var txtToAdd = "ɮ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʋ").on('click', function() {
+    var txtToAdd = "ʋ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɹ").on('click', function() {
+    var txtToAdd = "ɹ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɻ").on('click', function() {
+    var txtToAdd = "ɻ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#j").on('click', function() {
+    var txtToAdd = "j";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɰ").on('click', function() {
+    var txtToAdd = "ɰ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ɭ").on('click', function() {
+    var txtToAdd = "ɭ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#ʟ").on('click', function() {
+    var txtToAdd = "ʟ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnStress").on('click', function() {
+    var txtToAdd = '"';
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnAspiration").on('click', function() {
+    var txtToAdd = "ʰ";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnNumberSign").on('click', function() {
+    var txtToAdd = "#";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnEmpty").on('click', function() {
+    var txtToAdd = "&nbsp;";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnNone").on('click', function() {
+    var txtToAdd = "∅";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnConsonant").on('click', function() {
+    var txtToAdd = "C"; // Might get confused with same C?
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnVowel").on('click', function() {
+    var txtToAdd = "V";
+    var original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+	$("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+});
+
+jQuery("#btnATR").on('click', function() {
+    appendFeature("ATR");
+});
+
+jQuery("#btnAnterior").on('click', function() {
+    appendFeature("Anterior");
+});
+
+jQuery("#btnBack").on('click', function() {
+    appendFeature("Back");
+});
+
+jQuery("#btnConsonantal").on('click', function() {
+    appendFeature("Consonantal");
+});
+
+jQuery("#btnConstrictedGlottis").on('click', function() {
+    appendFeature("ConstrictedGlottis");
+});
+
+jQuery("#btnContinuant").on('click', function() {
+    appendFeature("Continuant");
+});
+
+jQuery("#btnCoronal").on('click', function() {
+    appendFeature("Coronal");
+});
+
+jQuery("#btnDelayedRelease").on('click', function() {
+    appendFeature("DelayedRelease");
+});
+
+jQuery("#btnDistributed").on('click', function() {
+    appendFeature("Distributed");
+});
+
+jQuery("#btnDorsal").on('click', function() {
+    appendFeature("Dorsal");
+});
+
+jQuery("#btnHigh").on('click', function() {
+    appendFeature("High");
+});
+
+jQuery("#btnLabial").on('click', function() {
+    appendFeature("Labial");
+});
+
+jQuery("#btnLateral").on('click', function() {
+    appendFeature("Lateral");
+});
+
+jQuery("#btnLow").on('click', function() {
+    appendFeature("Low");
+});
+
+jQuery("#btnNasal").on('click', function() {
+    appendFeature("Nasal");
+});
+
+jQuery("#btnPharyngeal").on('click', function() {
+    appendFeature("Pharyngeal");
+});
+
+jQuery("#btnRound").on('click', function() {
+    appendFeature("Round");
+});
+
+jQuery("#btnSonorant").on('click', function() {
+    appendFeature("Sonorant");
+});
+
+jQuery("#btnSpreadGlottis").on('click', function() {
+    appendFeature("SpreadGlottis");
+});
+
+jQuery("#btnStrident").on('click', function() {
+    appendFeature("Strident");
+});
+
+jQuery("#btnSyllabic").on('click', function() {
+    appendFeature("Syllabic");
+});
+
+jQuery("#btnTense").on('click', function() {
+    appendFeature("Tense");
+});
+
+jQuery("#btnVoice").on('click', function() {
+    appendFeature("Voice");
+});
+
 String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
@@ -627,7 +1465,6 @@ function addUR(tableID) {
     inputnum = countCols(tableID) - 2;
     txtinput.className = "userInput taggable input" + inputnum;
     txtinput.placeholder = "Enter a word";
-    //txtinput.id = "input" + inputnum;
     celltxtinput.innerHTML = "UR: ";
     celltxtinput.appendChild(txtinput);
 
@@ -651,43 +1488,43 @@ function clearUR() {
 function isIllFormed(A, B, C, D) {
 
     // Ill-formed conditions
-    if (A === "&nbsp;" && B === "&nbsp;") {
+    if (A.indexOf("&nbsp;") != -1  && B.indexOf("&nbsp;") != -1) {
         // If A and B are empty at the same time.
         alert("A and B cannot be empty at the same time.");
         return true;
     }
 
-    if (A === "&nbsp;") {
+    if (A.indexOf("&nbsp;") != -1) {
         // If A is empty at the same time.
         alert("A cannot be empty.");
         return true;
     }
 
-    if (A === "∅") {
+    if (A.indexOf("∅") != -1) {
         // If A is none
         alert("A cannot be none.");
         return true;
     }
 
-    if (C === "∅") {
+    if (C.indexOf("∅") != -1) {
         // If C is none
         alert("C cannot be none.");
         return true;
     }
 
-    if (D === "∅") {
+    if (D.indexOf("∅") != -1) {
         // If D is none
         alert("D cannot be none.");
         return true;
     }
 
-    if (A === "#" || B === "#") {
+    if (A.indexOf("#") != -1 || B.indexOf("#") != -1) {
         // If A or B is #
         alert("# cannot be in A or B");
         return true;
     }
 
-    if (C === "#" && D === "#") {
+    if (C.indexOf("#") != -1 && D.indexOf("#") != -1) {
         // If A or B is #
         alert("# cannot be both in C and D");
         return true;
@@ -712,7 +1549,6 @@ function derive() {
     // }
 
     function parseABCD(ABCD, i) {
-
         var parsed = ruleOrder[numCols + i * 4 + ABCD].innerHTML;
         /* If it is a special char (e.g. ABCD):
             Don't change anything */
@@ -738,10 +1574,12 @@ function derive() {
     }
 
     for (i = 0; i < (ruleOrder.length - numCols) / 4; i++) {
-        A = parseABCD(0, i).replace(/\s/g, '');
-        B = parseABCD(1, i).replace(/\s/g, '');
-        C = parseABCD(2, i).replace(/\s/g, '');
-        D = parseABCD(3, i).replace(/\s/g, '');
+
+        /* Get rid of whitespaces */
+        A = parseABCD(0, i).split("&nbsp;").join("").replace(/\s/g, '');
+        B = parseABCD(1, i).split("&nbsp;").join("").replace(/\s/g, '');
+        C = parseABCD(2, i).split("&nbsp;").join("").replace(/\s/g, '');
+        D = parseABCD(3, i).split("&nbsp;").join("").replace(/\s/g, '');
 
         /* Check if ill-formed */
         if (isIllFormed(A, B, C, D)) {
@@ -780,14 +1618,58 @@ function derive() {
 function applyRule(A, B, C, D, word) {
 
     function isSpecialChar(ABCD, letter) {
-        if (ABCD == "V") return has(letter, 'Vowel');
-        if (ABCD == "C") return has(letter, 'Consonant');
+
+        /* If it is Vowel */
+        if (ABCD == "[V]") return has(letter, 'Vowel');
+        /* If it is Consonant */
+        if (ABCD == "[C]") return has(letter, 'Consonant');
+        /* If it is a Segment */
+        if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
+            var segments = getFeaturesInSegment(ABCD);
+            console.log(segments);
+            // TODO
+            return;
+        }
         return false;
     }
-    function isMatched(ABCD, i, isNotA) {
+    function isMatchedSingle(ABCD, i, isNotA) {
         result = word.charAt(i) == ABCD || isSpecialChar(ABCD, word.charAt(i));
         if (!isNotA) return result;
         return result || ABCD == " ";
+    }
+    function isMatchedMultiple() {
+
+        // Multiple segments below
+        // TODO
+
+        // Single segment below
+        // If at word init
+        if (C == "#") {
+            if (isMatchedSingle(D, 1, true) && isMatchedSingle(A, 0, false)) {
+                word = word.replaceAt(0, B);
+            }
+        }
+        // If at word final
+        else if (D == "#") {
+            if (isMatchedSingle(C, len - 2, true) && isMatchedSingle(A, len - 1, false)) {
+                word = word.replaceAt(len - 1, B);
+            }
+        }
+        // If neither at word init nor word end
+        // Push indices that match into a list
+        else {
+            for (i = 0; i < len; i ++) {
+                if (isMatchedSingle(C, i - 1, true) && isMatchedSingle(A, i, false) && isMatchedSingle(D, i + 1, true)) {
+                    indice.push(i);
+                }
+            }
+            // Change A to B at each index that matches
+            for (j = 0; j < indice.length; j ++) {
+                word = word.replaceAt(indice[j], B);
+            }
+        }
+        stripped = word.replace(/\s/g, '');
+        return stripped;
     }
     function getFeaturesInSegment(segment) {
         /* Change segment into features */
@@ -827,46 +1709,106 @@ function applyRule(A, B, C, D, word) {
     if (D == "&nbsp;" || D == "") D = " ";
     if (B == "∅") B = " ";
 
-    console.log(A);
-
     // Need to change in order to accommodate individual IPA
     var segmentsOfA = parseSegment(A);
     var segmentsOfB = parseSegment(B);
     var segmentsOfC = parseSegment(C);
     var segmentsOfD = parseSegment(D);
-    console.log(segmentsOfA);
 
     // var featuresA = getFeaturesInSegment(A);
     // var featuresB = getFeaturesInSegment(B);
     // var featuresC = getFeaturesInSegment(C);
     // var featuresD = getFeaturesInSegment(D);
+    return isMatchedMultiple();
+}
 
-    // If at word init
-    if (C == "#") {
-        if (isMatched(D, 1, true) && isMatched(A, 0, false)) {
-            word = word.replaceAt(0, B);
+function appendIPA(IPA) {
+    var txtToAdd = IPA;
+    original_value = $("#id_tag").attr("value");
+	if (original_value == null) original_value = "";
+    $("#id_tag").attr("value", original_value + txtToAdd);
+	$("#id_tag").html(original_value + txtToAdd);
+}
+
+function appendFeature(feature) {
+
+    /* Remove space from feature */
+    feature = feature.replace(/\s/g, '');
+    feature = feature.toLowerCase();
+    /* The result */
+    var result;
+    /* Values that already on button, e.g. [+ ATR - low] */
+    var original_value;
+    original_value = $("#id_tag").attr("value");
+    original_value = original_value.replace(/\s/g, '');
+    /* Segments that are parsed from original_value */
+    var listSegment = parseSegment(original_value);
+
+    /* If there is nothing on button yet or separated*/
+    if (listSegment.length == 0 || separated) {
+        result = original_value + "[+" + feature + "]";
+        separated = false;
+    } else {
+        /* Last segment of listSegment e.g. [+low-nasal]*/
+        var lastSegment = listSegment[listSegment.length - 1];
+        /* Name of feature, e.g "low" in [+low] */
+        /* Position of feature in lastSegment */
+        var pos = lastSegment.search(feature);
+        if (pos == -1) {
+            /* If not found: New segment */
+            result = original_value.substring(0, original_value.length - 1) + "+" + feature + "]";
+        } else {
+            /* If found */
+            /* Get value of sign before name, + or - */
+            var valueOfSign = lastSegment[pos - 1];
+            /* Toggle sign */
+            if (valueOfSign == "+") lastSegment = lastSegment.replaceAt(pos - 1, "-");
+            else if (valueOfSign == "-") lastSegment = lastSegment.replaceAt(pos - 1, "+");
+            else console.log("Should not get here.");
+
+            listSegment.pop();
+            result = listSegment.join("") + lastSegment;
         }
     }
-    // If at word final
-    else if (D == "#") {
-        // if (isMatched(C, len - 2, true)) {
-        if (isMatched(C, len - 2, true) && isMatched(A, len - 1, false)) {
-            word = word.replaceAt(len - 1, B);
-        }
-    }
-    // If neither at word init nor word end
-    // Push indices that match into a list
-    else {
-        for (i = 0; i < len; i ++) {
-            if (isMatched(C, i - 1, true) && isMatched(A, i, false) && isMatched(D, i + 1, true)) {
-                indice.push(i);
+
+    // result = beautify(result);
+    $("#id_tag").attr("value", result);
+	$("#id_tag").html(result);
+}
+
+function parseSegment(segments) {
+
+    /* Parse segments */
+    /* e.g. [+atr+anterior][+back+consonantal] -> ["[+atr+anterior]", "[+back+consonantal]"] */
+
+    // TODO: NEED TO ADD [C] AND [V]
+
+    var results = [];
+    do {
+        // Find index of [
+        for (var i = 0; i < segments.length; i ++) {
+            if (segments[i] == "[") {
+                break;
             }
         }
-        // Change A to B at each index that matches
-        for (j = 0; j < indice.length; j ++) {
-            word = word.replaceAt(indice[j], B);
+        // Find index of ]
+        for (var j = i; j < segments.length; j ++) {
+            if (segments[j] == "]") {
+                break;
+            }
         }
-    }
-    stripped = word.replace(/\s/g, '');
-    return stripped;
+
+        // push "[...]" into results
+        results.push(segments.substring(i, j + 1));
+        segments = segments.substring(j + 1, segments.length);
+
+    } while (i != 0 || j != 0);
+
+    // The do-while loop above will produce an extra empty item at the end, so remove it by pop()
+    results.pop();
+    return results;
+}
+
+function beautify() {
+
 }

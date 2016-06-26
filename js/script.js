@@ -1,10 +1,10 @@
 // Haven't checked yet
-var arrayVowel = [
+var arrayvowel = [
     "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
     "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
     "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
     "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"]
-var arrayConsonant = [
+var arrayconsonant = [
     "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ",
     "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ",
     "ʙ", "r", "ʀ",
@@ -13,20 +13,20 @@ var arrayConsonant = [
     "ɬ", "ɮ",
     "ʋ", "ɹ", "ɻ", "j", "ɰ",
     "l", "ɭ", "ʎ", "ʟ"];
-var arrayATRPlus = [];
-var arrayATRMinus = [];
-var arrayAnteriorPlus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "n", "l", "r", "ɹ"];
-var arrayAnteriorMinus = ["ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "ɳ"];
-var arrayBackPlus = ["k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɴ", "ʀ",
+var arrayatrplus = [];
+var arrayatrminus = [];
+var arrayanteriorplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "n", "l", "r", "ɹ"];
+var arrayanteriorminus = ["ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "ɳ"];
+var arraybackplus = ["k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɴ", "ʀ",
 "w", "ɰ", "ɯ",
 "u", "ʊ", "ɤ", "o", "ə", "ʌ", "ɔ", "ɑ", "ɒ"];
-var arrayBackMinus = ["c", "ɟ", "ç", "ʝ", "ɳ", "ɲ", "ʎ", "j", "ɥ", "i", "ɪ", "e", "ɛ", "a", "æ",
+var arraybackminus = ["c", "ɟ", "ç", "ʝ", "ɳ", "ɲ", "ʎ", "j", "ɥ", "i", "ɪ", "e", "ɛ", "a", "æ",
 "y", "ʏ", "∅", "œ"];
-var arrayConsonantalPlus = [];
-var arrayConsonantalMinus = [];
-var arrayCGPlus = [];
-var arrayCGMinus = [];
-var arrayContinuantPlus = [
+var arrayconsonantalplus = [];
+var arrayconsonantalminus = [];
+var arraycgplus = [];
+var arraycgminus = [];
+var arraycontinuantplus = [
 "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ",
 "ç", "ʝ", "f", "v", "ɸ", "β", "x", "ɣ",
 "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "l", "ʎ",
@@ -35,53 +35,53 @@ var arrayContinuantPlus = [
 "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ",
 "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a",
 "ɶ", "ɑ", "ɒ"];
-var arrayContinuantMinus = [];
-var arrayCoronalPlus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "n", "ɳ", "l", "r", "ɹ"];
-var arrayCoronalMinus = [];
-var arrayDelayed = [];
-var arrayReleasePlus = [];
-var arrayDelayed = [];
-var arrayReleaseMinus = [];
-var arrayDistributedPlus = [];
-var arrayDistributedMinus = [];
-var arrayDorsalPlus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɳ", "ɲ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ",
+var arraycontinuantminus = [];
+var arraycoronalplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "n", "ɳ", "l", "r", "ɹ"];
+var arraycoronalminus = [];
+var arraydelayed = [];
+var arrayreleaseplus = [];
+var arraydelayed = [];
+var arrayreleaseminus = [];
+var arraydistributedplus = [];
+var arraydistributedminus = [];
+var arraydorsalplus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɳ", "ɲ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ",
 "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
 "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
 "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
 "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-var arrayDorsalMinus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "p", "b",
+var arraydorsalminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "p", "b",
 "f", "v", "ɸ", "β", "ħ", "ʕ", "h", "ɦ", "ʔ", "m", "n", "l", "r", "ɹ"];
-var arrayHighPlus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", 'j', 'w', 'ɥ', 'ɰ', 'i', 'ɪ', 'u',
+var arrayhighplus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", 'j', 'w', 'ɥ', 'ɰ', 'i', 'ɪ', 'u',
 'ʊ', 'ŋ', 'ɲ', 'ʎ', 'y', 'ʏ', 'ɯ'];
-var arrayHighMinus = [];
-var arrayLabialPlus = [];
-var arrayLabialMinus = [];
-var arrayLateralPlus = [];
-var arrayLateralMinus = [];
-var arrayLowPlus = ['æ', 'ɐ', 'a', 'ɶ', 'ɑ', 'ɒ'];
-var arrayLowMinus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ",
+var arrayhighminus = [];
+var arraylabialplus = [];
+var arraylabialminus = [];
+var arraylateralplus = [];
+var arraylateralminus = [];
+var arraylowplus = ['æ', 'ɐ', 'a', 'ɶ', 'ɑ', 'ɒ'];
+var arraylowminus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ",
 "ʁ", "ŋ", "ɳ", "ɲ" , 'ɴ', 'ʎ', 'ʀ', 'j', 'w', 'ɥ', 'ɰ', 'i', 'ɪ', 'u',
 'ʊ', 'e', 'ɛ', 'o', 'ɔ', 'y', 'ʏ', '∅', 'œ', 'ə', 'ɯ'];
-var arrayNasalPlus = ["m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ"];
-var arrayNasalMinus = [];
-var arrayPharyngealPlus = [];
-var arrayPharyngealMinus = [];
-var arrayRoundPlus = ["y", "ʏ", "ø", "œ", "ɶ", "ʉ", "ɵ", "ɞ", "u", "ʊ", "o", "ɔ", "ɒ"];
-var arrayRoundMinus = ["i", "ɪ", "e", "ɛ", "æ", "a", "ɨ", "ɘ", "ə", "ɜ", "ɐ", "ɯ", "ɤ", "ʌ", "ɑ"];
-var arraySonorantPlus = ["i", "ɪ", "u", "ʊ", "e", "ɛ", "o", "ɔ", "a", "æ", "y", "ʏ", "ə", "ø", "œ", "ɯ",
+var arraynasalplus = ["m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ"];
+var arraynasalminus = [];
+var arraypharyngealplus = [];
+var arraypharyngealminus = [];
+var arrayroundplus = ["y", "ʏ", "ø", "œ", "ɶ", "ʉ", "ɵ", "ɞ", "u", "ʊ", "o", "ɔ", "ɒ"];
+var arrayroundminus = ["i", "ɪ", "e", "ɛ", "æ", "a", "ɨ", "ɘ", "ə", "ɜ", "ɐ", "ɯ", "ɤ", "ʌ", "ɑ"];
+var arraysonorantplus = ["i", "ɪ", "u", "ʊ", "e", "ɛ", "o", "ɔ", "a", "æ", "y", "ʏ", "ə", "ø", "œ", "ɯ",
 "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ",
 "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ"];
-var arraySonorantMinus = [];
-var arraySGPlus = ["ɬ", "h", "ɦ"];
-var arraySGMinus = [];
-var arrayStridentPlus = [];
-var arrayStridentMinus = [];
-var arraySyllabicPlus = [];
-var arraySyllabicMinus = [];
-var arrayTensePlus = [];
-var arrayTenseMinus = [];
-var arrayVoicePlus = ["t", "s", "ɬ", "θ", "ʃ", "c", "ç", "p", "f", "ɸ", "k", "x", "q", "χ", "ħ"];
-var arrayVoiceMinus = [];
+var arraysonorantminus = [];
+var arraysgplus = ["ɬ", "h", "ɦ"];
+var arraysgminus = [];
+var arraystridentplus = [];
+var arraystridentminus = [];
+var arraysyllabicplus = [];
+var arraysyllabicminus = [];
+var arraytenseplus = [];
+var arraytenseminus = [];
+var arrayvoiceplus = ["t", "s", "ɬ", "θ", "ʃ", "c", "ç", "p", "f", "ɸ", "k", "x", "q", "χ", "ħ"];
+var arrayvoiceminus = [];
 
 jQuery("#btnSeparate").on('click', function() {
     if (!separated) separated = true;
@@ -1077,151 +1077,152 @@ window.onload = function () {
 function has(letter, feature) {
 
     var array;
+    feature = feature.toLowerCase();
     switch(feature) {
 
-        case 'Vowel':
-            array = arrayVowel;
+        case 'vowel':
+            array = arrayvowel;
             break;
-        case 'Consonant':
-            array = arrayConsonant;
+        case 'consonant':
+            array = arrayconsonant;
             break;
-        case 'ATRPlus':
-            array = arrayATRPlus;
+        case 'atrplus':
+            array = arrayatrplus;
             break;
-        case 'ATRMinus':
-            array = arrayATRMinus;
+        case 'atrminus':
+            array = arrayatrminus;
             break;
-        case 'AnteriorPlus':
-            array = arrayAnteriorPlus;
+        case 'anteriorplus':
+            array = arrayanteriorplus;
             break;
-        case 'AnteriorMinus':
-            array = arrayAnteriorMinus;
+        case 'anteriorminus':
+            array = arrayanteriorminus;
             break;
-        case 'BackPlus':
-            array = arrayBackPlus;
+        case 'backplus':
+            array = arraybackplus;
             break;
-        case 'BackMinus':
-            array = arrayBackMinus;
+        case 'backminus':
+            array = arraybackminus;
             break;
-        case 'ConsonantalPlus':
-            array = arrayConsonantalPlus;
+        case 'consonantalplus':
+            array = arrayconsonantalplus;
             break;
-        case 'ConsonantalMinus':
-            array = arrayConsonantalMinus;
+        case 'consonantalminus':
+            array = arrayconsonantalminus;
             break;
-        case 'CGPlus':
-            array = arrayCGPlus;
+        case 'cgplus':
+            array = arraycgplus;
             break;
-        case 'CGMinus':
-            array = arrayCGMinus;
+        case 'cgminus':
+            array = arraycgminus;
             break;
-        case 'ContinuantPlus':
-            array = arrayContinuantPlus;
+        case 'continuantplus':
+            array = arraycontinuantplus;
             break;
-        case 'ContinuantMinus':
-            array = arrayContinuantMinus;
+        case 'continuantminus':
+            array = arraycontinuantminus;
             break;
-        case 'CoronalPlus':
-            array = arrayCoronalPlus;
+        case 'coronalplus':
+            array = arraycoronalplus;
             break;
-        case 'CoronalMinus':
-            array = arrayCoronalMinus;
+        case 'coronalminus':
+            array = arraycoronalminus;
             break;
-        case 'DelayedReleasePlus':
-            array = arrayDelayedReleasePlus;
+        case 'delayedreleaseplus':
+            array = arraydelayedreleaseplus;
             break;
-        case 'DelayedReleaseMinus':
-            array = arrayDelayedReleaseMinus;
+        case 'delayedreleaseminus':
+            array = arraydelayedreleaseminus;
             break;
-        case 'DistributedPlus':
-            array = arrayDistributedPlus;
+        case 'distributedplus':
+            array = arraydistributedplus;
             break;
-        case 'DistributedMinus':
-            array = arrayDistributedMinus;
+        case 'distributedminus':
+            array = arraydistributedminus;
             break;
-        case 'DorsalPlus':
-            array = arrayDorsalPlus;
+        case 'dorsalplus':
+            array = arraydorsalplus;
             break;
-        case 'DorsalMinus':
-            array = arrayDorsalMinus;
+        case 'dorsalminus':
+            array = arraydorsalminus;
             break;
-        case 'HighPlus':
-            array = arrayHighPlus;
+        case 'Highplus':
+            array = arrayHighplus;
             break;
-        case 'HighMinus':
-            array = arrayHighMinus;
+        case 'Highminus':
+            array = arrayHighminus;
             break;
-        case 'LabialPlus':
-            array = arrayLabialPlus;
+        case 'labialplus':
+            array = arraylabialplus;
             break;
-        case 'LabialMinus':
-            array = arrayLabialMinus;
+        case 'labialminus':
+            array = arraylabialminus;
             break;
-        case 'LateralPlus':
-            array = arrayLateralPlus;
+        case 'lateralplus':
+            array = arraylateralplus;
             break;
-        case 'LateralMinus':
-            array = arrayLateralMinus;
+        case 'lateralminus':
+            array = arraylateralminus;
             break;
-        case 'LowPlus':
-            array = arrayLowPlus;
+        case 'lowplus':
+            array = arraylowplus;
             break;
-        case 'LowMinus':
-            array = arrayLowMinus;
+        case 'lowminus':
+            array = arraylowminus;
             break;
-        case 'NasalPlus':
-            array = arrayNasalPlus;
+        case 'nasalplus':
+            array = arraynasalplus;
             break;
-        case 'NasalMinus':
-            array = arrayNasalMinus;
+        case 'nasalminus':
+            array = arraynasalminus;
             break;
-        case 'PharyngealPlus':
-            array = arrayPharyngealPlus;
+        case 'pharyngealplus':
+            array = arraypharyngealplus;
             break;
-        case 'PharyngealMinus':
-            array = arrayPharyngealMinus;
+        case 'pharyngealminus':
+            array = arraypharyngealminus;
             break;
-        case 'RoundPlus':
-            array = arrayRoundPlus;
+        case 'roundplus':
+            array = arrayroundplus;
             break;
-        case 'RoundMinus':
-            array = arrayRoundMinus;
+        case 'roundminus':
+            array = arrayroundminus;
             break;
-        case 'SonorantPlus':
-            array = arraySonorantPlus;
+        case 'sonorantplus':
+            array = arraysonorantplus;
             break;
-        case 'SonorantMinus':
-            array = arraySonorantMinus;
+        case 'sonorantminus':
+            array = arraysonorantminus;
             break;
-        case 'SGPlus':
-            array = arraySGPlus;
+        case 'sgplus':
+            array = arraysgplus;
             break;
-        case 'SGMinus':
-            array = arraySGMinus;
+        case 'sgminus':
+            array = arraysgminus;
             break;
-        case 'StridentPlus':
-            array = arrayStridentPlus;
+        case 'stridentplus':
+            array = arraystridentplus;
             break;
-        case 'StridentMinus':
-            array = arrayStridentMinus;
+        case 'stridentminus':
+            array = arraystridentminus;
             break;
-        case 'SyllabicPlus':
-            array = arraySyllabicPlus;
+        case 'syllabicplus':
+            array = arraysyllabicplus;
             break;
-        case 'SyllabicMinus':
-            array = arraySyllabicMinus;
+        case 'syllabicminus':
+            array = arraysyllabicminus;
             break;
-        case 'TensePlus':
-            array = arrayTensePlus;
+        case 'tenseplus':
+            array = arraytenseplus;
             break;
-        case 'TenseMinus':
-            array = arrayTenseMinus;
+        case 'tenseminus':
+            array = arraytenseminus;
             break;
-        case 'VoicePlus':
-            array = arrayVoicePlus;
+        case 'voiceplus':
+            array = arrayvoiceplus;
             break;
-        case 'VoiceMinus':
-            array = arrayVoiceMinus;
+        case 'voiceminus':
+            array = arrayvoiceminus;
             break;
     }
 
@@ -1619,18 +1620,30 @@ function applyRule(A, B, C, D, word) {
 
     function isSpecialChar(ABCD, letter) {
 
+        var sign;
+
         /* If it is Vowel */
-        if (ABCD == "[V]") return has(letter, 'Vowel');
+        if (ABCD == "[V]") return has(letter, 'vowel');
         /* If it is Consonant */
-        if (ABCD == "[C]") return has(letter, 'Consonant');
+        if (ABCD == "[C]") return has(letter, 'consonant');
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
             var segments = getFeaturesInSegment(ABCD);
-            console.log(segments);
-            // TODO
-            return;
+            for (var i = 0; i < segments.length; i ++) {
+
+                /* Check if all matches */
+                sign = segments[i][0];
+                if (sign == "+") sign = "plus";
+                else if (sign == "-") sign = "minus";
+                else console.log("should not get here.");
+
+                if (!has(letter, segments[i].substring(1, segments[i].length) + sign))
+                    return false;
+            }
+
+            return true;
         }
-        return false;
+        // return false;
     }
     function isMatchedSingle(ABCD, i, isNotA) {
         result = word.charAt(i) == ABCD || isSpecialChar(ABCD, word.charAt(i));

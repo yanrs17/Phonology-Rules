@@ -1397,44 +1397,25 @@ function createCell(cell, text, style) {
 }
 
 function clearCells(tableID) {
+
+    function addABCD(ABCD) {
+        taggables[i+numCols].innerHTML = "";
+        var select1 = taggables[i+numCols];
+        var select1lighter = document.createElement("div");
+        select1lighter.setAttribute('class', 'lighter');
+        select1lighter.innerHTML = ABCD;
+        select1.appendChild(select1lighter);
+    }
     var table = document.getElementById(tableID);
     var rows = table.rows;
     var numCols = table.rows[0].cells.length - 2;
-
     var taggables = document.querySelectorAll(".taggable");
-    for (var i = 0, max = taggables.length-numCols; i < max; i++) {
-        if (i % 4 === 0) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "A";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 1) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "B";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 2) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "C";
-            select1.appendChild(select1lighter);
-        }
-        else if (i % 4 === 3) {
-            taggables[i+numCols].innerHTML = "";
-            var select1 = taggables[i+numCols];
-            var select1lighter = document.createElement("div");
-            select1lighter.setAttribute('class', 'lighter');
-            select1lighter.innerHTML = "D";
-            select1.appendChild(select1lighter);
-        }
+    var i;
+    for (i = 0, max = taggables.length - numCols; i < max; i++) {
+        if (i % 4 === 0) addABCD("A");
+        else if (i % 4 === 1) addABCD("B");
+        else if (i % 4 === 2) addABCD("C");
+        else if (i % 4 === 3) addABCD("D");
     }
 }
 
@@ -1618,14 +1599,15 @@ function derive() {
 
 function applyRule(A, B, C, D, word) {
 
-    function isSpecialChar(ABCD, letter) {
+    function isMatchedSpecialChar(ABCD, letter) {
 
+        // console.log(ABCD, letter);
+        // console.log(ABCD == "V", ABCD == "C", ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-")
         var sign;
-
         /* If it is Vowel */
-        if (ABCD == "[V]") return has(letter, 'vowel');
+        if (ABCD == "V") return has(letter, 'vowel');
         /* If it is Consonant */
-        if (ABCD == "[C]") return has(letter, 'consonant');
+        if (ABCD == "C") return has(letter, 'consonant');
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
             var segments = getFeaturesInSegment(ABCD);
@@ -1643,42 +1625,67 @@ function applyRule(A, B, C, D, word) {
 
             return true;
         }
-        // return false;
+        return false;
     }
-    function isMatchedSingle(ABCD, i, isNotA) {
-        result = word.charAt(i) == ABCD || isSpecialChar(ABCD, word.charAt(i));
-        if (!isNotA) return result;
-        return result || ABCD == " ";
-    }
-    function isMatchedMultiple() {
+    function isMatchedSingleABCD(ABCD, i, isNotA) {
 
         // Multiple segments below
         // TODO
+        // console.log(ABCD);
+        var result;
 
-        // Single segment below
+        // var j = 0;
+        for (var j = 0; j < ABCD.length; j ++) {
+            // console.log(ABCD[j]);
+            // console.log(j, word.charAt(i + j), ABCD[j]);
+            // console.log(isMatchedSpecialChar(ABCD[j], word.charAt(i + j)));
+            result = word.charAt(i + j) == ABCD[j] || isMatchedSpecialChar(ABCD[j], word.charAt(i + j));
+        }
+
+        // console.log(result);
+        if (!isNotA) return result;
+        else return result || ABCD == " ";
+    }
+    function isMatchedSingleSegment() {
+
+        // Single segment
         // If at word init
+
+        var before;
+        var middle;
+        var after;
         if (C == "#") {
-            if (isMatchedSingle(D, 1, true) && isMatchedSingle(A, 0, false)) {
+            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false)) {
                 word = word.replaceAt(0, B);
             }
         }
-        // If at word final
+        /* If at word final */
         else if (D == "#") {
-            if (isMatchedSingle(C, len - 2, true) && isMatchedSingle(A, len - 1, false)) {
+            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false)) {
                 word = word.replaceAt(len - 1, B);
             }
         }
-        // If neither at word init nor word end
-        // Push indices that match into a list
+
+        /* If neither at word init nor word end
+        Push indices that match into a list */
         else {
             for (i = 0; i < len; i ++) {
-                if (isMatchedSingle(C, i - 1, true) && isMatchedSingle(A, i, false) && isMatchedSingle(D, i + 1, true)) {
+                if (isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true)) {
                     indice.push(i);
                 }
+                console.log(indice);
             }
-            // Change A to B at each index that matches
+            console.log(indice);
+            /* Change A to B at each index that matches */
             for (j = 0; j < indice.length; j ++) {
-                word = word.replaceAt(indice[j], B);
+                before = word.substring(0, j);
+                middle = B;
+                after = word.substring(parseSegment(A).length, word.length)
+                console.log(word, "BEFORE: ", before, "MIDDLE:", middle, "AFTER:", after);
+
+                // TODO
+                word = before + middle + after;
+                // word = word.replaceAt(indice[j], B);
             }
         }
         stripped = word.replace(/\s/g, '');
@@ -1728,11 +1735,7 @@ function applyRule(A, B, C, D, word) {
     var segmentsOfC = parseSegment(C);
     var segmentsOfD = parseSegment(D);
 
-    // var featuresA = getFeaturesInSegment(A);
-    // var featuresB = getFeaturesInSegment(B);
-    // var featuresC = getFeaturesInSegment(C);
-    // var featuresD = getFeaturesInSegment(D);
-    return isMatchedMultiple();
+    return isMatchedSingleSegment();
 }
 
 function appendIPA(IPA) {
@@ -1784,7 +1787,7 @@ function appendFeature(feature) {
         }
     }
 
-    // result = beautify(result);
+    result = beautify(result);
     $("#id_tag").attr("value", result);
 	$("#id_tag").html(result);
 }
@@ -1792,36 +1795,41 @@ function appendFeature(feature) {
 function parseSegment(segments) {
 
     /* Parse segments */
-    /* e.g. [+atr+anterior][+back+consonantal] -> ["[+atr+anterior]", "[+back+consonantal]"] */
-
-    // TODO: NEED TO ADD [C] AND [V]
+    /* e.g. "a[+atr+anterior]C[+back+consonantal]V" ->
+    ["a", "[+atr+anterior]", "C", "[+back+consonantal]", "V"] */
 
     var results = [];
     do {
-        // Find index of [
-        for (var i = 0; i < segments.length; i ++) {
-            if (segments[i] == "[") {
-                break;
-            }
-        }
-        // Find index of ]
-        for (var j = i; j < segments.length; j ++) {
-            if (segments[j] == "]") {
-                break;
-            }
-        }
 
-        // push "[...]" into results
+        /* Find index of [ */
+        for (var i = 0; i < segments.length; i ++)
+            if (segments[i] == "[")
+                break;
+
+        /* If there are other segments between ] and [ */
+        if (i != 0)
+            for (var k = 0; k < i; k ++)
+                /* Push each SEPARATELY into the array */
+                results.push(segments.charAt(k));
+
+        /* Find index of ] */
+        for (var j = i; j < segments.length; j ++)
+            if (segments[j] == "]")
+                break;
+
+        /* push "[...]" into results */
         results.push(segments.substring(i, j + 1));
         segments = segments.substring(j + 1, segments.length);
 
     } while (i != 0 || j != 0);
 
-    // The do-while loop above will produce an extra empty item at the end, so remove it by pop()
-    results.pop();
+    /* The do-while loop above will produce extra empty item(s) at the end, so remove it/them by pop() */
+    while (results[results.length - 1] == "") results.pop();
     return results;
 }
 
-function beautify() {
+function beautify(segments) {
 
+    // TODO
+    return segments
 }

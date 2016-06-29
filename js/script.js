@@ -1678,9 +1678,9 @@ function applyRule(A, B, C, D, word) {
             console.log(indice);
             /* Change A to B at each index that matches */
             for (j = 0; j < indice.length; j ++) {
-                before = word.substring(0, j);
+                before = word.substring(0, indice[j]);
                 middle = B;
-                after = word.substring(parseSegment(A).length, word.length)
+                after = word.substring(parseSegment(A).length + 1, word.length)
                 console.log(word, "BEFORE: ", before, "MIDDLE:", middle, "AFTER:", after);
 
                 // TODO

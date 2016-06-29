@@ -38,8 +38,8 @@ var arraycontinuantplus = [
 var arraycontinuantminus = ["t", "d", "c", "ɟ", "p", "b", "k", "ɡ", "q", "ɢ", "ʔ", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ"];
 //arraycontinuantminus: "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf" are +-
 var arraycoronalplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "n", "ɳ", "l", "r", "ɹ"];
-var arraycoronalminus = [p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "kx", "pf", "m", "ŋ", "ɲ", "ɴ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-var arraydelayedreleaseplus = ["t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf";
+var arraycoronalminus = ["p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "kx", "pf", "m", "ŋ", "ɲ", "ɴ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
+var arraydelayedreleaseplus = ["t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"];
 var arraydelayedreleaseminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
 var arraydistributedplus = ["ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "t͡ʃ", "d͡ʒ"];
 var arraydistributedminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ts", "dz", "n", "ɳ", "l", "r", "ɹ"];
@@ -1607,8 +1607,10 @@ function applyRule(A, B, C, D, word) {
         if (ABCD == "V") return has(letter, 'vowel');
         /* If it is Consonant */
         if (ABCD == "C") return has(letter, 'consonant');
+        console.log(ABCD);
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
+            console.log("4");
             var segments = getFeaturesInSegment(ABCD);
             for (var i = 0; i < segments.length; i ++) {
 
@@ -1617,7 +1619,6 @@ function applyRule(A, B, C, D, word) {
                 if (sign == "+") sign = "plus";
                 else if (sign == "-") sign = "minus";
                 else console.log("should not get here.");
-
                 if (!has(letter, segments[i].substring(1, segments[i].length) + sign))
                     return false;
             }
@@ -1632,13 +1633,14 @@ function applyRule(A, B, C, D, word) {
         // TODO
         // console.log(ABCD);
         var result;
-
+        // console.log(ABCD);
+        var ABCD_array = parseSegment(ABCD);
         // var j = 0;
-        for (var j = 0; j < ABCD.length; j ++) {
+        for (var j = 0; j < ABCD_array.length; j ++) {
             // console.log(ABCD[j]);
             // console.log(j, word.charAt(i + j), ABCD[j]);
             // console.log(isMatchedSpecialChar(ABCD[j], word.charAt(i + j)));
-            result = word.charAt(i + j) == ABCD[j] || isMatchedSpecialChar(ABCD[j], word.charAt(i + j));
+            result = word.charAt(i + j) == ABCD_array[j] || isMatchedSpecialChar(ABCD_array[j], word.charAt(i + j));
         }
 
         // console.log(result);

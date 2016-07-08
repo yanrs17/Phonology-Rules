@@ -1,0 +1,15 @@
+PHONOLOGY.US LOGIN INFO
+=======================
+
+Control Panel: https://gator4228.hostgator.com:2083
+
+username: derive
+password: "piece join stolen leak" (without quotes)
+
+To upload files files (DO NOT USE FTP)
+sftp://derive@phonology.us:2222/home2/derive/
+
+If you do not already have an sftp program to open this,
+WinSCP works well on windows and Cyberduck works well on Mac.
+
+shell access: ssh -p 2222 derive@phonology.us

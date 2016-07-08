@@ -73,5 +73,10 @@ then, the features appear as A B C D in the following format
 [+consonantal +sonorant] is one segment
 [+consonantal] [+sonorant] are two segments and you can have many segments
 
+July 8
+- B can be a feature, this doesn’t work right now
+- [+ continuant] —> [continuant] as a button
+- Test the rules.
+- Remove affricates from the table (in the code).
 
 

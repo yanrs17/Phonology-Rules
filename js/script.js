@@ -924,6 +924,11 @@ String.prototype.replaceAt = function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
+
 if (typeof(String.prototype.trim) === "undefined"){
     String.prototype.trim = function() {
         return String(this).replace(/^\s+|\s+$/g, '');
@@ -1831,6 +1836,9 @@ function parseSegment(segments) {
 
 function beautify(segments) {
 
-    // TODO
-    return segments
+    segments = segments.replaceAll("+", " + ");
+    segments = segments.replaceAll("-", " - ");
+    segments = segments.replaceAll("][", "] [");
+    segments = segments.replaceAll("", "] [");
+    return segments;
 }

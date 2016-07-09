@@ -1,5 +1,5 @@
 database_IPA = [["Name", "t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"],
-["Advanced Tongue Root (ATR)", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "+", "+", "-", "-", "-", "+", "-", "+", "+", "+", "+", "+", "+", "-", "-", "-", "-", "-", "-", "-", "-", "+", "-", "-", "-", "-", " ", " "],
+["ATR", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "+", "+", "-", "-", "-", "+", "-", "+", "+", "+", "+", "+", "+", "-", "-", "-", "-", "-", "-", "-", "-", "+", "-", "-", "-", "-", " ", " "],
 ["Anterior", "+", "+", "+", "+", "+", "+", "+", "+", "-", "-", "-", "-", "-", "-", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "+", "+", "0", "0", "0", "+", "0", "-", "0", "0", "+", "0", "+", "+", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
 ["Back", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-", "-", "0", "0", "0", "0", "0", "0", "+", "+", "+", "+", "+", "+", "+", "+", "0", "0", "0", "0", "0", "-", "-", "0", "0", "+", "0", "0", "0", "+", "-", "-", "+", "0", "-", "0", "0", "+", "-", "+", "-", "+", "-", "-", "-", "-", "-", "-", "+", "+", "+", "-", "-", "-", "-", "+", "+", "+", "-", "-", "-", "-", "+", "+", "-", "-", "-", "-", "+", "+"],
 ["Consonantal", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "-", "-", "-", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "+", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
@@ -1094,6 +1094,7 @@ window.onload = function () {
 
         console.log("Test cases end.")
     }
+    console.log(checkFeature("p", "Continuant"));
     window.table = document.getElementById('dataTable');
     window.ruleOrder = document.getElementsByClassName("taggable");
     window.separated = false;
@@ -1101,6 +1102,15 @@ window.onload = function () {
 
     // testCases();
     addRow();
+}
+
+function checkFeature(IPA, feature) {
+    /* Check the type of the feature:
+    One of +, -, +-, 0, (empty) */
+    for (var i = 0; i < database_IPA.length; i ++)
+        if (database_IPA[i][0] == feature)
+            return database_IPA[i]
+            [database_IPA[0].indexOf(IPA)];
 }
 
 function has(letter, feature) {
@@ -1593,9 +1603,7 @@ function derive() {
         D = parseABCD(3, i).split("&nbsp;").join("").replace(/\s/g, '');
 
         /* Check if ill-formed */
-        if (isIllFormed(A, B, C, D)) {
-            console.log("This column is skipped.");
-        }
+        if (isIllFormed(A, B, C, D)) console.log("This column is skipped.");
         else {
             for (w = 0; w < wordList.length; w++) {
                 wordList[w] = applyRule(A, B, C, D, wordList[w]);
@@ -1637,10 +1645,10 @@ function applyRule(A, B, C, D, word) {
         if (ABCD == "V") return has(letter, 'vowel');
         /* If it is Consonant */
         if (ABCD == "C") return has(letter, 'consonant');
-        console.log(ABCD);
+        // console.log(ABCD);
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
-            console.log("4");
+            // console.log("4");
             var segments = getFeaturesInSegment(ABCD);
             for (var i = 0; i < segments.length; i ++) {
 
@@ -1681,7 +1689,6 @@ function applyRule(A, B, C, D, word) {
 
         // Single segment
         // If at word init
-
         var before;
         var middle;
         var after;
@@ -1700,23 +1707,16 @@ function applyRule(A, B, C, D, word) {
         /* If neither at word init nor word end
         Push indices that match into a list */
         else {
-            for (i = 0; i < len; i ++) {
-                if (isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true)) {
+            for (i = 0; i < len; i ++)
+                if (isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true))
                     indice.push(i);
-                }
-                console.log(indice);
-            }
-            console.log(indice);
             /* Change A to B at each index that matches */
             for (j = 0; j < indice.length; j ++) {
                 before = word.substring(0, indice[j]);
                 middle = B;
                 after = word.substring(parseSegment(A).length + 1, word.length)
-                console.log(word, "BEFORE: ", before, "MIDDLE:", middle, "AFTER:", after);
-
                 // TODO
                 word = before + middle + after;
-                // word = word.replaceAt(indice[j], B);
             }
         }
         stripped = word.replace(/\s/g, '');

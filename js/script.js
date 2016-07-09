@@ -1839,6 +1839,5 @@ function beautify(segments) {
     segments = segments.replaceAll("+", " + ");
     segments = segments.replaceAll("-", " - ");
     segments = segments.replaceAll("][", "] [");
-    segments = segments.replaceAll("", "] [");
     return segments;
 }

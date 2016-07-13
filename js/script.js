@@ -157,14 +157,29 @@ window.onload = function () {
     addRow();
 }
 
-function checkFeature(IPA, feature) {
-    /* Check the type of the feature:
-    One of +, -, +-, 0, (empty) */
-    for (var i = 0; i < database_IPA.length; i ++)
-        if (database_IPA[i][0] == feature)
-            return database_IPA[i]
-            [database_IPA[0].indexOf(IPA)];
+// function checkFeature(IPA, feature) {
+//     /* Check the type of the feature:
+//     One of +, -, +-, 0, (empty), -1 (does not exist) */
+//     for (var i = 0; i < database_IPA.length; i ++)
+//         if (database_IPA[i][0] == feature)
+//             return database_IPA[i]
+//             [database_IPA[0].indexOf(IPA)];
+//     return -1;
+// }
+
+function changeFeature(IPA, features) {
+
+    /* IPA: a single IPA e.g. "a" */
+    /* features: a list of features in a segment */
+    /*  */
+    var idx = database_IPA[0].indexOf(IPA);
+    // TODO
+    return idx;
 }
+
+console.log(changeFeature("t", ["+voice"]));
+
+
 
 function has(letter, feature) {
 
@@ -757,43 +772,46 @@ function applyRule(A, B, C, D, word) {
             for (j = 0; j < indice.length; j ++) {
                 before = word.substring(0, indice[j]);
                 middle = "";
-                var ASegments = getFeaturesInSegment(A);
-                var BSegments = getFeaturesInSegment(B);
 
-                middle = B
-                // if (ASegments.length == BSegments.length) {
-                //     for (var k = 0; k < ASegments.length; k ++) {
-                //         console.log(word[k+1]);
-                //         var ASegment = ASegments[k];
-                //         // console.log(ASegments);
-                //         var BSegment = BSegments[k];
-                //
-                //         if (BSegment.indexOf("+") == -1 && BSegment.indexOf("-") == -1) {
-                //             // If this segment in B is an IPA: Just change it
-                //             middle += BSegment;
-                //         } else {
-                //             // If this segment in B is a feature: 2 cases
-                //             if (BSegment.indexOf("+") != -1 || BSegment.indexOf("-") != -1) {
-                //                 // If this segment in A is a feature: ??
-                //                 // TODO
-                //
-                //             } else {
-                //                 // If this segment in A is an IPA: ??
-                //                 // TODO
-                //             }
-                //         }
-                //
-                //     }
-                // }
+                // TODO: NOT getFeaturesInSegment(), sth else instead to accommodate multiple segments.
+                var ASegments = [getFeaturesInSegment(A)];
+                var BSegments = [getFeaturesInSegment(B)];
+
+                console.log(ASegments, BSegments);
+                // middle = B;
+                if (ASegments.length == BSegments.length) {
+                    for (var k = 0; k < ASegments.length; k ++) {
+                        var IPA_to_be_changed = word[indice[j]];
+                        var ASegment = ASegments[k];
+                        var BSegment = BSegments[k];
+                        console.log(BSegment);
+                        if (BSegment.indexOf("+") == -1 && BSegment.indexOf("-") == -1) {
+                            // If this segment in B is an IPA: Just change it
+                            middle += BSegment;
+                        } else {
+                            // If this segment in B is a feature: 2 cases
+                            if (BSegment.indexOf("+") != -1 || BSegment.indexOf("-") != -1) {
+                                // If this segment in A is a feature: ??
+                                // TODO
+
+
+                            } else {
+                                // If this segment in A is an IPA: ??
+                                // TODO
+                            }
+                        }
+
+                    }
+                }
                 // else if () {
                 //     //TODO
                 //     // IF THERE IS NO [ IN BOTH A AND B.
                 // }
 
-
-                after = word.substring(parseSegment(A).length + 1, word.length);
-                console.log(after);
-                // console.log(before, middle, after);
+                // console.log(parseSegment(A));
+                after = word.substring(indice[j] + 1, word.length);
+                // console.log(after);
+                console.log("BEFORE:", before, "MIDDLE:", middle, "AFTER:", after);
                 word = before + middle + after;
             }
         }

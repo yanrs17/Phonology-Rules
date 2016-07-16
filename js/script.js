@@ -13,6 +13,17 @@ if (typeof(String.prototype.trim) === "undefined"){
     };
 }
 
+function arraysEqual(arr1, arr2) {
+    if(arr1.length != arr2.length)
+        return false;
+    for(var i = arr1.length; i--;) {
+        if(arr1[i] != arr2[i])
+            return false;
+    }
+
+    return true;
+}
+
 window.onload = function () {
 
     function testCases() {
@@ -157,29 +168,53 @@ window.onload = function () {
     addRow();
 }
 
-// function checkFeature(IPA, feature) {
-//     /* Check the type of the feature:
-//     One of +, -, +-, 0, (empty), -1 (does not exist) */
-//     for (var i = 0; i < database_IPA.length; i ++)
-//         if (database_IPA[i][0] == feature)
-//             return database_IPA[i]
-//             [database_IPA[0].indexOf(IPA)];
-//     return -1;
-// }
+function checkFeature(IPA, feature) {
+    /* Check the type of the feature:
+    One of +, -, +-, 0, (empty), -1 (does not exist) */
+    for (var i = 0; i < database_IPA.length; i ++)
+        if (database_IPA[i][0] == feature)
+            return database_IPA[i]
+            [database_IPA[0].indexOf(IPA)];
+    return -1;
+}
 
 function changeFeature(IPA, features) {
 
     /* IPA: a single IPA e.g. "a" */
     /* features: a list of features in a segment */
-    /*  */
-    var idx = database_IPA[0].indexOf(IPA);
-    // TODO
-    return idx;
+    /* Need to be all lowercase! */
+
+    /* Init */
+    var array_diffs, feature_IPA, feature_compared, segments_in_array, i, j, k, l;
+    features = features.sort();
+
+    /* Start Checking */
+    for (i = 1; i < database_IPA[0].length; i ++) {
+
+        /* Check for all differences & Push onto "array_diffs" */
+        array_diffs = [];
+        for (j = 1; j < database_IPA.length; j ++) {
+            feature_IPA = checkFeature(IPA, database_IPA[j][0]);
+            feature_compared = checkFeature(database_IPA[0][i], database_IPA[j][0]);
+            if (feature_IPA != feature_compared)
+                array_diffs.push([database_IPA[0][i], feature_compared + database_IPA[j][0].toLowerCase()]);
+        }
+
+        /* Check if all diffs match "features" exactly */
+        segments_in_array = [];
+        for (k = 0; k < array_diffs.length; k ++)
+            segments_in_array.push(array_diffs[k][1]);
+        segments_in_array = segments_in_array.sort();
+        if (arraysEqual(segments_in_array, features))
+            for (l = 0; l < array_diffs.length; l++)
+                if (array_diffs[l][1] == features)
+                    return array_diffs[l][0];
+    }
+    /* If not found: Return the origin IPA */
+    return IPA;
 }
 
-console.log(changeFeature("t", ["+voice"]));
-
-
+console.log(changeFeature("t", ["+continuant"]));
 
 function has(letter, feature) {
 

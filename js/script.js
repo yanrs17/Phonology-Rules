@@ -1,163 +1,8 @@
-String.prototype.replaceAt = function(index, character) {
-    return this.substr(0, index) + character + this.substr(index+character.length);
-}
 
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-};
-
-if (typeof(String.prototype.trim) === "undefined"){
-    String.prototype.trim = function() {
-        return String(this).replace(/^\s+|\s+$/g, '');
-    };
-}
-
-function arraysEqual(arr1, arr2) {
-    if(arr1.length != arr2.length)
-        return false;
-    for(var i = arr1.length; i--;) {
-        if(arr1[i] != arr2[i])
-            return false;
-    }
-
-    return true;
-}
 
 window.onload = function () {
 
-    function testCases() {
-        function testCorrect(A, B, C, D, before, after) {
-            if (applyRule(A, B, C, D, before) != after) console.log("Something is wrong!");
-        }
-        function testIllFormed(A, B, C, D, TF) {
-            if (isIllFormed(A, B, C, D) != TF) console.log("Something is wrong!");
-        }
-
-        console.log("Test cases start:");
-        // Check ill-formed
-        // testIllFormed('&nbsp;', 'a', 'd', 'f', true);
-        // testIllFormed('a', '&nbsp;', 'd', 'f', false);
-        // testIllFormed('&nbsp;', '&nbsp;', 'd', 'f', true);
-        // testIllFormed('∅', 'w', 'd', 'f', true);
-        // testIllFormed('q', '∅', 'd', 'f', false);
-        // testIllFormed('d', 'w', '∅', 'f', true);
-        // testIllFormed('d', 'w', 'v', '∅', true);
-        // testIllFormed('#', 'w', 'v', 'b', true);
-        // testIllFormed('g', '#', 'v', 'b', true);
-        // testIllFormed('g', 'w', '#', 'b', false);
-        // testIllFormed('g', 'w', 'v', '#', false);
-        // testIllFormed('#', '#', 'v', 'f', true);
-        // testIllFormed('g', '#', 'v', '#', true);
-        // testIllFormed('#', 'w', '#', 'd', true);
-        // testIllFormed('d', 'w', '#', '#', true);
-
-        // No special characters
-        // Without empty added in C or D:
-        // Random test cases
-        testCorrect('A', 'B', 'A', 'A' ,'AAAAA', 'ABBBA');
-        testCorrect('p', 'k', 't', 's', 'tpsa', 'tksa');
-        testCorrect('p', 'k', 't', 's', 'tppsa', 'tppsa');
-        // Neither init nor final with B is not none
-        testCorrect('a', 'b', 'c', 'd', 'cadac', 'cbdac');
-        testCorrect('d', 'f', 'k', 'j', 'kdj', 'kfj');
-        testCorrect('d', 'f', 'k', 'j', 'kda', 'kda');
-        // Neither init nor final with B is none
-        testCorrect('a', '∅', 'b', 's', 'tppsa', 'tppsa');
-        testCorrect('a', '∅', 'b', 's', 'bas', 'bs');
-        testCorrect('a', '∅', 'b', 's', 'basa', 'bsa');
-        testCorrect('a', ' ', 'b', 's', 'tppsa', 'tppsa');
-        testCorrect('a', ' ', 'b', 's', 'bas', 'bs');
-        testCorrect('a', ' ', 'b', 's', 'basa', 'bsa');
-        // Word initial with B is not none
-        testCorrect('a', 'b', '#', 'c', 'ac', 'bc');
-        testCorrect('a', 'b', '#', 'c', 'ca', 'ca');
-        testCorrect('a', 'b', '#', 'c', 'aca', 'bca');
-        // Word initial with B is none
-        testCorrect('a', '∅', '#', 'c', 'ac', 'c');
-        testCorrect('a', '∅', '#', 'c', 'ca', 'ca');
-        testCorrect('a', '∅', '#', 'c', 'aca', 'ca');
-        testCorrect('a', ' ', '#', 'c', 'ac', 'c');
-        testCorrect('a', ' ', '#', 'c', 'ca', 'ca');
-        testCorrect('a', ' ', '#', 'c', 'aca', 'ca');
-        // Word final with B is not none
-        testCorrect('a', 'b', 'd', '#', 'da', 'db');
-        testCorrect('a', 'b', 'd', '#', 'ad', 'ad');
-        testCorrect('a', 'b', 'd', '#', 'ada', 'adb');
-        // Word final with B is none
-        testCorrect('a', '∅', 'd', '#', 'da', 'd');
-        testCorrect('a', '∅', 'd', '#', 'ad', 'ad');
-        testCorrect('a', '∅', 'd', '#', 'ada', 'ad');
-        testCorrect('a', ' ', 'd', '#', 'da', 'd');
-        testCorrect('a', ' ', 'd', '#', 'ad', 'ad');
-        testCorrect('a', ' ', 'd', '#', 'ada', 'ad');
-
-        // With empty added in C or D:
-        // Check this especially after integrating w/ buttons!!
-        // Random test cases
-        testCorrect('A', 'B', 'A', ' ' ,'AAAAA', 'ABBBB');
-        testCorrect('p', 'k', ' ', 's', 'tpsa', 'tksa');
-        testCorrect('p', 'k', ' ', ' ', 'tppsa', 'tkksa');
-        testCorrect('p', 'k', ' ', ' ', 'thhsa', 'thhsa');
-        // Neither init nor final with B is not none
-        testCorrect('a', 'b', ' ', 'd', 'cadqad', 'cbdqbd');
-        testCorrect('d', 'f', 'k', ' ', 'kdj', 'kfj');
-        testCorrect('d', 'f', ' ', ' ', 'fdda', 'fffa');
-        // Neither init nor final with B is none
-        testCorrect('a', '∅', ' ', 's', 'tppsa', 'tppsa');
-        testCorrect('a', '∅', 'b', ' ', 'bas', 'bs');
-        testCorrect('a', '∅', ' ', ' ', 'basa', 'bs');
-        testCorrect('a', ' ', ' ', 's', 'tppsa', 'tppsa');
-        testCorrect('a', ' ', 'b', ' ', 'bas', 'bs');
-        testCorrect('a', ' ', ' ', ' ', 'basa', 'bs');
-        // Word initial with B is not none
-        testCorrect('a', 'b', '#', ' ', 'ac', 'bc');
-        testCorrect('a', 'b', '#', ' ', 'ba', 'ba');
-        testCorrect('a', 'b', '#', ' ', 'aba', 'bba');
-        // Word initial with B is none
-        testCorrect('a', '∅', '#', ' ', 'ac', 'c');
-        testCorrect('a', '∅', '#', ' ', 'ba', 'ba');
-        testCorrect('a', '∅', '#', ' ', 'aba', 'ba');
-        testCorrect('a', ' ', '#', ' ', 'ac', 'c');
-        testCorrect('a', ' ', '#', ' ', 'ca', 'ca');
-        testCorrect('a', ' ', '#', ' ', 'aca', 'ca');
-        // Word final with B is not none
-        testCorrect('a', 'b', ' ', '#', 'da', 'db');
-        testCorrect('a', 'b', ' ', '#', 'ad', 'ad');
-        testCorrect('a', 'b', ' ', '#', 'ada', 'adb');
-        // Word final with B is none
-        testCorrect('a', '∅', ' ', '#', 'da', 'd');
-        testCorrect('a', '∅', ' ', '#', 'ad', 'ad');
-        testCorrect('a', '∅', ' ', '#', 'ada', 'ad');
-        testCorrect('a', ' ', ' ', '#', 'da', 'd');
-        testCorrect('a', ' ', ' ', '#', 'ad', 'ad');
-        testCorrect('a', ' ', ' ', '#', 'ada', 'ad');
-
-        // With special characters
-        // Special char in A
-        testCorrect('V', 'a', ' ', ' ' ,'taiueot', 'taaaaat'); //
-        testCorrect('C', 'g', ' ', ' ' ,'attqifoepq', 'agggigoegg'); //
-        // Special char in C
-        testCorrect('t', 'd', 'V', ' ' ,'ftatjtaot', 'ftadjtaod');
-        testCorrect('t', 'd', 'C', ' ' ,'ftatjta', 'fdatjda');
-        // Special char in D
-        testCorrect('t', 'd', ' ', 'V' ,'ftatjtaot', 'fdatjdaot');
-        testCorrect('t', 'd', ' ', 'C' ,'ftatjta', 'ftadjta');
-        // Special char in multiple places
-        testCorrect('V', 'a', 'C', ' ' ,'tiueot', 'taueot'); //
-        testCorrect('k', 'g', 'V', 'C' ,'akttktaka', 'agttktaka');
-        // Special char with #
-        testCorrect('V', 'a', ' ', '#' ,'taiueo', 'taiuea');
-        testCorrect('V', 'a', ' ', '#' ,'taiueot', 'taiueot');
-        testCorrect('C', 'g', '#', ' ' ,'qa', 'ga');
-        testCorrect('C', 'g', '#', ' ' ,'aq', 'aq');
-        testCorrect('i', 'a', 'C', '#' ,'ti', 'ta');
-        testCorrect('i', 'a', 'C', '#' ,'ai', 'ai');
-        testCorrect('k', 'g', '#', 'V' ,'ka', 'ga');
-        testCorrect('k', 'g', '#', 'V' ,'kk', 'kk');
-
-        console.log("Test cases end.")
-    }
+    testCases();
     // console.log(checkFeature("p", "Continuant"));
     window.table = document.getElementById('dataTable');
     window.ruleOrder = document.getElementsByClassName("taggable");
@@ -207,169 +52,11 @@ function changeFeature(IPA, features) {
         segments_in_array = segments_in_array.sort();
         if (arraysEqual(segments_in_array, features))
             for (l = 0; l < array_diffs.length; l++)
-                if (array_diffs[l][1] == features)
+                if (array_diffs[l][1] == features[l])
                     return array_diffs[l][0];
     }
     /* If not found: Return the origin IPA */
     return IPA;
-}
-
-console.log(changeFeature("t", ["+continuant"]));
-
-function has(letter, feature) {
-
-    var array;
-    feature = feature.toLowerCase();
-    switch(feature) {
-
-        case 'vowel':
-            array = arrayvowel;
-            break;
-        case 'consonant':
-            array = arrayconsonant;
-            break;
-        case 'atrplus':
-            array = arrayatrplus;
-            break;
-        case 'atrminus':
-            array = arrayatrminus;
-            break;
-        case 'anteriorplus':
-            array = arrayanteriorplus;
-            break;
-        case 'anteriorminus':
-            array = arrayanteriorminus;
-            break;
-        case 'backplus':
-            array = arraybackplus;
-            break;
-        case 'backminus':
-            array = arraybackminus;
-            break;
-        case 'consonantalplus':
-            array = arrayconsonantalplus;
-            break;
-        case 'consonantalminus':
-            array = arrayconsonantalminus;
-            break;
-        case 'cgplus':
-            array = arraycgplus;
-            break;
-        case 'cgminus':
-            array = arraycgminus;
-            break;
-        case 'continuantplus':
-            array = arraycontinuantplus;
-            break;
-        case 'continuantminus':
-            array = arraycontinuantminus;
-            break;
-        case 'coronalplus':
-            array = arraycoronalplus;
-            break;
-        case 'coronalminus':
-            array = arraycoronalminus;
-            break;
-        case 'delayedreleaseplus':
-            array = arraydelayedreleaseplus;
-            break;
-        case 'delayedreleaseminus':
-            array = arraydelayedreleaseminus;
-            break;
-        case 'distributedplus':
-            array = arraydistributedplus;
-            break;
-        case 'distributedminus':
-            array = arraydistributedminus;
-            break;
-        case 'dorsalplus':
-            array = arraydorsalplus;
-            break;
-        case 'dorsalminus':
-            array = arraydorsalminus;
-            break;
-        case 'Highplus':
-            array = arrayHighplus;
-            break;
-        case 'Highminus':
-            array = arrayHighminus;
-            break;
-        case 'labialplus':
-            array = arraylabialplus;
-            break;
-        case 'labialminus':
-            array = arraylabialminus;
-            break;
-        case 'lateralplus':
-            array = arraylateralplus;
-            break;
-        case 'lateralminus':
-            array = arraylateralminus;
-            break;
-        case 'lowplus':
-            array = arraylowplus;
-            break;
-        case 'lowminus':
-            array = arraylowminus;
-            break;
-        case 'nasalplus':
-            array = arraynasalplus;
-            break;
-        case 'nasalminus':
-            array = arraynasalminus;
-            break;
-        case 'pharyngealplus':
-            array = arraypharyngealplus;
-            break;
-        case 'pharyngealminus':
-            array = arraypharyngealminus;
-            break;
-        case 'roundplus':
-            array = arrayroundplus;
-            break;
-        case 'roundminus':
-            array = arrayroundminus;
-            break;
-        case 'sonorantplus':
-            array = arraysonorantplus;
-            break;
-        case 'sonorantminus':
-            array = arraysonorantminus;
-            break;
-        case 'sgplus':
-            array = arraysgplus;
-            break;
-        case 'sgminus':
-            array = arraysgminus;
-            break;
-        case 'stridentplus':
-            array = arraystridentplus;
-            break;
-        case 'stridentminus':
-            array = arraystridentminus;
-            break;
-        case 'syllabicplus':
-            array = arraysyllabicplus;
-            break;
-        case 'syllabicminus':
-            array = arraysyllabicminus;
-            break;
-        case 'tenseplus':
-            array = arraytenseplus;
-            break;
-        case 'tenseminus':
-            array = arraytenseminus;
-            break;
-        case 'voiceplus':
-            array = arrayvoiceplus;
-            break;
-        case 'voiceminus':
-            array = arrayvoiceminus;
-            break;
-    }
-
-    // > -1 means "IPA" is in "array"
-    return array.indexOf(letter) > -1;
 }
 
 // function isSubscript(char){
@@ -812,28 +499,32 @@ function applyRule(A, B, C, D, word) {
                 var ASegments = [getFeaturesInSegment(A)];
                 var BSegments = [getFeaturesInSegment(B)];
 
-                console.log(ASegments, BSegments);
+                // console.log(ASegments, BSegments);
                 // middle = B;
                 if (ASegments.length == BSegments.length) {
                     for (var k = 0; k < ASegments.length; k ++) {
                         var IPA_to_be_changed = word[indice[j]];
                         var ASegment = ASegments[k];
                         var BSegment = BSegments[k];
-                        console.log(BSegment);
-                        if (BSegment.indexOf("+") == -1 && BSegment.indexOf("-") == -1) {
+
+                        var isContainedPlusMinus = false;
+                        // console.log(BSegment);
+                        for (var l = 0; l < BSegment.length; l ++) {
+                            if(BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
+                                isContainedPlusMinus = true;
+                                // console.log("hhaha");
+                                break;
+                            }
+                        }
+
+                        // console.log(BSegment);
+                        if (!isContainedPlusMinus) {
                             // If this segment in B is an IPA: Just change it
                             middle += BSegment;
+                            // console.log("1");
                         } else {
-                            // If this segment in B is a feature: 2 cases
-                            if (BSegment.indexOf("+") != -1 || BSegment.indexOf("-") != -1) {
-                                // If this segment in A is a feature: ??
-                                // TODO
-
-
-                            } else {
-                                // If this segment in A is an IPA: ??
-                                // TODO
-                            }
+                            // If this segment in B is a feature: Call changeFeature()
+                            middle += changeFeature(IPA_to_be_changed, BSegment);
                         }
 
                     }
@@ -846,7 +537,7 @@ function applyRule(A, B, C, D, word) {
                 // console.log(parseSegment(A));
                 after = word.substring(indice[j] + 1, word.length);
                 // console.log(after);
-                console.log("BEFORE:", before, "MIDDLE:", middle, "AFTER:", after);
+                // console.log("BEFORE:", before, "MIDDLE:", middle, "AFTER:", after);
                 word = before + middle + after;
             }
         }

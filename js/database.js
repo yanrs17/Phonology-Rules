@@ -12,26 +12,39 @@ if (typeof(String.prototype.trim) === "undefined"){
     };
 }
 function arraysEqual(arr1, arr2) {
-    if(arr1.length != arr2.length)
+    if (arr1.length != arr2.length)
         return false;
-    for(var i = arr1.length; i--;) {
+    for (var i = arr1.length; i--;)
         if(arr1[i] != arr2[i])
             return false;
-    }
     return true;
 }
 
+/* Test Cases */
 function testCases() {
     function testCorrect(A, B, C, D, before, after) {
-        if (applyRule(A, B, C, D, before) != after) console.log("A: ", A, "\nB: ", B, "\nC: ", C, "\nD: ", D, "\nBefore: ", before, "\nExpected: ", after, "\nActual: ", applyRule(A, B, C, D, before));
+        if (applyRule(A, B, C, D, before) != after)
+            console.log(
+                "A: ", A,
+                "\nB: ", B,
+                "\nC: ", C,
+                "\nD: ", D,
+                "\nBefore: ", before,
+                "\nExpected: ", after,
+                "\nActual: ", applyRule(A, B, C, D, before)
+            );
     }
     function testIllFormed(A, B, C, D, TF) {
-
         if (isIllFormed(A, B, C, D) != TF) console.log("Something is wrong!");
     }
     function testChangeFeature(before, features, after) {
         if (changeFeature(before, features) != after)
-            console.log("Before: ", before, "\nFeatures: ", features, "\nExpected: ", after, "\nActual: ", changeFeature(before, features));
+            console.log(
+                "Before: ", before,
+                "\nFeatures: ", features,
+                "\nExpected: ", after,
+                "\nActual: ", changeFeature(before, features)
+            );
     }
 
     console.log("Test cases start:");
@@ -171,7 +184,7 @@ function has(letter, feature) {
 
     var array;
     feature = feature.toLowerCase();
-    switch(feature) {
+    switch (feature) {
 
         case 'vowel':
             array = arrayvowel;

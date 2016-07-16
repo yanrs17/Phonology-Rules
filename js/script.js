@@ -1,15 +1,10 @@
-
-
 window.onload = function () {
 
     testCases();
-    // console.log(checkFeature("p", "Continuant"));
     window.table = document.getElementById('dataTable');
     window.ruleOrder = document.getElementsByClassName("taggable");
     window.separated = false;
     window.original_value;
-
-    // testCases();
     addRow();
 }
 
@@ -58,17 +53,6 @@ function changeFeature(IPA, features) {
     /* If not found: Return the origin IPA */
     return IPA;
 }
-
-// function isSubscript(char){
-//     var subscript = ["ʰ","ʲ", "ⁿ", "ˠ", "ˢ", "ˣ", "ʷ", "ʱ", "ᵑ", "ᵐ"];
-//
-//     for (var i=0; i < rounds.length; i++) {
-//         if (rounds[i] === char) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 
 function createUniqueTag(elmt) {
 
@@ -286,7 +270,7 @@ function addUR(tableID) {
 
 function clearUR() {
 
-    var elems = document.getElementsByClassName("userInput") ;
+    var elems = document.getElementsByClassName("userInput");
     for (var i = 0, c = elems.length; i < c; i++)
        elems[i].value = "";
 }
@@ -340,20 +324,6 @@ function isIllFormed(A, B, C, D) {
 
 function derive() {
 
-    // function getEachSegment(input) {
-    //     // Need to change!
-    //     if (input.length == 0) return "&nbsp;";
-    //     else if (input.length == 1) return input;
-    //     else {
-    //         if (input.charAt(0) === "&"){ // & for &nbsp;
-    //             // What if the first two are both " "?
-    //             if (input.length > 6) return input[6];
-    //             else return "&nbsp;";
-    //         }
-    //         return input[0];
-    //     }
-    // }
-
     function parseABCD(ABCD, i) {
         var parsed = ruleOrder[numCols + i * 4 + ABCD].innerHTML;
         /* If it is a special char (e.g. ABCD):
@@ -366,7 +336,6 @@ function derive() {
     }
 
     /* Initialize */;
-
     var wordList = [];
     window.numCols = table.rows[0].cells.length - 2;
     var rows = table.rows;
@@ -388,13 +357,12 @@ function derive() {
         D = parseABCD(3, i).split("&nbsp;").join("").replace(/\s/g, '');
 
         /* Check if ill-formed */
-        if (isIllFormed(A, B, C, D)) console.log("This column is skipped.");
+        if (isIllFormed(A, B, C, D)) console.log("Debug: This column is skipped.");
         else {
             for (w = 0; w < wordList.length; w++) {
                 wordList[w] = applyRule(A, B, C, D, wordList[w]);
                 currentCell = rows[i + 1].cells[w + 2];
                 currentCell.innerHTML = wordList[w];
-
                 rows[rows.length - 1].cells[w + 2].innerHTML = "SF: " + wordList[w];
             }
         }
@@ -403,19 +371,16 @@ function derive() {
     // Remove intermediate step if there is no change
     for (l = 1; l < numCols + 1; l ++) {
         indexOfDuplicates = [];
-        if (document.getElementsByClassName("input" + l)[0].value == rows[1].cells[l + 1].innerHTML) {
+        if (document.getElementsByClassName("input" + l)[0].value == rows[1].cells[l + 1].innerHTML)
             indexOfDuplicates.push(1);
-        }
         for (j = 0; j < (ruleOrder.length - numCols) / 4; j ++) {
             prevContent = rows[j+1].cells[l + 1].innerHTML;
             currentContent = rows[j+2].cells[l + 1].innerHTML;
-            if (prevContent == currentContent) {
+            if (prevContent == currentContent)
                 indexOfDuplicates.push(j+2);
-            }
         }
-        for (k = 0; k < indexOfDuplicates.length; k ++) {
+        for (k = 0; k < indexOfDuplicates.length; k ++)
             rows[indexOfDuplicates[k]].cells[l + 1].innerHTML = "";
-        }
     }
 }
 
@@ -423,17 +388,13 @@ function applyRule(A, B, C, D, word) {
 
     function isMatchedSpecialChar(ABCD, letter) {
 
-        // console.log(ABCD, letter);
-        // console.log(ABCD == "V", ABCD == "C", ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-")
         var sign;
         /* If it is Vowel */
         if (ABCD == "V") return has(letter, 'vowel');
         /* If it is Consonant */
         if (ABCD == "C") return has(letter, 'consonant');
-        // console.log(ABCD);
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
-            // console.log("4");
             var segments = getFeaturesInSegment(ABCD);
             for (var i = 0; i < segments.length; i ++) {
 
@@ -441,11 +402,10 @@ function applyRule(A, B, C, D, word) {
                 sign = segments[i][0];
                 if (sign == "+") sign = "plus";
                 else if (sign == "-") sign = "minus";
-                else console.log("should not get here.");
+                else console.log("Debug: Should not get here.");
                 if (!has(letter, segments[i].substring(1, segments[i].length) + sign))
                     return false;
             }
-
             return true;
         }
         return false;
@@ -456,14 +416,8 @@ function applyRule(A, B, C, D, word) {
         // TODO
         var result;
         var ABCD_array = parseSegment(ABCD);
-        for (var j = 0; j < ABCD_array.length; j ++) {
-            // console.log(ABCD[j]);
-            // console.log(j, word.charAt(i + j), ABCD[j]);
-            // console.log(isMatchedSpecialChar(ABCD[j], word.charAt(i + j)));
+        for (var j = 0; j < ABCD_array.length; j ++)
             result = word.charAt(i + j) == ABCD_array[j] || isMatchedSpecialChar(ABCD_array[j], word.charAt(i + j));
-        }
-
-        // console.log(result);
         if (!isNotA) return result;
         else return result || ABCD == " ";
     }
@@ -471,17 +425,15 @@ function applyRule(A, B, C, D, word) {
 
         // Single segment
         // If at word init
-        var before, middle, after;
+        var before, middle, after, ASegments, BSegments, ASegment, BSegment, isContainedPlusMinus, i, j, k, l;
         if (C == "#") {
-            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false)) {
+            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false))
                 word = word.replaceAt(0, B);
-            }
         }
         /* If at word final */
         else if (D == "#") {
-            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false)) {
+            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false))
                 word = word.replaceAt(len - 1, B);
-            }
         }
 
         /* If neither at word init nor word end
@@ -496,48 +448,31 @@ function applyRule(A, B, C, D, word) {
                 middle = "";
 
                 // TODO: NOT getFeaturesInSegment(), sth else instead to accommodate multiple segments.
-                var ASegments = [getFeaturesInSegment(A)];
-                var BSegments = [getFeaturesInSegment(B)];
-
-                // console.log(ASegments, BSegments);
-                // middle = B;
+                ASegments = [getFeaturesInSegment(A)];
+                BSegments = [getFeaturesInSegment(B)];
                 if (ASegments.length == BSegments.length) {
-                    for (var k = 0; k < ASegments.length; k ++) {
-                        var IPA_to_be_changed = word[indice[j]];
-                        var ASegment = ASegments[k];
-                        var BSegment = BSegments[k];
+                    for (k = 0; k < ASegments.length; k ++) {
+                        ASegment = ASegments[k];
+                        BSegment = BSegments[k];
 
-                        var isContainedPlusMinus = false;
-                        // console.log(BSegment);
-                        for (var l = 0; l < BSegment.length; l ++) {
-                            if(BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
+                        isContainedPlusMinus = false;
+                        for (l = 0; l < BSegment.length; l ++)
+                            if (BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
                                 isContainedPlusMinus = true;
-                                // console.log("hhaha");
                                 break;
                             }
-                        }
 
-                        // console.log(BSegment);
-                        if (!isContainedPlusMinus) {
-                            // If this segment in B is an IPA: Just change it
-                            middle += BSegment;
-                            // console.log("1");
-                        } else {
-                            // If this segment in B is a feature: Call changeFeature()
-                            middle += changeFeature(IPA_to_be_changed, BSegment);
-                        }
-
+                        // If this segment in B is an IPA: Just change it
+                        if (!isContainedPlusMinus) middle += BSegment;
+                        // If this segment in B is a feature: Call changeFeature()
+                        else middle += changeFeature(word[indice[j]], BSegment);
                     }
                 }
-                // else if () {
-                //     //TODO
-                //     // IF THERE IS NO [ IN BOTH A AND B.
+                // else if (...) {
+                    // TODO: IF THERE IS NO [ IN BOTH A AND B.
                 // }
 
-                // console.log(parseSegment(A));
                 after = word.substring(indice[j] + 1, word.length);
-                // console.log(after);
-                // console.log("BEFORE:", before, "MIDDLE:", middle, "AFTER:", after);
                 word = before + middle + after;
             }
         }
@@ -601,6 +536,14 @@ function appendIPA(IPA) {
 
 function appendFeature(feature) {
 
+    function beautify(segments) {
+
+        segments = segments.replaceAll("+", " + ");
+        segments = segments.replaceAll("-", " - ");
+        segments = segments.replaceAll("][", "] [");
+        return segments;
+    }
+
     /* Remove space from feature */
     feature = feature.replace(/\s/g, '');
     feature = feature.toLowerCase();
@@ -633,7 +576,7 @@ function appendFeature(feature) {
             /* Toggle sign */
             if (valueOfSign == "+") lastSegment = lastSegment.replaceAt(pos - 1, "-");
             else if (valueOfSign == "-") lastSegment = lastSegment.replaceAt(pos - 1, "+");
-            else console.log("Should not get here.");
+            else console.log("Debug: Should not get here.");
 
             listSegment.pop();
             result = listSegment.join("") + lastSegment;
@@ -679,12 +622,4 @@ function parseSegment(segments) {
     /* The do-while loop above will produce extra empty item(s) at the end, so remove it/them by pop() */
     while (results[results.length - 1] == "") results.pop();
     return results;
-}
-
-function beautify(segments) {
-
-    segments = segments.replaceAll("+", " + ");
-    segments = segments.replaceAll("-", " - ");
-    segments = segments.replaceAll("][", "] [");
-    return segments;
 }

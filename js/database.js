@@ -23,7 +23,8 @@ function arraysEqual(arr1, arr2) {
 /* Test Cases */
 function testCases() {
     function testCorrect(A, B, C, D, before, after) {
-        if (applyRule(A, B, C, D, before) != after)
+        total ++;
+        if (applyRule(A, B, C, D, before) != after) {
             console.log(
                 "A: ", A,
                 "\nB: ", B,
@@ -33,20 +34,36 @@ function testCases() {
                 "\nExpected: ", after,
                 "\nActual: ", applyRule(A, B, C, D, before)
             );
+            wrong ++;
+        }
     }
     function testIllFormed(A, B, C, D, TF) {
-        if (isIllFormed(A, B, C, D) != TF) console.log("Something is wrong!");
+        total ++;
+        if (isIllFormed(A, B, C, D) != TF) {
+            console.log("A: ", A,
+                    "B: ", B,
+                    "C: ", C,
+                    "D: ", D,
+                    "Expected: ", TF,
+                    "Actual: ", isIllFormed(A, B, C, D));
+            wrong ++;
+        }
     }
     function testChangeFeature(before, features, after) {
-        if (changeFeature(before, features) != after)
+        total ++;
+        if (changeFeature(before, features) != after) {
             console.log(
                 "Before: ", before,
                 "\nFeatures: ", features,
                 "\nExpected: ", after,
                 "\nActual: ", changeFeature(before, features)
             );
+            wrong ++;
+        }
     }
 
+    var total = 0;
+    var wrong = 0;
     console.log("Test cases start:");
     // Check ill-formed
     // testIllFormed('&nbsp;', 'a', 'd', 'f', true);
@@ -175,8 +192,51 @@ function testCases() {
     testChangeFeature("θ", ["-continuant"], "t");
     testChangeFeature("d", ["-voice"], "t");
     testChangeFeature("t", ["+continuant", "+voice"], "ð");
-    // TODO: Add cases here
 
+    // Test Features
+    // Change
+    testCorrect('[-sonorant]', '[-voice]', ' ', '#', 'pakad', 'pakat');
+    testCorrect('[-sonorant]', '[-voice]', ' ', '#', 'pagz', 'pags');
+    testCorrect('[-sonorant]', '[-voice]', ' ', '#', 'pakar', 'pakar');
+    testCorrect('[-sonorant]', '[-voice]', ' ', '#', 'asp', 'asp');
+
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'asata', 'azata');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'axasa', 'aɣaza');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'iʃaθi', 'iʒaði');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'syrota', 'syrota');
+
+    // Split
+    testCorrect('k', 'tu', '#', 'C', 'kta', 'tuta');
+    testCorrect('k', 'tu', '#', 'C', 'kaokta', 'kaokta');
+    testCorrect('k', 'tu', '#', 'C', 'klara', 'tulara');
+    testCorrect('k', 'tu', '#', 'C', 'kpart', 'tupart');
+
+    // Fusion
+    testCorrect('CV', 'ə', 'C', 'C', 'slap', 'səp');
+    testCorrect('CV', 'ə', 'C', 'C', 'selypa', 'selypa');
+    testCorrect('CV', 'ə', 'C', 'C', 'selypam', 'selypam');
+    testCorrect('CV', 'ə', 'C', 'C', 'selytpam', 'selytəm');
+
+    // Deletion
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', '', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', ' ', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'obra', 'bra');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tyma', 'tyma');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'ipta', 'ipta');
+
+    // Insertion
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect(' ', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect('', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'aopɒutaa', 'aʔopɒʔutaa');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'tkɑɔpaet', 'tkɑʔɔpaet');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaayr', 'peoaaʔyr');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaɒyr', 'peoaʔɒʔyr');
+
+    // console.log("Total Cases: ", total);
+    console.log("Wrong Cases: ", wrong);
+    // console.log("Percentage: ", Math.round(wrong * 10000 / total) / 100, "%");
     console.log("Test cases end.")
 }
 

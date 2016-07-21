@@ -284,17 +284,17 @@ function isIllFormed(A, B, C, D) {
         return true;
     }
 
-    if (A.indexOf("&nbsp;") != -1) {
-        // If A is empty at the same time.
-        alert("A cannot be empty.");
-        return true;
-    }
-
-    if (A.indexOf("∅") != -1) {
-        // If A is none
-        alert("A cannot be none.");
-        return true;
-    }
+    // if (A.indexOf("&nbsp;") != -1) {
+    //     // If A is empty at the same time.
+    //     alert("A cannot be empty.");
+    //     return true;
+    // }
+    //
+    // if (A.indexOf("∅") != -1) {
+    //     // If A is none
+    //     alert("A cannot be none.");
+    //     return true;
+    // }
 
     if (C.indexOf("∅") != -1) {
         // If C is none
@@ -512,6 +512,7 @@ function applyRule(A, B, C, D, word) {
     var indice = [];
     var len = word.length;
 
+    if (A == "&nbsp;" || A == "") A = " ";
     if (B == "&nbsp;" || B == "") B = " ";
     if (C == "&nbsp;" || C == "") C = " ";
     if (D == "&nbsp;" || D == "") D = " ";

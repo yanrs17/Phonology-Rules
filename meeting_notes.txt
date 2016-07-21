@@ -79,4 +79,43 @@ July 8
 - Test the rules.
 - Remove affricates from the table (in the code).
 
+July 21
+Change
+[-sonorant] -> [-voice] / _ #
+pakad -> pakat
+pagz -> pags
+pakar -> pakar
+asp -> asp
+[+continuant] -> [+voice] / V _ V
+asa -> azata
+axasa -> aɣaza
+iʃaθi -> iʒaði
+syrota -> syrota (vacuous application)
+Split
+k -> tu / # _ C
+kta -> tuta
+kaokta -> kaokta
+klara -> tulara
+kpart -> tupart
+Fusion
+CV -> ə / C _ C
+slap -> səp
+selypa -> selypa
+selypam -> selypam
+selytpam -> selytəm
+Deletion
+[+round +syllabic] -> ∅ / _ [+labial -sonorant]
+tupr -> tpr
+obra -> bra
+tyma -> tyma
+ipta -> ipta
+Insertion
+∅ -> ʔ / [+low] _ [+round]
+paut -> paʔut
+aopɒutaa -> aʔopɒʔutaa
+tkɑɔpaet -> tkɑʔɔpaet
+peoaayr -> peoaaʔyr
+peoaɒyr -> peoaʔɒʔyr
+
+Meet at 2.30 next Monday (July 25)
 

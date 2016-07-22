@@ -426,13 +426,18 @@ function applyRule(A, B, C, D, word) {
         // If at word init
         var before, middle, after, ASegments, BSegments, ASegment, BSegment, isContainedPlusMinus, i, j, k, l;
         if (C == "#") {
-            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false))
+            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false)) {
+                // TODO
                 word = word.replaceAt(0, B);
+            }
+
         }
         /* If at word final */
         else if (D == "#") {
-            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false))
+            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false)) {
+                // TODO
                 word = word.replaceAt(len - 1, B);
+            }
         }
 
         /* If neither at word init nor word end

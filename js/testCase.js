@@ -1,5 +1,6 @@
 /* Test Cases */
 function testCases() {
+    
     function testCorrect(A, B, C, D, before, after) {
         total ++;
         if (applyRule(A, B, C, D, before) != after) {

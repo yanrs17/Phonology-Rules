@@ -426,18 +426,13 @@ function applyRule(A, B, C, D, word) {
         // If at word init
         var before, middle, after, ASegments, BSegments, ASegment, BSegment, isContainedPlusMinus, i, j, k, l;
         if (C == "#") {
-            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false)) {
-                // TODO
-                word = word.replaceAt(0, B);
-            }
-
+            if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false))
+                indice.push(0);
         }
         /* If at word final */
         else if (D == "#") {
-            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false)) {
-                // TODO
-                word = word.replaceAt(len - 1, B);
-            }
+            if (isMatchedSingleABCD(C, len - 2, true) && isMatchedSingleABCD(A, len - 1, false))
+                indice.push(len - 1);
         }
 
         /* If neither at word init nor word end
@@ -446,45 +441,46 @@ function applyRule(A, B, C, D, word) {
             for (i = 0; i < len; i ++)
                 if (isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true))
                     indice.push(i);
-            /* Change A to B at each index that matches */
-            for (j = 0; j < indice.length; j ++) {
-                before = word.substring(0, indice[j]);
-                middle = "";
+        }
 
-                // TODO: NOT getFeaturesInSegment(), sth else instead to accommodate multiple segments.
-                ASegments = [getFeaturesInSegment(A)];
-                BSegments = [getFeaturesInSegment(B)];
-                if (ASegments.length == BSegments.length) {
-                    for (k = 0; k < ASegments.length; k ++) {
-                        ASegment = ASegments[k];
-                        BSegment = BSegments[k];
+        /* Change A to B at each index that matches */
+        for (j = 0; j < indice.length; j ++) {
+            before = word.substring(0, indice[j]);
+            middle = "";
 
-                        isContainedPlusMinus = false;
-                        for (l = 0; l < BSegment.length; l ++) {
-                            if (BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
-                                isContainedPlusMinus = true;
-                                break;
-                            }
+            // TODO: NOT getFeaturesInSegment(), sth else instead to accommodate multiple segments.
+            ASegments = [getFeaturesInSegment(A)];
+            BSegments = [getFeaturesInSegment(B)];
+            if (ASegments.length == BSegments.length) {
+                for (k = 0; k < ASegments.length; k ++) {
+                    ASegment = ASegments[k];
+                    BSegment = BSegments[k];
+
+                    isContainedPlusMinus = false;
+                    for (l = 0; l < BSegment.length; l ++) {
+                        if (BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
+                            isContainedPlusMinus = true;
+                            break;
                         }
-                        // If this segment in B is an IPA: Just change it
-                        if (!isContainedPlusMinus) middle += BSegment;
-                        // If this segment in B is a feature: Call changeFeature()
-                        else middle += changeFeature(word[indice[j]], BSegment);
                     }
+                    // If this segment in B is an IPA: Just change it
+                    if (!isContainedPlusMinus) middle += BSegment;
+                    // If this segment in B is a feature: Call changeFeature()
+                    else middle += changeFeature(word[indice[j]], BSegment);
                 }
-                else console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.")
-                if (middle == "") middle = " ";
-
-                after = word.substring(indice[j] + 1, word.length);
-                // if (before != "") console.log("before:", before);
-                // else console.log("before:", "EMPTY");
-                // if (middle != "") console.log("middle:", middle);
-                // else console.log("middle:", "EMPTY");
-                // if (after != "") console.log("after:", after);
-                // else console.log("after:", "EMPTY");
-                // console.log("=======");
-                word = before + middle + after;
             }
+            else console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.")
+            if (middle == "") middle = " ";
+
+            after = word.substring(indice[j] + 1, word.length);
+            // if (before != "") console.log("before:", before);
+            // else console.log("before:", "EMPTY");
+            // if (middle != "") console.log("middle:", middle);
+            // else console.log("middle:", "EMPTY");
+            // if (after != "") console.log("after:", after);
+            // else console.log("after:", "EMPTY");
+            // console.log("=======");
+            word = before + middle + after;
         }
         stripped = word.replace(/\s/g, '');
         return stripped;

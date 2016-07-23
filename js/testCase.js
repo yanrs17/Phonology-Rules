@@ -181,33 +181,33 @@ function testCases() {
     testCorrect('[-sonorant]', '[-voice]', ' ', '#', 'asp', 'asp');
     testCorrect('[-sonorant]', '[-voice]', '#', ' ', 'dd', 'td');
     testCorrect('[-sonorant]', '[-voice]', '#', '', 'dd', 'td');
-    //
-    // testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'asata', 'azata');
-    // testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'axasa', 'aɣaza');
-    // testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'iʃaθi', 'iʒaði');
-    // testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'syrota', 'syrota');
-    //
-    // // Split
+
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'asata', 'azata');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'axasa', 'aɣaza');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'iʃaθi', 'iʒaði');
+    testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'syrota', 'syrota');
+
+    // Split
     // testCorrect('k', 'tu', '#', 'C', 'kta', 'tuta');
     // testCorrect('k', 'tu', '#', 'C', 'kaokta', 'kaokta');
     // testCorrect('k', 'tu', '#', 'C', 'klara', 'tulara');
     // testCorrect('k', 'tu', '#', 'C', 'kpart', 'tupart');
-    //
+
     // // Fusion
     // testCorrect('CV', 'ə', 'C', 'C', 'slap', 'səp');
     // testCorrect('CV', 'ə', 'C', 'C', 'selypa', 'selypa');
     // testCorrect('CV', 'ə', 'C', 'C', 'selypam', 'selypam');
     // testCorrect('CV', 'ə', 'C', 'C', 'selytpam', 'selytəm');
-    //
-    // // Deletion
+
+    // Deletion
     // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', '', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', ' ', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'obra', 'bra');
     // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tyma', 'tyma');
     // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'ipta', 'ipta');
-    //
-    // // Insertion
+
+    // Insertion
     // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
     // testCorrect(' ', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
     // testCorrect('', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');

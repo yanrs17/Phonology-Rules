@@ -399,10 +399,12 @@ function applyRule(A, B, C, D, word) {
 
                 /* Check if all matches */
                 sign = segments[i][0];
-                if (sign == "+") sign = "plus";
-                else if (sign == "-") sign = "minus";
-                else console.log("Debug: Should not get here.");
-                if (!has(letter, segments[i].substring(1, segments[i].length) + sign))
+                // if (sign == "+") sign = "plus";
+                // else if (sign == "-") sign = "minus";
+                // else console.log("Debug: Should not get here.");
+                // if (!has(letter, segments[i].substring(1, segments[i].length) + sign))
+                //     return false;
+                if (!has(letter, sign + segments[i].substring(1, segments[i].length)))
                     return false;
             }
             return true;
@@ -469,10 +471,10 @@ function applyRule(A, B, C, D, word) {
                     else middle += changeFeature(word[indice[j]], BSegment);
                 }
             }
-            else console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.")
-            if (middle == "") middle = " ";
+            else console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.");
 
             after = word.substring(indice[j] + 1, word.length);
+
             // if (before != "") console.log("before:", before);
             // else console.log("before:", "EMPTY");
             // if (middle != "") console.log("middle:", middle);
@@ -480,6 +482,8 @@ function applyRule(A, B, C, D, word) {
             // if (after != "") console.log("after:", after);
             // else console.log("after:", "EMPTY");
             // console.log("=======");
+
+            if (middle == "") middle = " ";
             word = before + middle + after;
         }
         stripped = word.replace(/\s/g, '');
@@ -648,225 +652,41 @@ function has(letter, feature) {
         "ɬ", "ɮ",
         "ʋ", "ɹ", "ɻ", "j", "ɰ",
         "l", "ɭ", "ʎ", "ʟ"];
-    var arrayatrplus = ["i", "y", "ʉ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɔ"];
-    var arrayatrminus = ["ħ", "ʕ", "ɪ", "ʏ", "ɨ", "ɯ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "æ", "ɐ", "a", "ɶ"];
-    var arrayanteriorplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "n", "l", "r", "ɹ"];
-    var arrayanteriorminus = ["ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "ɳ"];
-    var arraybackplus = ["k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɴ", "ʀ",
-    "w", "ɰ", "ɯ",
-    "u", "ʊ", "ɤ", "o", "ə", "ʌ", "ɔ", "ɑ", "ɒ"];
-    var arraybackminus = ["c", "ɟ", "ç", "ʝ", "ɳ", "ɲ", "ʎ", "j", "ɥ", "i", "ɪ", "e", "ɛ", "a", "æ",
-    "y", "ʏ", "∅", "œ"];
-    var arrayconsonantalplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ"];
-    var arrayconsonantalminus = ["h", "ɦ", "ʔj", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraycgplus = ["ʔ"];
-    var arraycgminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraycontinuantplus = [
-    "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ",
-    "ç", "ʝ", "f", "v", "ɸ", "β", "x", "ɣ",
-    "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "l", "ʎ",
-    "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i",
-    "y", "ɨ", "ʉ", "ɯ", "u", "ɪ", "ʏ", "ʊ",
-    "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ",
-    "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a",
-    "ɶ", "ɑ", "ɒ"];
-    var arraycontinuantminus = ["t", "d", "c", "ɟ", "p", "b", "k", "ɡ", "q", "ɢ", "ʔ", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ"];
-    //arraycontinuantminus: "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf" are +-
-    var arraycoronalplus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "n", "ɳ", "l", "r", "ɹ"];
-    var arraycoronalminus = ["p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "kx", "pf", "m", "ŋ", "ɲ", "ɴ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraydelayedreleaseplus = ["t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"];
-    var arraydelayedreleaseminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraydistributedplus = ["ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "t͡ʃ", "d͡ʒ"];
-    var arraydistributedminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ts", "dz", "n", "ɳ", "l", "r", "ɹ"];
-    var arraydorsalplus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ŋ", "ɳ", "ɲ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ",
-    "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
-    "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
-    "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
-    "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraydorsalminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "p", "b",
-    "f", "v", "ɸ", "β", "ħ", "ʕ", "h", "ɦ", "ʔ", "m", "n", "l", "r", "ɹ"];
-    var arrayhighplus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", 'j', 'w', 'ɥ', 'ɰ', 'i', 'ɪ', 'u',
-    'ʊ', 'ŋ', 'ɲ', 'ʎ', 'y', 'ʏ', 'ɯ'];
-    var arrayhighminus = ["q", "ɢ", "χ", "ʁ", "ɴ", "ʀ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraylabialplus = ["p", "b", "f", "v", "ɸ", "β", "pf", "m", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraylabialminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ"];
-    var arraylateralplus = ["ʎ", "r"];
-    var arraylateralminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraylowplus = ['æ', 'ɐ', 'a', 'ɶ', 'ɑ', 'ɒ'];
-    var arraylowminus = ["c", "ɟ", "ç", "ʝ", "k", "g", "x", "ɣ", "q", "ɢ", "χ",
-    "ʁ", "ŋ", "ɳ", "ɲ" , 'ɴ', 'ʎ', 'ʀ', 'j', 'w', 'ɥ', 'ɰ', 'i', 'ɪ', 'u',
-    'ʊ', 'e', 'ɛ', 'o', 'ɔ', 'y', 'ʏ', '∅', 'œ', 'ə', 'ɯ'];
-    var arraynasalplus = ["m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ"];
-    var arraynasalminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraypharyngealplus = ["ħ", "ʕ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraypharyngealminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ"];
-    var arrayroundplus = ["y", "ʏ", "ø", "œ", "ɶ", "ʉ", "ɵ", "ɞ", "u", "ʊ", "o", "ɔ", "ɒ"];
-    var arrayroundminus = ["i", "ɪ", "e", "ɛ", "æ", "a", "ɨ", "ɘ", "ə", "ɜ", "ɐ", "ɯ", "ɤ", "ʌ", "ɑ"];
-    var arraysonorantplus = ["i", "ɪ", "u", "ʊ", "e", "ɛ", "o", "ɔ", "a", "æ", "y", "ʏ", "ə", "ø", "œ", "ɯ",
-    "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "ɱ",
-    "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ"];
-    var arraysonorantminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"];
-    var arraysgplus = ["ɬ", "h", "ɦ"];
-    var arraysgminus = ["t", "d", "s", "z", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraystridentplus = ["s", "z", "f", "v", "t͡ʃ", "d͡ʒ", "ts", "dz", "pf"];
-    var arraystridentminus = ["t", "d", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "kx", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraysyllabicplus = ["i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arraysyllabicminus = ["t", "d", "s", "z", "ɬ", "ɮ", "θ", "ð", "ʃ", "ʒ", "c", "ɟ", "ç", "ʝ", "p", "b", "f", "v", "ɸ", "β", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʔ", "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ"];
-    var arraytenseplus = ["i", "y", "ɨ", "ʉ", "ɯ", "u", "e", "ø", "ɵ", "ɤ", "o", "æ", "ɐ", "ɶ"];
-    var arraytenseminus = ["c", "ɟ", "ç", "ʝ", "k", "ɡ", "x", "ɣ", "q", "ɢ", "χ", "ʁ", "t͡ʃ", "d͡ʒ", "kx", "ŋ", "ɳ", "ɲ", "ɴ", "ʎ", "ʀ", "j", "w", "ɥ", "ɰ", "ɪ", "ʏ", "ʊ", "ɘ", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "a", "ɑ", "ɒ"];
-    var arrayvoiceplus = ["d", "z", "ɮ", "ð", "ʒ", "ɟ", "ʝ", "b", "v", "β", "ɡ", "ɣ", "ɢ", "ʁ", "ɦ", "d͡ʒ", "dz", "m", "n", "ŋ", "ɳ", "ɲ", "ɴ", "l", "ʎ", "r", "ɹ", "ʀ", "j", "w", "ɥ", "ɰ", "i", "y", "ɪ", "ʏ", "ɨ", "ʉ", "ɯ", "u", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ", "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ", "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"];
-    var arrayvoiceminus = ["t", "s", "ɬ", "θ", "ʃ", "c", "ç", "p", "f", "ɸ", "k", "x", "q", "χ", "ħ"];
 
-    var array;
+    var array = [];
+    var i, j, col, ipa;
     feature = feature.toLowerCase();
-    switch (feature) {
 
-        case 'vowel':
-            array = arrayvowel;
-            break;
-        case 'consonant':
-            array = arrayconsonant;
-            break;
-        case 'atrplus':
-            array = arrayatrplus;
-            break;
-        case 'atrminus':
-            array = arrayatrminus;
-            break;
-        case 'anteriorplus':
-            array = arrayanteriorplus;
-            break;
-        case 'anteriorminus':
-            array = arrayanteriorminus;
-            break;
-        case 'backplus':
-            array = arraybackplus;
-            break;
-        case 'backminus':
-            array = arraybackminus;
-            break;
-        case 'consonantalplus':
-            array = arrayconsonantalplus;
-            break;
-        case 'consonantalminus':
-            array = arrayconsonantalminus;
-            break;
-        case 'cgplus':
-            array = arraycgplus;
-            break;
-        case 'cgminus':
-            array = arraycgminus;
-            break;
-        case 'continuantplus':
-            array = arraycontinuantplus;
-            break;
-        case 'continuantminus':
-            array = arraycontinuantminus;
-            break;
-        case 'coronalplus':
-            array = arraycoronalplus;
-            break;
-        case 'coronalminus':
-            array = arraycoronalminus;
-            break;
-        case 'delayedreleaseplus':
-            array = arraydelayedreleaseplus;
-            break;
-        case 'delayedreleaseminus':
-            array = arraydelayedreleaseminus;
-            break;
-        case 'distributedplus':
-            array = arraydistributedplus;
-            break;
-        case 'distributedminus':
-            array = arraydistributedminus;
-            break;
-        case 'dorsalplus':
-            array = arraydorsalplus;
-            break;
-        case 'dorsalminus':
-            array = arraydorsalminus;
-            break;
-        case 'Highplus':
-            array = arrayHighplus;
-            break;
-        case 'Highminus':
-            array = arrayHighminus;
-            break;
-        case 'labialplus':
-            array = arraylabialplus;
-            break;
-        case 'labialminus':
-            array = arraylabialminus;
-            break;
-        case 'lateralplus':
-            array = arraylateralplus;
-            break;
-        case 'lateralminus':
-            array = arraylateralminus;
-            break;
-        case 'lowplus':
-            array = arraylowplus;
-            break;
-        case 'lowminus':
-            array = arraylowminus;
-            break;
-        case 'nasalplus':
-            array = arraynasalplus;
-            break;
-        case 'nasalminus':
-            array = arraynasalminus;
-            break;
-        case 'pharyngealplus':
-            array = arraypharyngealplus;
-            break;
-        case 'pharyngealminus':
-            array = arraypharyngealminus;
-            break;
-        case 'roundplus':
-            array = arrayroundplus;
-            break;
-        case 'roundminus':
-            array = arrayroundminus;
-            break;
-        case 'sonorantplus':
-            array = arraysonorantplus;
-            break;
-        case 'sonorantminus':
-            array = arraysonorantminus;
-            break;
-        case 'sgplus':
-            array = arraysgplus;
-            break;
-        case 'sgminus':
-            array = arraysgminus;
-            break;
-        case 'stridentplus':
-            array = arraystridentplus;
-            break;
-        case 'stridentminus':
-            array = arraystridentminus;
-            break;
-        case 'syllabicplus':
-            array = arraysyllabicplus;
-            break;
-        case 'syllabicminus':
-            array = arraysyllabicminus;
-            break;
-        case 'tenseplus':
-            array = arraytenseplus;
-            break;
-        case 'tenseminus':
-            array = arraytenseminus;
-            break;
-        case 'voiceplus':
-            array = arrayvoiceplus;
-            break;
-        case 'voiceminus':
-            array = arrayvoiceminus;
-            break;
+    if (feature == "vowel") array = arrayvowel;
+    else if (feature == "consonant") array = arrayconsonant;
+    else {
+
+        // array = [];
+        // feature = "-Constricted Glottis";
+        feature_name = feature.substring(1, feature.length).toLowerCase();
+        feature_sign = feature.charAt(0);
+        // console.log(feature_sign, feature_name);
+        for (i = 0; i < database_IPA.length; i ++) {
+            if (database_IPA[i][0].toLowerCase() == feature_name) {
+                col = i;
+                break;
+            }
+        }
+        if (col == undefined) console.log("DEBUG: FEATURE NOT FOUND", feature);
+        for (j = 1; j < database_IPA[0].length; j ++) {
+            if (database_IPA[col][j] == feature_sign) {
+                ipa = database_IPA[0][j];
+
+                // Skip ipa w/ length of 2 for now
+                // e.g. "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"
+                if (ipa.length == 1) array.push(ipa);
+            }
+        }
     }
 
     // > -1 means "IPA" is in "array"
     return array.indexOf(letter) > -1;
 }
+// console.log(arraycgminus);
+// console.log(array);
+// console.log(arraysEqual(arraycgminus, array));

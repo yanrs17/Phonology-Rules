@@ -188,19 +188,19 @@ function testCases() {
     testCorrect('[+continuant]', '[+voice]', 'V', 'V', 'syrota', 'syrota');
 
     // Split
-    // testCorrect('k', 'tu', '#', 'C', 'kta', 'tuta');
-    // testCorrect('k', 'tu', '#', 'C', 'kaokta', 'kaokta');
-    // testCorrect('k', 'tu', '#', 'C', 'klara', 'tulara');
-    // testCorrect('k', 'tu', '#', 'C', 'kpart', 'tupart');
+    testCorrect('k', 'tu', '#', 'C', 'kta', 'tuta');
+    testCorrect('k', 'tu', '#', 'C', 'kaokta', 'kaokta');
+    testCorrect('k', 'tu', '#', 'C', 'klara', 'tulara');
+    testCorrect('k', 'tu', '#', 'C', 'kpart', 'tupart');
 
-    // // Fusion
-    // testCorrect('CV', 'ə', 'C', 'C', 'slap', 'səp');
-    // testCorrect('CV', 'ə', 'C', 'C', 'selypa', 'selypa');
-    // testCorrect('CV', 'ə', 'C', 'C', 'selypam', 'selypam');
-    // testCorrect('CV', 'ə', 'C', 'C', 'selytpam', 'selytəm');
+    // Fusion
+    testCorrect('CV', 'ə', 'C', 'C', 'slap', 'səp');
+    testCorrect('CV', 'ə', 'C', 'C', 'selypa', 'selypa');
+    testCorrect('CV', 'ə', 'C', 'C', 'selypam', 'selypam');
+    testCorrect('CV', 'ə', 'C', 'C', 'selytpam', 'selytəm');
 
     // Deletion
-    // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', '', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', ' ', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
     // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'obra', 'bra');

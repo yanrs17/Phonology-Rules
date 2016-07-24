@@ -24,6 +24,8 @@ function changeFeature(IPA, features) {
     /* features: a list of features in a segment */
     /* Need to be all lowercase! */
 
+    // console.log(IPA);
+    // console.log(features);
     /* Init */
     var array_diffs, feature_IPA, feature_compared, segments_in_array, i, j, k, l;
     features = features.sort();
@@ -426,7 +428,12 @@ function applyRule(A, B, C, D, word) {
 
         // Single segment
         // If at word init
-        var before, middle, after, ASegments, BSegments, ASegment, BSegment, isContainedPlusMinus, i, j, k, l;
+        var before, middle, after,
+            ASegments, BSegments,
+            AEachSegment, BEachSegment,
+            ASegment, BSegment,
+            isContainedPlusMinus,
+            i, j, k, l;
         if (C == "#") {
             if (isMatchedSingleABCD(D, 1, true) && isMatchedSingleABCD(A, 0, false))
                 indice.push(0);
@@ -450,30 +457,59 @@ function applyRule(A, B, C, D, word) {
             before = word.substring(0, indice[j]);
             middle = "";
 
-            // TODO: NOT getFeaturesInSegment(), sth else instead to accommodate multiple segments.
-            ASegments = [getFeaturesInSegment(A)];
-            BSegments = [getFeaturesInSegment(B)];
-            if (ASegments.length == BSegments.length) {
-                for (k = 0; k < ASegments.length; k ++) {
-                    ASegment = ASegments[k];
-                    BSegment = BSegments[k];
+            ASegments = parseSegment(A);
+            BSegments = parseSegment(B);
 
-                    isContainedPlusMinus = false;
-                    for (l = 0; l < BSegment.length; l ++) {
-                        if (BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
-                            isContainedPlusMinus = true;
-                            break;
+            if (ASegments.length == BSegments.length) {
+
+                if (ASegments.length == 1) {
+                // if (1) {
+                    AEachSegment = getFeaturesInSegment(ASegments[0]);
+                    BEachSegment = getFeaturesInSegment(BSegments[0]);
+
+                    for (k = 0; k < AEachSegment.length; k ++) {
+
+                        // k ??
+                        ASegment = AEachSegment;
+                        BSegment = BEachSegment;
+                        // console.log(BSegment);
+                        // ASegment = ASegments[]
+                        // console.log(ASegment);
+                        // console.log(BSegment);
+
+                        isContainedPlusMinus = false;
+                        for (l = 0; l < BSegment.length; l ++) {
+                            if (BSegment[l].indexOf('+') != -1 || BSegment[l].indexOf('-') != -1) {
+                                isContainedPlusMinus = true;
+                                break;
+                            }
+                        }
+                        // If this segment in B is an IPA: Just change it
+                        if (!isContainedPlusMinus) {
+                            middle += BSegment;
+                            // console.log(494);
+                        }
+                        // If this segment in B is a feature: Call changeFeature()
+                        else {
+                            middle += changeFeature(word[indice[j]], BSegment);
+                            // console.log(499);
                         }
                     }
-                    // If this segment in B is an IPA: Just change it
-                    if (!isContainedPlusMinus) middle += BSegment;
-                    // If this segment in B is a feature: Call changeFeature()
-                    else middle += changeFeature(word[indice[j]], BSegment);
                 }
+                else console.log("DEBUG: LENGTH > 1: HASN'T IMPLEMENTED YET.")
             }
-            else console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.");
+            else {
+                if (A.indexOf("[") == -1 && B.indexOf("[") == -1) {
+                    // If both A and B are not features
+                    middle += B;
+                }
+                else
+                    console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.");
+            }
 
-            after = word.substring(indice[j] + 1, word.length);
+            // ASegments.length is added to acommodate multiple into 1:
+            // e.g. "tk" -> "p"
+            after = word.substring(indice[j] + ASegments.length, word.length);
 
             // if (before != "") console.log("before:", before);
             // else console.log("before:", "EMPTY");
@@ -687,6 +723,3 @@ function has(letter, feature) {
     // > -1 means "IPA" is in "array"
     return array.indexOf(letter) > -1;
 }
-// console.log(arraycgminus);
-// console.log(array);
-// console.log(arraysEqual(arraycgminus, array));

@@ -390,6 +390,56 @@ function applyRule(A, B, C, D, word) {
     function isMatchedSingleABCD(ABCD, i, isNotA) {
 
         function isMatchedSpecialChar(ABCD, letter) {
+
+            function has(letter, feature) {
+
+                // Need to be simplified later
+                var arrayvowel = [
+                    "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
+                    "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
+                    "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
+                    "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"]
+                var arrayconsonant = [
+                    "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ",
+                    "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ",
+                    "ʙ", "r", "ʀ",
+                    "ⱱ", "ɾ", "ɽ",
+                    "ɸ", "β", "f", "v", "θ", "ð", "s", "z", "ʃ", "ʒ", "ʂ", "ʐ", "ç", "ʝ", "x", "ɣ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ",
+                    "ɬ", "ɮ",
+                    "ʋ", "ɹ", "ɻ", "j", "ɰ",
+                    "l", "ɭ", "ʎ", "ʟ"];
+
+                var array = [];
+                var i, j, col, ipa;
+                feature = feature.toLowerCase();
+
+                if (feature == "vowel") array = arrayvowel;
+                else if (feature == "consonant") array = arrayconsonant;
+                else {
+                    feature_name = feature.substring(1, feature.length).toLowerCase().trim();
+                    feature_sign = feature.charAt(0);
+                    for (i = 0; i < database_IPA.length; i ++) {
+                        if (database_IPA[i][0].toLowerCase() == feature_name) {
+                            col = i;
+                            break;
+                        }
+                    }
+                    if (col == undefined)
+                        console.log("DEBUG: FEATURE NOT FOUND", feature);
+                    for (j = 1; j < database_IPA[0].length; j ++) {
+                        if (database_IPA[col][j] == feature_sign) {
+                            ipa = database_IPA[0][j];
+
+                            // Skip ipa w/ length of 2 for now
+                            // e.g. "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"
+                            if (ipa.length == 1) array.push(ipa);
+                        }
+                    }
+                }
+
+                // != -1 means "IPA" is in "array"
+                return array.indexOf(letter) != -1;
+            }
             var sign;
             /* If it is Vowel */
             if (ABCD == "V") return has(letter, 'vowel');
@@ -680,54 +730,4 @@ function parseSegment(segments) {
     /* The do-while loop above will produce extra empty item(s) at the end, so remove it/them by pop() */
     while (results[results.length - 1] == "") results.pop();
     return results;
-}
-
-function has(letter, feature) {
-
-    // Need to be simplified later
-    var arrayvowel = [
-        "i", "y", "ɨ", "ʉ", "ɯ", "u", "ɪ",
-        "ʏ", "ʊ", "e", "ø", "ɘ", "ɵ", "ɤ",
-        "o", "ə", "ɛ", "œ", "ɜ", "ɞ", "ʌ",
-        "ɔ", "æ", "ɐ", "a", "ɶ", "ɑ", "ɒ"]
-    var arrayconsonant = [
-        "p", "b", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ",
-        "m", "ɱ", "n", "ɳ", "ɲ", "ŋ", "ɴ",
-        "ʙ", "r", "ʀ",
-        "ⱱ", "ɾ", "ɽ",
-        "ɸ", "β", "f", "v", "θ", "ð", "s", "z", "ʃ", "ʒ", "ʂ", "ʐ", "ç", "ʝ", "x", "ɣ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ",
-        "ɬ", "ɮ",
-        "ʋ", "ɹ", "ɻ", "j", "ɰ",
-        "l", "ɭ", "ʎ", "ʟ"];
-
-    var array = [];
-    var i, j, col, ipa;
-    feature = feature.toLowerCase();
-
-    if (feature == "vowel") array = arrayvowel;
-    else if (feature == "consonant") array = arrayconsonant;
-    else {
-        feature_name = feature.substring(1, feature.length).toLowerCase().trim();
-        feature_sign = feature.charAt(0);
-        for (i = 0; i < database_IPA.length; i ++) {
-            if (database_IPA[i][0].toLowerCase() == feature_name) {
-                col = i;
-                break;
-            }
-        }
-        if (col == undefined)
-            console.log("DEBUG: FEATURE NOT FOUND", feature);
-        for (j = 1; j < database_IPA[0].length; j ++) {
-            if (database_IPA[col][j] == feature_sign) {
-                ipa = database_IPA[0][j];
-
-                // Skip ipa w/ length of 2 for now
-                // e.g. "t͡ʃ", "d͡ʒ", "ts", "dz", "kx", "pf"
-                if (ipa.length == 1) array.push(ipa);
-            }
-        }
-    }
-
-    // != -1 means "IPA" is in "array"
-    return array.indexOf(letter) != -1;
 }

@@ -201,20 +201,21 @@ function testCases() {
 
     // Deletion
     testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
-    // testCorrect('[+round +syllabic]', '', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
-    // testCorrect('[+round +syllabic]', ' ', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
-    // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'obra', 'bra');
-    // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tyma', 'tyma');
-    // testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'ipta', 'ipta');
+    testCorrect('[+round +syllabic]', '', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', ' ', ' ', '[+labial -sonorant]', 'tupr', 'tpr');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'obra', 'bra');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'tyma', 'tyma');
+    testCorrect('[+round +syllabic]', '∅', ' ', '[+labial -sonorant]', 'ipta', 'ipta');
 
     // Insertion
-    // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
-    // testCorrect(' ', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
-    // testCorrect('', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
-    // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'aopɒutaa', 'aʔopɒʔutaa');
-    // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'tkɑɔpaet', 'tkɑʔɔpaet');
-    // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaayr', 'peoaaʔyr');
-    // testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaɒyr', 'peoaʔɒʔyr');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect(' ', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect('', 'ʔ', '[+low]', '[+round]', 'paut', 'paʔut');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'aopɒutaa', 'aʔopɒʔutaa');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'tkɑɔpaet', 'tkɑʔɔpaet');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaayr', 'peoaaʔyr');
+    testCorrect('∅', 'ʔ', '[+low]', '[+round]', 'peoaɒyr', 'peoaʔɒʔyr');
+    testCorrect('∅', 'qw', '[+low]', '[+round]', 'peoaɒyr', 'peoaqwɒqwyr');
 
     // console.log("Total Cases: ", total);
     console.log("Wrong Cases: ", wrong);

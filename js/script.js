@@ -292,11 +292,12 @@ function isIllFormed(A, B, C, D) {
     //     return true;
     // }
     //
-    // if (A.indexOf("∅") != -1) {
-    //     // If A is none
-    //     alert("A cannot be none.");
-    //     return true;
-    // }
+    if (A.indexOf("∅") != -1 && A.length > 1) {
+        // If A is "∅" and there are other elements
+        // Is this allowed ??
+        alert("If A contains '∅', A cannot contain other IPAs.");
+        return true;
+    }
 
     if (C.indexOf("∅") != -1) {
         // If C is none
@@ -396,6 +397,7 @@ function applyRule(A, B, C, D, word) {
         if (ABCD == "C") return has(letter, 'consonant');
         /* If it is a Segment */
         if (ABCD.charAt(1) == "+" || ABCD.charAt(1) == "-") {
+            // console.log(ABCD, letter);
             var segments = getFeaturesInSegment(ABCD);
             for (var i = 0; i < segments.length; i ++) {
 
@@ -409,6 +411,7 @@ function applyRule(A, B, C, D, word) {
                 if (!has(letter, sign + segments[i].substring(1, segments[i].length)))
                     return false;
             }
+            // console.log(ABCD, letter);
             return true;
         }
         return false;
@@ -417,6 +420,8 @@ function applyRule(A, B, C, D, word) {
 
         // Multiple segments below
         // TODO
+        // console.log(i);
+        if (ABCD == "∅" && !isNotA) return true;
         var result;
         var ABCD_array = parseSegment(ABCD);
         for (var j = 0; j < ABCD_array.length; j ++)
@@ -447,10 +452,22 @@ function applyRule(A, B, C, D, word) {
         /* If neither at word init nor word end
         Push indices that match, into a list */
         else {
-            for (i = 0; i < len; i ++)
-                if (isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true))
+            for (i = 0; i < len; i ++) {
+
+                // console.log("HAHA");
+                // console.log(C, isMatchedSingleABCD(C, i - 1, true));
+                // console.log(A, isMatchedSingleABCD(A, i, false));
+                // console.log(D, isMatchedSingleABCD(D, i + parseSegment(A).length, true));
+                if (
+                    isMatchedSingleABCD(C, i - 1, true) && isMatchedSingleABCD(A, i, false) && isMatchedSingleABCD(D, i + parseSegment(A).length, true)
+                ) {
                     indice.push(i);
+                    // console.log("PUSHED");
+                }
+            }
         }
+
+        // console.log(indice);
 
         /* Change A to B at each index that matches */
         for (j = 0; j < indice.length; j ++) {
@@ -462,8 +479,14 @@ function applyRule(A, B, C, D, word) {
 
             if (ASegments.length == BSegments.length) {
 
+                // if (A == '∅') {
+                //     // console.log("HERE");
+                //     middle = B;
+                //     // TODO WHAT IF B IS A SEGMENT?
+                // }
+                // else
                 if (ASegments.length == 1) {
-                // if (1) {
+                    // IGNORE LENGTH > 1 FOR NOW
                     AEachSegment = getFeaturesInSegment(ASegments[0]);
                     BEachSegment = getFeaturesInSegment(BSegments[0]);
 
@@ -558,7 +581,7 @@ function applyRule(A, B, C, D, word) {
     var indice = [];
     var len = word.length;
 
-    if (A == "&nbsp;" || A == "") A = " ";
+    if (A == "&nbsp;" || A == "" || A == " ") A = "∅"; // ?
     if (B == "&nbsp;" || B == "") B = " ";
     if (C == "&nbsp;" || C == "") C = " ";
     if (D == "&nbsp;" || D == "") D = " ";
@@ -641,6 +664,10 @@ function parseSegment(segments) {
     /* e.g. "a[+atr+anterior]C[+back+consonantal]V" ->
     ["a", "[+atr+anterior]", "C", "[+back+consonantal]", "V"] */
 
+    if (segments == "∅") {
+        return [];
+    }
+
     var results = [];
     do {
 
@@ -699,10 +726,12 @@ function has(letter, feature) {
 
         // array = [];
         // feature = "-Constricted Glottis";
-        feature_name = feature.substring(1, feature.length).toLowerCase();
+        feature_name = feature.substring(1, feature.length).toLowerCase().trim();
         feature_sign = feature.charAt(0);
         // console.log(feature_sign, feature_name);
+        // console.log(feature_sign, feature_name);
         for (i = 0; i < database_IPA.length; i ++) {
+            // console.log(feature_name);
             if (database_IPA[i][0].toLowerCase() == feature_name) {
                 col = i;
                 break;
@@ -710,6 +739,7 @@ function has(letter, feature) {
         }
         if (col == undefined) console.log("DEBUG: FEATURE NOT FOUND", feature);
         for (j = 1; j < database_IPA[0].length; j ++) {
+            // console.log(database_IPA[col]);
             if (database_IPA[col][j] == feature_sign) {
                 ipa = database_IPA[0][j];
 

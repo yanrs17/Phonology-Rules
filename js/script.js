@@ -553,6 +553,7 @@ function applyRule(A, B, C, D, word) {
                 else
                     console.log("DEBUG: THERE IS NO [ IN BOTH A AND B.");
             }
+            return middle;
         }
 
         getIndices();
@@ -563,7 +564,7 @@ function applyRule(A, B, C, D, word) {
             before = word.substring(0, indices[j]);
 
             /* MIDDLE */
-            getMiddle();
+            middle = getMiddle();
 
             /* AFTER */
             // ASegments.length is added to acommodate multiple into 1:
